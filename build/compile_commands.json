@@ -1,0 +1,77 @@
+[
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/read_robot_state.dir/cpp/read_robot_state.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/read_robot_state.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/read_robot_state.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/rl_project.dir/cpp/rl_project.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rl_project.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rl_project.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/path_record.dir/cpp/path_record.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/path_record.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/path_record.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -DXMATEMODEL_LIB_SUPPORTED -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/xmatemodel_er3_er7p.dir/cpp/xmatemodel_er3_er7p.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/xmatemodel_er3_er7p.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/xmatemodel_er3_er7p.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/move_example.dir/cpp/move_example.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/move_example.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/move_example.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/sdk_example.dir/cpp/sdk_example.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/sdk_example.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/sdk_example.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/joint_position_control.dir/joint_position_control.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/joint_position_control.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/joint_position_control.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/joint_impedance_control.dir/joint_impedance_control.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/joint_impedance_control.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/joint_impedance_control.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/cartesian_impedance_control.dir/cartesian_impedance_control.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/cartesian_impedance_control.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/cartesian_impedance_control.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/move_commands.dir/move_commands.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/move_commands.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/move_commands.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/joint_s_line.dir/joint_s_line.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/joint_s_line.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/joint_s_line.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -DXMATEMODEL_LIB_SUPPORTED -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/torque_control.dir/torque_control.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/torque_control.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/torque_control.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/cartesian_s_line.dir/cartesian_s_line.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/cartesian_s_line.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/cartesian_s_line.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/rt_industrial.dir/rt_industrial.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/rt_industrial.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/rt_industrial.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -DXMATEMODEL_LIB_SUPPORTED -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/follow_joint_position.dir/follow_joint_position.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/follow_joint_position.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/follow_joint_position.cpp"
+}
+]

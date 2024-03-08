@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/joint_s_line.dir/joint_s_line.cpp.o  -o ../../../bin/joint_s_line  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

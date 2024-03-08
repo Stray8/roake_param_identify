@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/joint_position_control.dir/joint_position_control.cpp.o  -o ../../../bin/joint_position_control  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

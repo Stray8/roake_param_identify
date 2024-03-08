@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/move_commands.dir/move_commands.cpp.o  -o ../../../bin/move_commands  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

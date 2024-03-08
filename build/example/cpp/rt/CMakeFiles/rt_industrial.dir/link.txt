@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/rt_industrial.dir/rt_industrial.cpp.o  -o ../../../bin/rt_industrial  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

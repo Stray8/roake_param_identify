@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/path_record.dir/cpp/path_record.cpp.o  -o ../bin/path_record  ../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 
