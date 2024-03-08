@@ -10,7 +10,7 @@ set(RT_EXAMPLES
     joint_s_line
     cartesian_s_line
     rt_industrial
-    # param_identify
+    param_identify
     )
 
 foreach(example ${RT_EXAMPLES})

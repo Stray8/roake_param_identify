@@ -71,6 +71,11 @@
 },
 {
   "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/param_identify.dir/param_identify.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/param_identify.cpp",
+  "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/param_identify.cpp"
+},
+{
+  "directory": "/home/robot/robot/librokae-v0.3.3/build/example/cpp/rt",
   "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -DXMATEMODEL_LIB_SUPPORTED -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/follow_joint_position.dir/follow_joint_position.cpp.o -c /home/robot/robot/librokae-v0.3.3/example/cpp/rt/follow_joint_position.cpp",
   "file": "/home/robot/robot/librokae-v0.3.3/example/cpp/rt/follow_joint_position.cpp"
 }

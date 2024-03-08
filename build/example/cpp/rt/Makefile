@@ -90,18 +90,6 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -123,6 +111,18 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -275,6 +275,21 @@ rt_industrial: example/cpp/rt/CMakeFiles/rt_industrial.dir/rule
 rt_industrial/fast:
 	cd /home/robot/robot/librokae-v0.3.3/build && $(MAKE) -f example/cpp/rt/CMakeFiles/rt_industrial.dir/build.make example/cpp/rt/CMakeFiles/rt_industrial.dir/build
 .PHONY : rt_industrial/fast
+
+# Convenience name for target.
+example/cpp/rt/CMakeFiles/param_identify.dir/rule:
+	cd /home/robot/robot/librokae-v0.3.3/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/rt/CMakeFiles/param_identify.dir/rule
+.PHONY : example/cpp/rt/CMakeFiles/param_identify.dir/rule
+
+# Convenience name for target.
+param_identify: example/cpp/rt/CMakeFiles/param_identify.dir/rule
+
+.PHONY : param_identify
+
+# fast build rule for target.
+param_identify/fast:
+	cd /home/robot/robot/librokae-v0.3.3/build && $(MAKE) -f example/cpp/rt/CMakeFiles/param_identify.dir/build.make example/cpp/rt/CMakeFiles/param_identify.dir/build
+.PHONY : param_identify/fast
 
 # Convenience name for target.
 example/cpp/rt/CMakeFiles/follow_joint_position.dir/rule:
@@ -480,6 +495,33 @@ move_commands.cpp.s:
 	cd /home/robot/robot/librokae-v0.3.3/build && $(MAKE) -f example/cpp/rt/CMakeFiles/move_commands.dir/build.make example/cpp/rt/CMakeFiles/move_commands.dir/move_commands.cpp.s
 .PHONY : move_commands.cpp.s
 
+param_identify.o: param_identify.cpp.o
+
+.PHONY : param_identify.o
+
+# target to build an object file
+param_identify.cpp.o:
+	cd /home/robot/robot/librokae-v0.3.3/build && $(MAKE) -f example/cpp/rt/CMakeFiles/param_identify.dir/build.make example/cpp/rt/CMakeFiles/param_identify.dir/param_identify.cpp.o
+.PHONY : param_identify.cpp.o
+
+param_identify.i: param_identify.cpp.i
+
+.PHONY : param_identify.i
+
+# target to preprocess a source file
+param_identify.cpp.i:
+	cd /home/robot/robot/librokae-v0.3.3/build && $(MAKE) -f example/cpp/rt/CMakeFiles/param_identify.dir/build.make example/cpp/rt/CMakeFiles/param_identify.dir/param_identify.cpp.i
+.PHONY : param_identify.cpp.i
+
+param_identify.s: param_identify.cpp.s
+
+.PHONY : param_identify.s
+
+# target to generate assembly for a file
+param_identify.cpp.s:
+	cd /home/robot/robot/librokae-v0.3.3/build && $(MAKE) -f example/cpp/rt/CMakeFiles/param_identify.dir/build.make example/cpp/rt/CMakeFiles/param_identify.dir/param_identify.cpp.s
+.PHONY : param_identify.cpp.s
+
 rt_industrial.o: rt_industrial.cpp.o
 
 .PHONY : rt_industrial.o
@@ -551,10 +593,11 @@ help:
 	@echo "... torque_control"
 	@echo "... cartesian_s_line"
 	@echo "... rt_industrial"
-	@echo "... install"
-	@echo "... follow_joint_position"
+	@echo "... param_identify"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... follow_joint_position"
 	@echo "... cartesian_impedance_control.o"
 	@echo "... cartesian_impedance_control.i"
 	@echo "... cartesian_impedance_control.s"
@@ -576,6 +619,9 @@ help:
 	@echo "... move_commands.o"
 	@echo "... move_commands.i"
 	@echo "... move_commands.s"
+	@echo "... param_identify.o"
+	@echo "... param_identify.i"
+	@echo "... param_identify.s"
 	@echo "... rt_industrial.o"
 	@echo "... rt_industrial.i"
 	@echo "... rt_industrial.s"

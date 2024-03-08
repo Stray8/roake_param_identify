@@ -339,6 +339,19 @@ rt_industrial/fast:
 .PHONY : rt_industrial/fast
 
 #=============================================================================
+# Target rules for targets named param_identify
+
+# Build rule for target.
+param_identify: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 param_identify
+.PHONY : param_identify
+
+# fast build rule for target.
+param_identify/fast:
+	$(MAKE) -f example/cpp/rt/CMakeFiles/param_identify.dir/build.make example/cpp/rt/CMakeFiles/param_identify.dir/build
+.PHONY : param_identify/fast
+
+#=============================================================================
 # Target rules for targets named follow_joint_position
 
 # Build rule for target.
@@ -390,6 +403,7 @@ help:
 	@echo "... torque_control"
 	@echo "... cartesian_s_line"
 	@echo "... rt_industrial"
+	@echo "... param_identify"
 	@echo "... follow_joint_position"
 	@echo "... doc"
 .PHONY : help
