@@ -17,16 +17,6 @@
 using namespace rokae;
 using namespace std;
 
-void save_data(void){
-    ofstream out_txt_file;
-    out_txt_file.open("number.txt");
-    int i;
-    int arr[5] = {1, 2, 3, 4, 5};
-    for (i = 0; i < 5; i++){
-        out_txt_file << arr[i];
-    }
-    out_txt_file.close();
-}
 int main(){
     ofstream out_txt_file;
     ofstream torque_file;
