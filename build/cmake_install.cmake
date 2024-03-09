@@ -1,8 +1,8 @@
-# Install script for directory: /home/robot/robot/librokae-v0.3.3
+# Install script for directory: /home/robot/robot/roake_param_identify
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/robot/robot/librokae-v0.3.3/build/dist")
+  set(CMAKE_INSTALL_PREFIX "/home/robot/robot/roake_param_identify/build/dist")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,11 +39,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/robot/robot/librokae-v0.3.3/build/external/cmake_install.cmake")
-  include("/home/robot/robot/librokae-v0.3.3/build/include/cmake_install.cmake")
-  include("/home/robot/robot/librokae-v0.3.3/build/lib/cmake_install.cmake")
-  include("/home/robot/robot/librokae-v0.3.3/build/example/cmake_install.cmake")
-  include("/home/robot/robot/librokae-v0.3.3/build/doc/cmake_install.cmake")
+  include("/home/robot/robot/roake_param_identify/build/external/cmake_install.cmake")
+  include("/home/robot/robot/roake_param_identify/build/include/cmake_install.cmake")
+  include("/home/robot/robot/roake_param_identify/build/lib/cmake_install.cmake")
+  include("/home/robot/robot/roake_param_identify/build/example/cmake_install.cmake")
+  include("/home/robot/robot/roake_param_identify/build/doc/cmake_install.cmake")
 
 endif()
 
@@ -55,5 +55,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/robot/robot/librokae-v0.3.3/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/robot/robot/roake_param_identify/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

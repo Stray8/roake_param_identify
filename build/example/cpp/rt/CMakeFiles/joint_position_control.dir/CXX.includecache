@@ -1820,7 +1820,7 @@ motion_control_rt.h
 planner.h
 ../include/rokae/planner.h
 
-/home/robot/robot/librokae-v0.3.3/example/cpp/print_helper.hpp
+/home/robot/robot/roake_param_identify/example/cpp/print_helper.hpp
 iostream
 -
 array
@@ -1832,9 +1832,9 @@ string
 iterator
 -
 rokae/data_types.h
-/home/robot/robot/librokae-v0.3.3/example/cpp/rokae/data_types.h
+/home/robot/robot/roake_param_identify/example/cpp/rokae/data_types.h
 
-/home/robot/robot/librokae-v0.3.3/example/cpp/rt/joint_position_control.cpp
+/home/robot/robot/roake_param_identify/example/cpp/rt/joint_position_control.cpp
 iostream
 -
 cmath
@@ -1842,7 +1842,7 @@ cmath
 thread
 -
 rokae/robot.h
-/home/robot/robot/librokae-v0.3.3/example/cpp/rt/rokae/robot.h
+/home/robot/robot/roake_param_identify/example/cpp/rt/rokae/robot.h
 ../print_helper.hpp
-/home/robot/robot/librokae-v0.3.3/example/cpp/print_helper.hpp
+/home/robot/robot/roake_param_identify/example/cpp/print_helper.hpp
 

@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/follow_joint_position.dir/follow_joint_position.cpp.o  -o ../../../bin/follow_joint_position  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG   -pthread -std=gnu++17
 
 CXX_DEFINES = -DEIGEN_DONT_ALIGN_STATICALLY
 
-CXX_INCLUDES = -I/home/robot/robot/librokae-v0.3.3/include -I/home/robot/robot/librokae-v0.3.3/external 
+CXX_INCLUDES = -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external 
 

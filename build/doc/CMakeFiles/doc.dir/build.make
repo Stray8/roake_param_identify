@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/robot/robot/librokae-v0.3.3
+CMAKE_SOURCE_DIR = /home/robot/robot/roake_param_identify
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/robot/robot/librokae-v0.3.3/build
+CMAKE_BINARY_DIR = /home/robot/robot/roake_param_identify/build
 
 # Utility rule file for doc.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/robot/robot/librokae-v0.3.3/build
 include doc/CMakeFiles/doc.dir/progress.make
 
 doc/CMakeFiles/doc:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/robot/robot/librokae-v0.3.3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) EXCLUDE_FROM_ALL
-	cd /home/robot/robot/librokae-v0.3.3 && /usr/local/bin/doxygen /home/robot/robot/librokae-v0.3.3/build/doc/Doxyfile
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) EXCLUDE_FROM_ALL
+	cd /home/robot/robot/roake_param_identify && /usr/local/bin/doxygen /home/robot/robot/roake_param_identify/build/doc/Doxyfile
 
 doc: doc/CMakeFiles/doc
 doc: doc/CMakeFiles/doc.dir/build.make
@@ -68,10 +68,10 @@ doc/CMakeFiles/doc.dir/build: doc
 .PHONY : doc/CMakeFiles/doc.dir/build
 
 doc/CMakeFiles/doc.dir/clean:
-	cd /home/robot/robot/librokae-v0.3.3/build/doc && $(CMAKE_COMMAND) -P CMakeFiles/doc.dir/cmake_clean.cmake
+	cd /home/robot/robot/roake_param_identify/build/doc && $(CMAKE_COMMAND) -P CMakeFiles/doc.dir/cmake_clean.cmake
 .PHONY : doc/CMakeFiles/doc.dir/clean
 
 doc/CMakeFiles/doc.dir/depend:
-	cd /home/robot/robot/librokae-v0.3.3/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/robot/robot/librokae-v0.3.3 /home/robot/robot/librokae-v0.3.3/doc /home/robot/robot/librokae-v0.3.3/build /home/robot/robot/librokae-v0.3.3/build/doc /home/robot/robot/librokae-v0.3.3/build/doc/CMakeFiles/doc.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/robot/robot/roake_param_identify/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/robot/robot/roake_param_identify /home/robot/robot/roake_param_identify/doc /home/robot/robot/roake_param_identify/build /home/robot/robot/roake_param_identify/build/doc /home/robot/robot/roake_param_identify/build/doc/CMakeFiles/doc.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : doc/CMakeFiles/doc.dir/depend
 

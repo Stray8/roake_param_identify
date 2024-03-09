@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/robot/robot/librokae-v0.3.3/example/cpp/sdk_example.cpp" "/home/robot/robot/librokae-v0.3.3/build/example/CMakeFiles/sdk_example.dir/cpp/sdk_example.cpp.o"
+  "/home/robot/robot/roake_param_identify/example/cpp/sdk_example.cpp" "/home/robot/robot/roake_param_identify/build/example/CMakeFiles/sdk_example.dir/cpp/sdk_example.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

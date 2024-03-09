@@ -263,4 +263,4 @@ example/CMakeFiles/path_record.dir/cpp/path_record.cpp.o
  ../include/rokae/motion_control_rt.h
  ../include/rokae/planner.h
  ../include/rokae/robot.h
- /home/robot/robot/librokae-v0.3.3/example/cpp/path_record.cpp
+ /home/robot/robot/roake_param_identify/example/cpp/path_record.cpp

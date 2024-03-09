@@ -1,8 +1,8 @@
-# Install script for directory: /home/robot/robot/librokae-v0.3.3/external
+# Install script for directory: /home/robot/robot/roake_param_identify/external
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/robot/robot/librokae-v0.3.3/build/dist")
+  set(CMAKE_INSTALL_PREFIX "/home/robot/robot/roake_param_identify/build/dist")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
