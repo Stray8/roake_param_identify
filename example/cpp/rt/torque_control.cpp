@@ -17,6 +17,8 @@
 #include "rokae/utility.h"
 
 using namespace rokae;
+using namespace std;
+
 
 /**
  * @brief 力矩控制. 注意:
@@ -148,9 +150,9 @@ void zeroTorque(Cobot<DoF> &robot) {
   std::function<Torque(void)> callback = [&]() {
     static double time=0;
     time += 0.001;
-    if(time > 30){
-      cmd.setFinished();
-    }
+    // if(time > 30){
+    //   cmd.setFinished();
+    // }
     return cmd;
   };
 
@@ -168,7 +170,7 @@ int main() {
     robot.setMotionControlMode(MotionControlMode::RtCommand, ec);
     robot.setPowerState(true, ec);
     try {
-      torqueControl(robot);
+      zeroTorque(robot);
     } catch (const rokae::RealtimeMotionException &e) {
       print(std::cerr, e.what());
       // 发生错误, 切换回非实时模式

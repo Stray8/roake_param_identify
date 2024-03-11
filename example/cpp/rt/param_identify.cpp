@@ -42,17 +42,7 @@ int main(){
 
         static bool init = true;
         double time = 0;
-
-        /*std::vector<std::array<double, 7>> jntTargets = {
-            {0, -0.4, 0, 0, 0, 0, 0},
-            {0, 0.4, 0, 0, 0, 0, 0},
-            {0, -0.6, 0, 0, 0, 0, 0},
-            {0, 0.6, 0, 0, 0, 0, 0},
-            {0, -0.4, 0, 0, 0, 0, 0},
-            {0, 0.6, 0, 0, 0, 0, 0},
-            {0, -0.4, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0}
-        };  */  
+        //
         ifstream file("/home/robot/dq.txt");
 
         vector<array<double, 7>> jntTargets;
@@ -70,58 +60,59 @@ int main(){
             }
             jntTargets.push_back(arr);
         }
-         file.close();
+        file.close();
+        //
         for (int i = 0; i < jntTargets.size(); i++){
             for (int j = 0; j < jntTargets[i].size(); j++){
                 cout << jntTargets[i][j] << "\t";
+            }
+            cout << endl;
         }
-       cout << endl;
-    }
-    auto it = jntTargets.begin();
 
-    //开始运动前先设置为轴空间位置控制
-    rtCon->startMove(RtControllerMode::jointPosition);
+        auto it = jntTargets.begin();
+        //开始运动前先设置为轴空间位置控制
+        rtCon->startMove(RtControllerMode::jointPosition);
 
-    std::function<JointPosition(void)> callback = [&, rtCon](){
-        time += 0.001; // 按1ms为周期规划
-        if(init) {
-            // 读取当前轴角度
-            jntPos = robot.jointPos(ec);
-            init = false;
-        }
-        JointMotionGenerator joint_s(1, *it);
-        joint_s.calculateSynchronizedValues(jntPos);
-        print(std::cout, "joint angle: ", robot.jointPos(ec));
-        print(std::cout, "joint Torque: ", robot.jointTorque(ec));
-        out_txt_file << "Position: " << robot.jointPos(ec) << endl;
-        torque_file << "Torque: " << robot.jointTorque(ec) << endl;
+        std::function<JointPosition(void)> callback = [&, rtCon](){
+            time += 0.001; // 按1ms为周期规划
+            if(init) {
+                // 读取当前轴角度
+                jntPos = robot.jointPos(ec);
+                init = false;
+            }
+            JointMotionGenerator joint_s(1, *it);
+            joint_s.calculateSynchronizedValues(jntPos);
+            print(std::cout, "joint angle: ", robot.jointPos(ec));
+            print(std::cout, "joint Torque: ", robot.jointTorque(ec));
+            out_txt_file << "Position: " << robot.jointPos(ec) << endl;
+            torque_file << "Torque: " << robot.jointTorque(ec) << endl;
 
 
-        // 获取每个周期计算的角度偏移
-        if(!joint_s.calculateDesiredValues(time, delta)){
-            // for(unsigned i = 0; i < cmd.joints.size(); ++i){
-            for(unsigned i = 0; i < cmd.joints.size(); ++i){
-                cmd.joints[i] = jntPos[i] + delta[i];}
-        }else{
-            // 已到达一个目标点，开始运动到下一个目标点
-            if (++it == jntTargets.end()){
-                cmd.setFinished();}
-            time = 0;
-            // 最后的角度值作为下一个规划的起始点
-            std::copy(cmd.joints.begin(), cmd.joints.end(), jntPos.begin());
-        }
-        return cmd;
-    };
+            // 获取每个周期计算的角度偏移
+            if(!joint_s.calculateDesiredValues(time, delta)){
+                for(unsigned i = 0; i < cmd.joints.size(); ++i){
+                    cmd.joints[i] = jntPos[i] + delta[i];}
+            }else{
+                // 已到达一个目标点，开始运动到下一个目标点
+                if (++it == jntTargets.end()){
+                    cmd.setFinished();
+                }
+                time = 0;
+                // 最后的角度值作为下一个规划的起始点
+                std::copy(cmd.joints.begin(), cmd.joints.end(), jntPos.begin());
+            }
+            return cmd;
+        };
 
         rtCon->setControlLoop(callback);
         rtCon->startLoop(true);
         print(std::cout, "控制结束");
+        out_txt_file.close();
+        torque_file.close();
 
-     }catch (const std::exception &e) {
-        print(std::cerr, e.what());}
-
-    out_txt_file.close();
-    torque_file.close();
-
+    }catch (const std::exception &e) {
+        print(std::cerr, e.what());
+    }
     return 0;
 }
+

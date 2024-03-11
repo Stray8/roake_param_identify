@@ -202,6 +202,21 @@ path_record/fast:
 .PHONY : path_record/fast
 
 # Convenience name for target.
+example/CMakeFiles/xmatemodel_er3_er7p.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/CMakeFiles/xmatemodel_er3_er7p.dir/rule
+.PHONY : example/CMakeFiles/xmatemodel_er3_er7p.dir/rule
+
+# Convenience name for target.
+xmatemodel_er3_er7p: example/CMakeFiles/xmatemodel_er3_er7p.dir/rule
+
+.PHONY : xmatemodel_er3_er7p
+
+# fast build rule for target.
+xmatemodel_er3_er7p/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/CMakeFiles/xmatemodel_er3_er7p.dir/build.make example/CMakeFiles/xmatemodel_er3_er7p.dir/build
+.PHONY : xmatemodel_er3_er7p/fast
+
+# Convenience name for target.
 example/CMakeFiles/move_example.dir/rule:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/CMakeFiles/move_example.dir/rule
 .PHONY : example/CMakeFiles/move_example.dir/rule
@@ -366,6 +381,33 @@ cpp/sdk_example.cpp.s:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/CMakeFiles/sdk_example.dir/build.make example/CMakeFiles/sdk_example.dir/cpp/sdk_example.cpp.s
 .PHONY : cpp/sdk_example.cpp.s
 
+cpp/xmatemodel_er3_er7p.o: cpp/xmatemodel_er3_er7p.cpp.o
+
+.PHONY : cpp/xmatemodel_er3_er7p.o
+
+# target to build an object file
+cpp/xmatemodel_er3_er7p.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/CMakeFiles/xmatemodel_er3_er7p.dir/build.make example/CMakeFiles/xmatemodel_er3_er7p.dir/cpp/xmatemodel_er3_er7p.cpp.o
+.PHONY : cpp/xmatemodel_er3_er7p.cpp.o
+
+cpp/xmatemodel_er3_er7p.i: cpp/xmatemodel_er3_er7p.cpp.i
+
+.PHONY : cpp/xmatemodel_er3_er7p.i
+
+# target to preprocess a source file
+cpp/xmatemodel_er3_er7p.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/CMakeFiles/xmatemodel_er3_er7p.dir/build.make example/CMakeFiles/xmatemodel_er3_er7p.dir/cpp/xmatemodel_er3_er7p.cpp.i
+.PHONY : cpp/xmatemodel_er3_er7p.cpp.i
+
+cpp/xmatemodel_er3_er7p.s: cpp/xmatemodel_er3_er7p.cpp.s
+
+.PHONY : cpp/xmatemodel_er3_er7p.s
+
+# target to generate assembly for a file
+cpp/xmatemodel_er3_er7p.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/CMakeFiles/xmatemodel_er3_er7p.dir/build.make example/CMakeFiles/xmatemodel_er3_er7p.dir/cpp/xmatemodel_er3_er7p.cpp.s
+.PHONY : cpp/xmatemodel_er3_er7p.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -380,6 +422,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... path_record"
+	@echo "... xmatemodel_er3_er7p"
 	@echo "... move_example"
 	@echo "... edit_cache"
 	@echo "... sdk_example"
@@ -398,6 +441,9 @@ help:
 	@echo "... cpp/sdk_example.o"
 	@echo "... cpp/sdk_example.i"
 	@echo "... cpp/sdk_example.s"
+	@echo "... cpp/xmatemodel_er3_er7p.o"
+	@echo "... cpp/xmatemodel_er3_er7p.i"
+	@echo "... cpp/xmatemodel_er3_er7p.s"
 .PHONY : help
 
 

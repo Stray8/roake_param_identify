@@ -78,18 +78,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -123,6 +111,18 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -232,6 +232,21 @@ joint_s_line/fast:
 .PHONY : joint_s_line/fast
 
 # Convenience name for target.
+example/cpp/rt/CMakeFiles/torque_control.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/rt/CMakeFiles/torque_control.dir/rule
+.PHONY : example/cpp/rt/CMakeFiles/torque_control.dir/rule
+
+# Convenience name for target.
+torque_control: example/cpp/rt/CMakeFiles/torque_control.dir/rule
+
+.PHONY : torque_control
+
+# fast build rule for target.
+torque_control/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/torque_control.dir/build.make example/cpp/rt/CMakeFiles/torque_control.dir/build
+.PHONY : torque_control/fast
+
+# Convenience name for target.
 example/cpp/rt/CMakeFiles/cartesian_s_line.dir/rule:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/rt/CMakeFiles/cartesian_s_line.dir/rule
 .PHONY : example/cpp/rt/CMakeFiles/cartesian_s_line.dir/rule
@@ -275,6 +290,21 @@ param_identify: example/cpp/rt/CMakeFiles/param_identify.dir/rule
 param_identify/fast:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/param_identify.dir/build.make example/cpp/rt/CMakeFiles/param_identify.dir/build
 .PHONY : param_identify/fast
+
+# Convenience name for target.
+example/cpp/rt/CMakeFiles/follow_joint_position.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/rt/CMakeFiles/follow_joint_position.dir/rule
+.PHONY : example/cpp/rt/CMakeFiles/follow_joint_position.dir/rule
+
+# Convenience name for target.
+follow_joint_position: example/cpp/rt/CMakeFiles/follow_joint_position.dir/rule
+
+.PHONY : follow_joint_position
+
+# fast build rule for target.
+follow_joint_position/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/follow_joint_position.dir/build.make example/cpp/rt/CMakeFiles/follow_joint_position.dir/build
+.PHONY : follow_joint_position/fast
 
 cartesian_impedance_control.o: cartesian_impedance_control.cpp.o
 
@@ -329,6 +359,33 @@ cartesian_s_line.s: cartesian_s_line.cpp.s
 cartesian_s_line.cpp.s:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/cartesian_s_line.dir/build.make example/cpp/rt/CMakeFiles/cartesian_s_line.dir/cartesian_s_line.cpp.s
 .PHONY : cartesian_s_line.cpp.s
+
+follow_joint_position.o: follow_joint_position.cpp.o
+
+.PHONY : follow_joint_position.o
+
+# target to build an object file
+follow_joint_position.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/follow_joint_position.dir/build.make example/cpp/rt/CMakeFiles/follow_joint_position.dir/follow_joint_position.cpp.o
+.PHONY : follow_joint_position.cpp.o
+
+follow_joint_position.i: follow_joint_position.cpp.i
+
+.PHONY : follow_joint_position.i
+
+# target to preprocess a source file
+follow_joint_position.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/follow_joint_position.dir/build.make example/cpp/rt/CMakeFiles/follow_joint_position.dir/follow_joint_position.cpp.i
+.PHONY : follow_joint_position.cpp.i
+
+follow_joint_position.s: follow_joint_position.cpp.s
+
+.PHONY : follow_joint_position.s
+
+# target to generate assembly for a file
+follow_joint_position.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/follow_joint_position.dir/build.make example/cpp/rt/CMakeFiles/follow_joint_position.dir/follow_joint_position.cpp.s
+.PHONY : follow_joint_position.cpp.s
 
 joint_impedance_control.o: joint_impedance_control.cpp.o
 
@@ -492,6 +549,33 @@ rt_industrial.cpp.s:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/rt_industrial.dir/build.make example/cpp/rt/CMakeFiles/rt_industrial.dir/rt_industrial.cpp.s
 .PHONY : rt_industrial.cpp.s
 
+torque_control.o: torque_control.cpp.o
+
+.PHONY : torque_control.o
+
+# target to build an object file
+torque_control.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/torque_control.dir/build.make example/cpp/rt/CMakeFiles/torque_control.dir/torque_control.cpp.o
+.PHONY : torque_control.cpp.o
+
+torque_control.i: torque_control.cpp.i
+
+.PHONY : torque_control.i
+
+# target to preprocess a source file
+torque_control.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/torque_control.dir/build.make example/cpp/rt/CMakeFiles/torque_control.dir/torque_control.cpp.i
+.PHONY : torque_control.cpp.i
+
+torque_control.s: torque_control.cpp.s
+
+.PHONY : torque_control.s
+
+# target to generate assembly for a file
+torque_control.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/torque_control.dir/build.make example/cpp/rt/CMakeFiles/torque_control.dir/torque_control.cpp.s
+.PHONY : torque_control.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -503,21 +587,26 @@ help:
 	@echo "... joint_impedance_control"
 	@echo "... cartesian_impedance_control"
 	@echo "... list_install_components"
-	@echo "... install"
 	@echo "... install/local"
 	@echo "... move_commands"
 	@echo "... joint_s_line"
+	@echo "... torque_control"
 	@echo "... cartesian_s_line"
 	@echo "... rt_industrial"
 	@echo "... param_identify"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... follow_joint_position"
 	@echo "... cartesian_impedance_control.o"
 	@echo "... cartesian_impedance_control.i"
 	@echo "... cartesian_impedance_control.s"
 	@echo "... cartesian_s_line.o"
 	@echo "... cartesian_s_line.i"
 	@echo "... cartesian_s_line.s"
+	@echo "... follow_joint_position.o"
+	@echo "... follow_joint_position.i"
+	@echo "... follow_joint_position.s"
 	@echo "... joint_impedance_control.o"
 	@echo "... joint_impedance_control.i"
 	@echo "... joint_impedance_control.s"
@@ -536,6 +625,9 @@ help:
 	@echo "... rt_industrial.o"
 	@echo "... rt_industrial.i"
 	@echo "... rt_industrial.s"
+	@echo "... torque_control.o"
+	@echo "... torque_control.i"
+	@echo "... torque_control.s"
 .PHONY : help
 
 

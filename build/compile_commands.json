@@ -16,6 +16,11 @@
 },
 {
   "directory": "/home/robot/robot/roake_param_identify/build/example",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -DXMATEMODEL_LIB_SUPPORTED -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/xmatemodel_er3_er7p.dir/cpp/xmatemodel_er3_er7p.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/xmatemodel_er3_er7p.cpp",
+  "file": "/home/robot/robot/roake_param_identify/example/cpp/xmatemodel_er3_er7p.cpp"
+},
+{
+  "directory": "/home/robot/robot/roake_param_identify/build/example",
   "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/move_example.dir/cpp/move_example.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/move_example.cpp",
   "file": "/home/robot/robot/roake_param_identify/example/cpp/move_example.cpp"
 },
@@ -51,6 +56,11 @@
 },
 {
   "directory": "/home/robot/robot/roake_param_identify/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -DXMATEMODEL_LIB_SUPPORTED -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/torque_control.dir/torque_control.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/rt/torque_control.cpp",
+  "file": "/home/robot/robot/roake_param_identify/example/cpp/rt/torque_control.cpp"
+},
+{
+  "directory": "/home/robot/robot/roake_param_identify/build/example/cpp/rt",
   "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/cartesian_s_line.dir/cartesian_s_line.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/rt/cartesian_s_line.cpp",
   "file": "/home/robot/robot/roake_param_identify/example/cpp/rt/cartesian_s_line.cpp"
 },
@@ -63,5 +73,10 @@
   "directory": "/home/robot/robot/roake_param_identify/build/example/cpp/rt",
   "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/param_identify.dir/param_identify.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/rt/param_identify.cpp",
   "file": "/home/robot/robot/roake_param_identify/example/cpp/rt/param_identify.cpp"
+},
+{
+  "directory": "/home/robot/robot/roake_param_identify/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -DXMATEMODEL_LIB_SUPPORTED -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/follow_joint_position.dir/follow_joint_position.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/rt/follow_joint_position.cpp",
+  "file": "/home/robot/robot/roake_param_identify/example/cpp/rt/follow_joint_position.cpp"
 }
 ]

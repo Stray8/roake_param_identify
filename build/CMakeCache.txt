@@ -140,7 +140,7 @@ CMAKE_INSTALL_MANDIR:PATH=
 CMAKE_INSTALL_OLDINCLUDEDIR:PATH=/usr/include
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=/home/robot/robot/roake_param_identify/build/dist
+CMAKE_INSTALL_PREFIX:PATH=/home/robot/robot/roake_param_identify/out
 
 //Run-time variable data (LOCALSTATEDIR/run)
 CMAKE_INSTALL_RUNSTATEDIR:PATH=
@@ -294,7 +294,7 @@ DOXYGEN_EXECUTABLE:FILEPATH=/usr/local/bin/doxygen
 XCORE_LINK_SHARED_LIBS:BOOL=OFF
 
 //xMate model library for calculation
-XCORE_USE_XMATE_MODEL:BOOL=OFF
+XCORE_USE_XMATE_MODEL:BOOL=ON
 
 //Value Computed by CMake
 xCoreSDK-examples_BINARY_DIR:STATIC=/home/robot/robot/roake_param_identify/build/example
@@ -505,5 +505,5 @@ SHARED_HEADERS:INTERNAL=/home/robot/robot/roake_param_identify/include/rokae/bas
 //Result of TRY_COMPILE
 THREADS_HAVE_PTHREAD_ARG:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
-_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/home/robot/robot/roake_param_identify/out
 

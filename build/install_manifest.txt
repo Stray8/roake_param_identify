@@ -1,0 +1,13 @@
+/home/robot/robot/roake_param_identify/out/bin/sdk_example
+/home/robot/robot/roake_param_identify/out/bin/move_example
+/home/robot/robot/roake_param_identify/out/bin/path_record
+/home/robot/robot/roake_param_identify/out/bin/rl_project
+/home/robot/robot/roake_param_identify/out/bin/read_robot_state
+/home/robot/robot/roake_param_identify/out/bin/joint_position_control
+/home/robot/robot/roake_param_identify/out/bin/joint_impedance_control
+/home/robot/robot/roake_param_identify/out/bin/cartesian_impedance_control
+/home/robot/robot/roake_param_identify/out/bin/move_commands
+/home/robot/robot/roake_param_identify/out/bin/joint_s_line
+/home/robot/robot/roake_param_identify/out/bin/cartesian_s_line
+/home/robot/robot/roake_param_identify/out/bin/rt_industrial
+/home/robot/robot/roake_param_identify/out/bin/param_identify

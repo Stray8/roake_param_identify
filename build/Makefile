@@ -196,6 +196,19 @@ path_record/fast:
 .PHONY : path_record/fast
 
 #=============================================================================
+# Target rules for targets named xmatemodel_er3_er7p
+
+# Build rule for target.
+xmatemodel_er3_er7p: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 xmatemodel_er3_er7p
+.PHONY : xmatemodel_er3_er7p
+
+# fast build rule for target.
+xmatemodel_er3_er7p/fast:
+	$(MAKE) -f example/CMakeFiles/xmatemodel_er3_er7p.dir/build.make example/CMakeFiles/xmatemodel_er3_er7p.dir/build
+.PHONY : xmatemodel_er3_er7p/fast
+
+#=============================================================================
 # Target rules for targets named move_example
 
 # Build rule for target.
@@ -287,6 +300,19 @@ joint_s_line/fast:
 .PHONY : joint_s_line/fast
 
 #=============================================================================
+# Target rules for targets named torque_control
+
+# Build rule for target.
+torque_control: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 torque_control
+.PHONY : torque_control
+
+# fast build rule for target.
+torque_control/fast:
+	$(MAKE) -f example/cpp/rt/CMakeFiles/torque_control.dir/build.make example/cpp/rt/CMakeFiles/torque_control.dir/build
+.PHONY : torque_control/fast
+
+#=============================================================================
 # Target rules for targets named cartesian_s_line
 
 # Build rule for target.
@@ -326,6 +352,19 @@ param_identify/fast:
 .PHONY : param_identify/fast
 
 #=============================================================================
+# Target rules for targets named follow_joint_position
+
+# Build rule for target.
+follow_joint_position: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 follow_joint_position
+.PHONY : follow_joint_position
+
+# fast build rule for target.
+follow_joint_position/fast:
+	$(MAKE) -f example/cpp/rt/CMakeFiles/follow_joint_position.dir/build.make example/cpp/rt/CMakeFiles/follow_joint_position.dir/build
+.PHONY : follow_joint_position/fast
+
+#=============================================================================
 # Target rules for targets named doc
 
 # Build rule for target.
@@ -353,6 +392,7 @@ help:
 	@echo "... read_robot_state"
 	@echo "... rl_project"
 	@echo "... path_record"
+	@echo "... xmatemodel_er3_er7p"
 	@echo "... move_example"
 	@echo "... sdk_example"
 	@echo "... joint_position_control"
@@ -360,9 +400,11 @@ help:
 	@echo "... cartesian_impedance_control"
 	@echo "... move_commands"
 	@echo "... joint_s_line"
+	@echo "... torque_control"
 	@echo "... cartesian_s_line"
 	@echo "... rt_industrial"
 	@echo "... param_identify"
+	@echo "... follow_joint_position"
 	@echo "... doc"
 .PHONY : help
 
