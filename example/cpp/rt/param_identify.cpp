@@ -43,12 +43,6 @@ int main(){
         jntTargets.push_back(arr);
     }
     file.close();
-    //打印数据
-    for (int i = 0; i < jntTargets.size(); i++){
-        for (int j = 0; j < jntTargets[i].size(); j++)
-            cout << jntTargets[i][j] << "\t";
-        cout << endl;
-    }
 
     try{
         string ip = "192.168.0.160";
@@ -62,7 +56,7 @@ int main(){
         auto rtCon = robot.getRtMotionController().lock();
 
         // 设置要接收数据
-        // robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m});
+        robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m});
         array<double,7> jntPos{}, delta{};
         JointPosition cmd(7);
 
@@ -70,7 +64,8 @@ int main(){
         double time = 0;
 
         auto it = jntTargets.begin(); //返回指向jntTargets的第一个元素的迭代器
-        //开始运动前先设置为轴空间位置控制
+
+        // 开始运动前先设置为轴空间位置控制
         rtCon->startMove(RtControllerMode::jointPosition);
 
         function<JointPosition(void)> callback = [&, rtCon](){
@@ -84,19 +79,25 @@ int main(){
             joint_s.calculateSynchronizedValues(jntPos);
             // print(std::cout, "joint angle: ", robot.jointPos(ec));
             // print(std::cout, "joint Torque: ", robot.jointTorque(ec));
-            // out_txt_file << "Position: " << robot.jointPos(ec) << endl;
-            // torque_file << "Torque: " << robot.jointTorque(ec) << endl;
+            out_txt_file << "Position: " << robot.jointPos(ec) << endl;
+            torque_file << "Torque: " << robot.jointTorque(ec) << endl;
 
-            print(cout, joint_s.calculateDesiredValues(time, delta));
+            print(cout, "start:", time);
+            // print(cout, "it:", *it);
+            // print(cout, joint_s.calculateDesiredValues(time, delta));
             // 获取每个周期计算的角度偏移
             if(!joint_s.calculateDesiredValues(time, delta)){
-                for(unsigned i = 0; i < cmd.joints.size(); ++i){
-                    cmd.joints[i] = jntPos[i] + delta[i];}
+                for(unsigned i = 0; i < cmd.joints.size(); ++i)
+                    cmd.joints[i] = jntPos[i] + delta[i];
             }else{
                 // 已到达一个目标点，开始运动到下一个目标点
-                if (++it == jntTargets.end()){
+                // if (++it == jntTargets.end())
+                if (it == jntTargets.end()){
+                    it += 2;
                     cmd.setFinished();
                 }
+                // print(cout, "over: ", *it);
+                print(cout, "over: ", time);
                 time = 0;
                 // 最后的角度值作为下一个规划的起始点
                 copy(cmd.joints.begin(), cmd.joints.end(), jntPos.begin());
@@ -106,10 +107,13 @@ int main(){
 
         rtCon->setControlLoop(callback);
         rtCon->startLoop(true);
-        print(std::cout, "控制结束");
+        print(cout, "控制结束");
         out_txt_file.close();
         torque_file.close();
 
+        // 关闭实时模式
+        robot.setMotionControlMode(rokae::MotionControlMode::NrtCommand, ec);
+        robot.setOperateMode(rokae::OperateMode::manual, ec);
     }catch (const std::exception &e) {
         print(std::cerr, e.what());
     }

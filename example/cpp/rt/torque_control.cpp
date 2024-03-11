@@ -16,10 +16,9 @@
 #include "../print_helper.hpp"
 #include "rokae/utility.h"
 
-using namespace rokae;
+
 using namespace std;
-
-
+using namespace rokae;
 /**
  * @brief 力矩控制. 注意:
  * 1) 力矩值不要超过机型的限制条件(见手册);
@@ -135,6 +134,8 @@ void torqueControl(xMateErProRobot &robot) {
  */
 template <unsigned short DoF>
 void zeroTorque(Cobot<DoF> &robot) {
+  std::vector<std::string> paths;
+
   error_code ec;
   std::array<double,7> q_drag = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0};
   array<double, 7> q_start = {0, 0, 0, 0, 0, 0, 0};
@@ -142,27 +143,41 @@ void zeroTorque(Cobot<DoF> &robot) {
 
   // 运动到拖拽位置
   rtCon->MoveJ(0.5, robot.jointPos(ec), q_drag);
+  print(cout, "move done");
+
 
   // 控制模式为力矩控制
   rtCon->startMove(RtControllerMode::torque);
   Torque cmd {};
   cmd.tau.resize(DoF);
+  char comm = ' ';
 
   std::function<Torque(void)> callback = [&]() {
     static double time=0;
     time += 0.001;
-    // while(getchar() == '\n'){
-    //   cmd.setFinished();
-    //   print(cout, "wait for command");
-    //   break;
-    // }
-
-    if(getchar() == '\n'){
-      print(cout, "done");
+    if(cin.get() == 'q')
       cmd.setFinished();
-    }
 
-    print(cout, "wait for next command");
+    // comm = cin.get();
+
+    // print(cout, time);
+    // print(cout, comm);
+    // if(comm == 'q'){
+    //   print(cout, "quit control");
+    //   cmd.setFinished();
+    // }
+    // else if(comm == 'a'){
+    //   print(cout, "录制");
+    //   robot.startRecordPath(30, ec);
+    // }
+    // else if(comm == 'b'){
+    //   print(cout, "停止");
+    //   robot.stopRecordPath(ec);
+    // }
+    // else if(comm == 's'){
+    //   print(cout, "save");
+    //   robot.saveRecordPath("/home/robot", ec);
+    // }
 
     return cmd;
   };
