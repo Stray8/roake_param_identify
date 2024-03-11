@@ -136,11 +136,12 @@ void torqueControl(xMateErProRobot &robot) {
 template <unsigned short DoF>
 void zeroTorque(Cobot<DoF> &robot) {
   error_code ec;
-  std::array<double,7> q_drag = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0 };
+  std::array<double,7> q_drag = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0};
+  array<double, 7> q_start = {0, 0, 0, 0, 0, 0, 0};
   auto rtCon = robot.getRtMotionController().lock();
 
   // 运动到拖拽位置
-  rtCon->MoveJ(0.2, robot.jointPos(ec), q_drag);
+  rtCon->MoveJ(0.5, robot.jointPos(ec), q_drag);
 
   // 控制模式为力矩控制
   rtCon->startMove(RtControllerMode::torque);
@@ -150,15 +151,26 @@ void zeroTorque(Cobot<DoF> &robot) {
   std::function<Torque(void)> callback = [&]() {
     static double time=0;
     time += 0.001;
-    // if(time > 30){
+    // while(getchar() == '\n'){
     //   cmd.setFinished();
+    //   print(cout, "wait for command");
+    //   break;
     // }
+
+    if(getchar() == '\n'){
+      print(cout, "done");
+      cmd.setFinished();
+    }
+
+    print(cout, "wait for next command");
+
     return cmd;
   };
 
   rtCon->setControlLoop(callback);
   rtCon->startLoop();
   print(std::cout, "力矩控制结束");
+  rtCon->MoveJ(0.6, robot.jointPos(ec), q_start);
 }
 
 int main() {

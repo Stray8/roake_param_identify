@@ -23,11 +23,37 @@ int main(){
 
     out_txt_file.open("position.txt");
     torque_file.open("torque.txt");
+    
+    //读取txt中的轨迹信息
+    ifstream file("/home/robot/dq.txt");
+
+    vector<array<double, 7>> jntTargets;
+    string line;
+    while (getline(file, line)) {
+        istringstream iss(line);
+        array<double, 7> arr;
+        string value;
+        for (int i = 0; i < 7; i++) {
+            if (!getline(iss, value, ',')) {
+                cerr << "Error" << line << endl;
+                return 1;
+            }
+            arr[i] = stod(value);
+        }
+        jntTargets.push_back(arr);
+    }
+    file.close();
+    //打印数据
+    for (int i = 0; i < jntTargets.size(); i++){
+        for (int j = 0; j < jntTargets[i].size(); j++)
+            cout << jntTargets[i][j] << "\t";
+        cout << endl;
+    }
 
     try{
-        std::string ip = "192.168.0.160";
-        std::error_code ec;
-        rokae::xMateErProRobot robot(ip, "192.168.0.180"); // 本机地址192.168.0.100
+        string ip = "192.168.0.160";
+        error_code ec;
+        xMateErProRobot robot(ip, "192.168.0.180"); // 本机地址192.168.0.100
 
         robot.setOperateMode(rokae::OperateMode::automatic,ec);
         robot.setMotionControlMode(MotionControlMode::RtCommand, ec);
@@ -36,44 +62,18 @@ int main(){
         auto rtCon = robot.getRtMotionController().lock();
 
         // 设置要接收数据
-        robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m});
-        std::array<double,7> jntPos{}, delta{};
+        // robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m});
+        array<double,7> jntPos{}, delta{};
         JointPosition cmd(7);
 
         static bool init = true;
         double time = 0;
-        //
-        ifstream file("/home/robot/dq.txt");
 
-        vector<array<double, 7>> jntTargets;
-        string line;
-        while (getline(file, line)) {
-            istringstream iss(line);
-            array<double, 7> arr;
-            string value;
-            for (int i = 0; i < 7; i++) {
-                if (!getline(iss, value, ',')) {
-                    cerr << "Error" << line << endl;
-                    return 1;
-                }
-                arr[i] = stod(value);
-            }
-            jntTargets.push_back(arr);
-        }
-        file.close();
-        //
-        for (int i = 0; i < jntTargets.size(); i++){
-            for (int j = 0; j < jntTargets[i].size(); j++){
-                cout << jntTargets[i][j] << "\t";
-            }
-            cout << endl;
-        }
-
-        auto it = jntTargets.begin();
+        auto it = jntTargets.begin(); //返回指向jntTargets的第一个元素的迭代器
         //开始运动前先设置为轴空间位置控制
         rtCon->startMove(RtControllerMode::jointPosition);
 
-        std::function<JointPosition(void)> callback = [&, rtCon](){
+        function<JointPosition(void)> callback = [&, rtCon](){
             time += 0.001; // 按1ms为周期规划
             if(init) {
                 // 读取当前轴角度
@@ -82,12 +82,12 @@ int main(){
             }
             JointMotionGenerator joint_s(1, *it);
             joint_s.calculateSynchronizedValues(jntPos);
-            print(std::cout, "joint angle: ", robot.jointPos(ec));
-            print(std::cout, "joint Torque: ", robot.jointTorque(ec));
-            out_txt_file << "Position: " << robot.jointPos(ec) << endl;
-            torque_file << "Torque: " << robot.jointTorque(ec) << endl;
+            // print(std::cout, "joint angle: ", robot.jointPos(ec));
+            // print(std::cout, "joint Torque: ", robot.jointTorque(ec));
+            // out_txt_file << "Position: " << robot.jointPos(ec) << endl;
+            // torque_file << "Torque: " << robot.jointTorque(ec) << endl;
 
-
+            print(cout, joint_s.calculateDesiredValues(time, delta));
             // 获取每个周期计算的角度偏移
             if(!joint_s.calculateDesiredValues(time, delta)){
                 for(unsigned i = 0; i < cmd.joints.size(); ++i){
@@ -99,7 +99,7 @@ int main(){
                 }
                 time = 0;
                 // 最后的角度值作为下一个规划的起始点
-                std::copy(cmd.joints.begin(), cmd.joints.end(), jntPos.begin());
+                copy(cmd.joints.begin(), cmd.joints.end(), jntPos.begin());
             }
             return cmd;
         };

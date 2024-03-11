@@ -37,12 +37,12 @@ int main() {
     // 1. 从当前位置MoveJ运动到拖拽位置
     // std::array<double, 7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0};
     std::array<double, 7> q_drag_xm7p = {0, M_PI/4, 0, M_PI/4, 0, M_PI/4, 0};
-    std::array<double, 7> q_next_xm7p = {0, M_PI/6, 0, M_PI/4, 0, M_PI/4, 0};
+    std::array<double, 7> q_next_xm7p = {0, 0, 0, 0, 0, 0, 0};
 
     // rtCon->MoveJ(0.4, robot.jointPos(ec), q_drag_xm7p);
     print(os, "Now position:", robot.jointPos(ec));
     print(os, robot.jointTorque(ec));
-    // rtCon->MoveJ(0.4, robot.jointPos(ec), q_next_xm7p); 
+    rtCon->MoveJ(0.4, robot.jointPos(ec), q_next_xm7p); 
 
 
     // 4. 关闭实时模式
