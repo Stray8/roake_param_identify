@@ -142,7 +142,7 @@ void zeroTorque(Cobot<DoF> &robot) {
   auto rtCon = robot.getRtMotionController().lock();
 
   // 运动到拖拽位置
-  rtCon->MoveJ(0.5, robot.jointPos(ec), q_drag);
+  // rtCon->MoveJ(0.5, robot.jointPos(ec), q_drag);
   print(cout, "move done");
 
 

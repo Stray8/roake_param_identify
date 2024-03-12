@@ -25,7 +25,7 @@ int main(){
     torque_file.open("torque.txt");
     
     //读取txt中的轨迹信息
-    ifstream file("/home/robot/dq.txt");
+    ifstream file("/home/robot/robot/traj/dq.txt");
 
     vector<array<double, 7>> jntTargets;
     string line;
@@ -75,9 +75,9 @@ int main(){
                 jntPos = robot.jointPos(ec);
                 init = false;
             }
-            JointMotionGenerator joint_s(1, *it);
+            JointMotionGenerator joint_s(0.8, *it);
             joint_s.calculateSynchronizedValues(jntPos);
-            // print(std::cout, "joint angle: ", robot.jointPos(ec));
+            print(std::cout, "joint angle: ", robot.jointPos(ec));
             // print(std::cout, "joint Torque: ", robot.jointTorque(ec));
             out_txt_file << "Position: " << robot.jointPos(ec) << endl;
             torque_file << "Torque: " << robot.jointTorque(ec) << endl;
@@ -91,9 +91,7 @@ int main(){
                     cmd.joints[i] = jntPos[i] + delta[i];
             }else{
                 // 已到达一个目标点，开始运动到下一个目标点
-                // if (++it == jntTargets.end())
-                if (it == jntTargets.end()){
-                    it += 2;
+                if (++it == jntTargets.end()){
                     cmd.setFinished();
                 }
                 // print(cout, "over: ", *it);
