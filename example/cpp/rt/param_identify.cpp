@@ -69,23 +69,30 @@ int main(){
         rtCon->startMove(RtControllerMode::jointPosition);
 
         function<JointPosition(void)> callback = [&, rtCon](){
-            time += 0.001; // 按1ms为周期规划
-            if(init) {
-                // 读取当前轴角度
-                jntPos = robot.jointPos(ec);
+            if(init){
+                robot.getStateData(RtSupportedFields::jointPos_m, jntPos);
                 init = false;
             }
-            JointMotionGenerator joint_s(0.8, *it);
+            time += 0.001;
+
+
+            // time += 0.001; // 按1ms为周期规划
+            // if(init) {
+            //     // 读取当前轴角度
+            //     jntPos = robot.jointPos(ec);
+            //     init = false;
+            // }
+            JointMotionGenerator joint_s(0.5, *it);
             joint_s.calculateSynchronizedValues(jntPos);
             print(std::cout, "joint angle: ", robot.jointPos(ec));
-            // print(std::cout, "joint Torque: ", robot.jointTorque(ec));
-            out_txt_file << "Position: " << robot.jointPos(ec) << endl;
-            torque_file << "Torque: " << robot.jointTorque(ec) << endl;
+            // // print(std::cout, "joint Torque: ", robot.jointTorque(ec));
+            // out_txt_file << "Position: " << robot.jointPos(ec) << endl;
+            // torque_file << "Torque: " << robot.jointTorque(ec) << endl;
 
-            print(cout, "start:", time);
-            // print(cout, "it:", *it);
-            // print(cout, joint_s.calculateDesiredValues(time, delta));
-            // 获取每个周期计算的角度偏移
+            // print(cout, "start:", time);
+            // // print(cout, "it:", *it);
+            // // print(cout, joint_s.calculateDesiredValues(time, delta));
+            // // 获取每个周期计算的角度偏移
             if(!joint_s.calculateDesiredValues(time, delta)){
                 for(unsigned i = 0; i < cmd.joints.size(); ++i)
                     cmd.joints[i] = jntPos[i] + delta[i];
@@ -94,8 +101,8 @@ int main(){
                 if (++it == jntTargets.end()){
                     cmd.setFinished();
                 }
-                // print(cout, "over: ", *it);
-                print(cout, "over: ", time);
+            //     // print(cout, "over: ", *it);
+                // print(cout, "over: ", time);
                 time = 0;
                 // 最后的角度值作为下一个规划的起始点
                 copy(cmd.joints.begin(), cmd.joints.end(), jntPos.begin());

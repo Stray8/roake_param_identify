@@ -24,9 +24,10 @@ int main() {
     std::string ip = "192.168.0.160";
     error_code ec;
     std::vector<std::string> paths;
-    xMateRobot robot(ip); // xMate 6轴机型
+    xMateErProRobot robot(ip); // xMate 6轴机型
 
     robot.setMotionControlMode(MotionControlMode::NrtCommand, ec);
+
 
     printHelp();
 
