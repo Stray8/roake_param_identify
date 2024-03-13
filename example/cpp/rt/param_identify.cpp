@@ -18,12 +18,15 @@ using namespace rokae;
 using namespace std;
 
 int main(){
-    ofstream out_txt_file;
+    ofstream position_file;
     ofstream torque_file;
+    ofstream velociy_file;
 
-    out_txt_file.open("position.txt");
+    position_file.open("position.txt");
     torque_file.open("torque.txt");
-    
+    velociy_file.open("velocity.txt");
+
+
     //读取txt中的轨迹信息
     ifstream file("/home/robot/robot/traj/dq.txt");
 
@@ -56,8 +59,9 @@ int main(){
         auto rtCon = robot.getRtMotionController().lock();
 
         // 设置要接收数据
-        robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m});
-        array<double,7> jntPos{}, delta{};
+        robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m, RtSupportedFields::jointVel_m, RtSupportedFields::tau_m});
+
+        array<double,7> jntPos{}, delta{}, jntVel{}, tau{};
         JointPosition cmd(7);
 
         static bool init = true;
@@ -71,37 +75,35 @@ int main(){
         function<JointPosition(void)> callback = [&, rtCon](){
             if(init){
                 robot.getStateData(RtSupportedFields::jointPos_m, jntPos);
+                robot.getStateData(RtSupportedFields::jointVel_m, jntVel);
+                robot.getStateData(RtSupportedFields::tau_m, tau);
+
                 init = false;
             }
             time += 0.001;
 
-
-            // time += 0.001; // 按1ms为周期规划
-            // if(init) {
-            //     // 读取当前轴角度
-            //     jntPos = robot.jointPos(ec);
-            //     init = false;
-            // }
-            JointMotionGenerator joint_s(0.5, *it);
+            JointMotionGenerator joint_s(1, *it);
             joint_s.calculateSynchronizedValues(jntPos);
             print(std::cout, "joint angle: ", robot.jointPos(ec));
-            // // print(std::cout, "joint Torque: ", robot.jointTorque(ec));
-            // out_txt_file << "Position: " << robot.jointPos(ec) << endl;
-            // torque_file << "Torque: " << robot.jointTorque(ec) << endl;
+            // print(std::cout, "joint Torque: ", robot.jointTorque(ec));
+            position_file << "Position: " << jntPos << endl;
+            torque_file << "Torque: " << jntVel << endl;
+            velociy_file << "velocity: " << tau << endl;
+
 
             // print(cout, "start:", time);
-            // // print(cout, "it:", *it);
-            // // print(cout, joint_s.calculateDesiredValues(time, delta));
-            // // 获取每个周期计算的角度偏移
+            // print(cout, "it:", *it);
+            // print(cout, joint_s.calculateDesiredValues(time, delta));
+
+            // 获取每个周期计算的角度偏移
             if(!joint_s.calculateDesiredValues(time, delta)){
                 for(unsigned i = 0; i < cmd.joints.size(); ++i)
                     cmd.joints[i] = jntPos[i] + delta[i];
             }else{
                 // 已到达一个目标点，开始运动到下一个目标点
-                if (++it == jntTargets.end()){
+                if (++it == jntTargets.end())
                     cmd.setFinished();
-                }
-            //     // print(cout, "over: ", *it);
+
                 // print(cout, "over: ", time);
                 time = 0;
                 // 最后的角度值作为下一个规划的起始点
@@ -113,8 +115,9 @@ int main(){
         rtCon->setControlLoop(callback);
         rtCon->startLoop(true);
         print(cout, "控制结束");
-        out_txt_file.close();
+        position_file.close();
         torque_file.close();
+        velociy_file.close();
 
         // 关闭实时模式
         robot.setMotionControlMode(rokae::MotionControlMode::NrtCommand, ec);
