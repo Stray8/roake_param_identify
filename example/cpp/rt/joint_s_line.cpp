@@ -48,8 +48,8 @@ int main() {
     // };
     std::vector<std::array<double, 7>> jntTargets = {
       {0, 0, 0, 0, 0, 0, 0},
-      {0, -0.4, 0, 0, 0, 0, 0},
-      {0, 0.4, 0, 0, 0, 0, 0},
+      {0, -0.4, 0.2, 0.2, 0.1, 0.2, 0},
+      {0, 0.4, -0.2, 0, 0, 0, 0},
       {0, 0.6, 0, 0, 0, 0, 0},
       {0, -0.2, 0, 0, 0, 0, 0},
       {0, 0.4, 0, 0, 0, 0, 0},
@@ -71,7 +71,7 @@ int main() {
         // print(std::cout, "joint angle: ", robot.jointPos(ec));
       }
 
-      JointMotionGenerator joint_s(0.8, *it);
+      JointMotionGenerator joint_s(1, *it);
       joint_s.calculateSynchronizedValues(jntPos);
       // print(std::cout, "joint angle: ", robot.jointPos(ec));
       print(std::cout, "joint Torque: ", robot.jointTorque(ec));

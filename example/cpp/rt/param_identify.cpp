@@ -22,9 +22,9 @@ int main(){
     ofstream torque_file;
     ofstream velociy_file;
 
-    position_file.open("position.txt");
-    torque_file.open("torque.txt");
-    velociy_file.open("velocity.txt");
+    position_file.open("position2.txt");
+    torque_file.open("torque2.txt");
+    velociy_file.open("velocity2.txt");
 
 
     //读取txt中的轨迹信息
@@ -66,25 +66,28 @@ int main(){
 
         static bool init = true;
         double time = 0;
+        std::array<double,7> q_drag_xm7p = {0, M_PI/4, 0, 0, 0, 0, 0};
 
         auto it = jntTargets.begin(); //返回指向jntTargets的第一个元素的迭代器
+        print(cout, robot.jointPos(ec));
+        
 
         // 开始运动前先设置为轴空间位置控制
         rtCon->startMove(RtControllerMode::jointPosition);
 
         function<JointPosition(void)> callback = [&, rtCon](){
             if(init){
-                robot.getStateData(RtSupportedFields::jointPos_m, jntPos);
-                robot.getStateData(RtSupportedFields::jointVel_m, jntVel);
-                robot.getStateData(RtSupportedFields::tau_m, tau);
-
+                jntPos = robot.jointPos(ec);
                 init = false;
             }
+            robot.getStateData(RtSupportedFields::jointVel_m, jntVel);
+            robot.getStateData(RtSupportedFields::tau_m, tau);
             time += 0.001;
 
-            JointMotionGenerator joint_s(1, *it);
+            JointMotionGenerator joint_s(2.5, *it);
             joint_s.calculateSynchronizedValues(jntPos);
             print(std::cout, "joint angle: ", robot.jointPos(ec));
+            print(cout, "Position:", jntPos);
             // print(std::cout, "joint Torque: ", robot.jointTorque(ec));
             position_file << "Position: " << jntPos << endl;
             torque_file << "Torque: " << jntVel << endl;
@@ -115,6 +118,7 @@ int main(){
         rtCon->setControlLoop(callback);
         rtCon->startLoop(true);
         print(cout, "控制结束");
+
         position_file.close();
         torque_file.close();
         velociy_file.close();

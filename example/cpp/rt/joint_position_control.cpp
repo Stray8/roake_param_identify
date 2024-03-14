@@ -38,7 +38,8 @@ int main() {
 
     // 设置要接收数据。其中jointPos_m是本示例程序会用到的
     robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m, 
-                                                                RtSupportedFields::jointVel_m, RtSupportedFields::tau_m});
+                                                                RtSupportedFields::jointVel_m, 
+                                                                RtSupportedFields::tau_m});
 
     static bool init = true;
     double time = 0;
@@ -51,6 +52,26 @@ int main() {
 
     // 从当前位置MoveJ运动到拖拽位姿
     rtCon->MoveJ(0.5, jntPos, q_drag_xm7p);
+  
+    ifstream file("/home/robot/robot/traj/dq.txt");
+
+    vector<array<double, 7>> jntTargets;
+    string line;
+    while (getline(file, line)) {
+        istringstream iss(line);
+        array<double, 7> arr;
+        string value;
+        for (int i = 0; i < 7; i++) {
+            if (!getline(iss, value, ',')) {
+                cerr << "Error" << line << endl;
+                return 1;
+            }
+            arr[i] = stod(value);
+        }
+        jntTargets.push_back(arr);
+    }
+    file.close();
+
 
     // 开始轴空间位置控制
     rtCon->startMove(RtControllerMode::jointPosition);
@@ -63,16 +84,18 @@ int main() {
       robot.getStateData(RtSupportedFields::tau_m, tau);
 
       time += 0.001;
-      double delta_angle = M_PI / 20.0 * (1 - std::cos(M_PI / 2.5 * time));
+      double delta_angle = M_PI / 20.0 * (1 - std::cos(M_PI / 2 * time));
       JointPosition cmd = {{jntPos[0] + delta_angle, jntPos[1] + delta_angle,
                             jntPos[2] + delta_angle, jntPos[3] + delta_angle,
                             jntPos[4] + delta_angle, jntPos[5] + delta_angle,
                             jntPos[6] + delta_angle}};
+
+      
       out_txt_file << "Position: " << jntPos << endl;
       torque_file << "Torque: " << tau << endl;      
       print(cout, time);
 
-      if(time > 30) {
+      if(time > 10) {
         cmd.setFinished(); // 60秒后结束
       }
       return cmd;
