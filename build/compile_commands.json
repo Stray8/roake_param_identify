@@ -76,6 +76,11 @@
 },
 {
   "directory": "/home/robot/robot/roake_param_identify/build/example/cpp/rt",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/roake_param_identify.dir/roake_param_identify.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/rt/roake_param_identify.cpp",
+  "file": "/home/robot/robot/roake_param_identify/example/cpp/rt/roake_param_identify.cpp"
+},
+{
+  "directory": "/home/robot/robot/roake_param_identify/build/example/cpp/rt",
   "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -DXMATEMODEL_LIB_SUPPORTED -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/follow_joint_position.dir/follow_joint_position.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/rt/follow_joint_position.cpp",
   "file": "/home/robot/robot/roake_param_identify/example/cpp/rt/follow_joint_position.cpp"
 }

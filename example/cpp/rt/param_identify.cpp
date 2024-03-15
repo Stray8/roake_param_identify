@@ -66,8 +66,7 @@ int main(){
 
         static bool init = true;
         double time = 0;
-        std::array<double,7> q_drag_xm7p = {0, M_PI/4, 0, 0, 0, 0, 0};
-
+        
         auto it = jntTargets.begin(); //返回指向jntTargets的第一个元素的迭代器
         print(cout, robot.jointPos(ec));
         

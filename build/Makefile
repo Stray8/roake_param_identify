@@ -352,6 +352,19 @@ param_identify/fast:
 .PHONY : param_identify/fast
 
 #=============================================================================
+# Target rules for targets named roake_param_identify
+
+# Build rule for target.
+roake_param_identify: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roake_param_identify
+.PHONY : roake_param_identify
+
+# fast build rule for target.
+roake_param_identify/fast:
+	$(MAKE) -f example/cpp/rt/CMakeFiles/roake_param_identify.dir/build.make example/cpp/rt/CMakeFiles/roake_param_identify.dir/build
+.PHONY : roake_param_identify/fast
+
+#=============================================================================
 # Target rules for targets named follow_joint_position
 
 # Build rule for target.
@@ -404,6 +417,7 @@ help:
 	@echo "... cartesian_s_line"
 	@echo "... rt_industrial"
 	@echo "... param_identify"
+	@echo "... roake_param_identify"
 	@echo "... follow_joint_position"
 	@echo "... doc"
 .PHONY : help

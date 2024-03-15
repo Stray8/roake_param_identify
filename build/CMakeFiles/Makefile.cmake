@@ -81,6 +81,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "example/cpp/rt/CMakeFiles/cartesian_s_line.dir/DependInfo.cmake"
   "example/cpp/rt/CMakeFiles/rt_industrial.dir/DependInfo.cmake"
   "example/cpp/rt/CMakeFiles/param_identify.dir/DependInfo.cmake"
+  "example/cpp/rt/CMakeFiles/roake_param_identify.dir/DependInfo.cmake"
   "example/cpp/rt/CMakeFiles/follow_joint_position.dir/DependInfo.cmake"
   "doc/CMakeFiles/doc.dir/DependInfo.cmake"
   )

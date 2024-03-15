@@ -292,6 +292,21 @@ param_identify/fast:
 .PHONY : param_identify/fast
 
 # Convenience name for target.
+example/cpp/rt/CMakeFiles/roake_param_identify.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/rt/CMakeFiles/roake_param_identify.dir/rule
+.PHONY : example/cpp/rt/CMakeFiles/roake_param_identify.dir/rule
+
+# Convenience name for target.
+roake_param_identify: example/cpp/rt/CMakeFiles/roake_param_identify.dir/rule
+
+.PHONY : roake_param_identify
+
+# fast build rule for target.
+roake_param_identify/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/roake_param_identify.dir/build.make example/cpp/rt/CMakeFiles/roake_param_identify.dir/build
+.PHONY : roake_param_identify/fast
+
+# Convenience name for target.
 example/cpp/rt/CMakeFiles/follow_joint_position.dir/rule:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/rt/CMakeFiles/follow_joint_position.dir/rule
 .PHONY : example/cpp/rt/CMakeFiles/follow_joint_position.dir/rule
@@ -522,6 +537,33 @@ param_identify.cpp.s:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/param_identify.dir/build.make example/cpp/rt/CMakeFiles/param_identify.dir/param_identify.cpp.s
 .PHONY : param_identify.cpp.s
 
+roake_param_identify.o: roake_param_identify.cpp.o
+
+.PHONY : roake_param_identify.o
+
+# target to build an object file
+roake_param_identify.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/roake_param_identify.dir/build.make example/cpp/rt/CMakeFiles/roake_param_identify.dir/roake_param_identify.cpp.o
+.PHONY : roake_param_identify.cpp.o
+
+roake_param_identify.i: roake_param_identify.cpp.i
+
+.PHONY : roake_param_identify.i
+
+# target to preprocess a source file
+roake_param_identify.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/roake_param_identify.dir/build.make example/cpp/rt/CMakeFiles/roake_param_identify.dir/roake_param_identify.cpp.i
+.PHONY : roake_param_identify.cpp.i
+
+roake_param_identify.s: roake_param_identify.cpp.s
+
+.PHONY : roake_param_identify.s
+
+# target to generate assembly for a file
+roake_param_identify.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/rt/CMakeFiles/roake_param_identify.dir/build.make example/cpp/rt/CMakeFiles/roake_param_identify.dir/roake_param_identify.cpp.s
+.PHONY : roake_param_identify.cpp.s
+
 rt_industrial.o: rt_industrial.cpp.o
 
 .PHONY : rt_industrial.o
@@ -583,10 +625,10 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... joint_position_control"
 	@echo "... joint_impedance_control"
 	@echo "... cartesian_impedance_control"
-	@echo "... list_install_components"
 	@echo "... install/local"
 	@echo "... move_commands"
 	@echo "... joint_s_line"
@@ -594,6 +636,7 @@ help:
 	@echo "... cartesian_s_line"
 	@echo "... rt_industrial"
 	@echo "... param_identify"
+	@echo "... roake_param_identify"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... install"
@@ -622,6 +665,9 @@ help:
 	@echo "... param_identify.o"
 	@echo "... param_identify.i"
 	@echo "... param_identify.s"
+	@echo "... roake_param_identify.o"
+	@echo "... roake_param_identify.i"
+	@echo "... roake_param_identify.s"
 	@echo "... rt_industrial.o"
 	@echo "... rt_industrial.i"
 	@echo "... rt_industrial.s"

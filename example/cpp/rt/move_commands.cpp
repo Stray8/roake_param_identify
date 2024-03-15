@@ -34,55 +34,16 @@ int main() {
     robot.setPowerState(true, ec);
 
     auto rtCon = robot.getRtMotionController().lock(); 
-        //读取txt中的轨迹信息
-    ifstream file("/home/robot/robot/traj/dq.txt");
-
-    vector<array<double, 7>> jntTargets;
-    string line;
-    while (getline(file, line)) {
-        istringstream iss(line);
-        array<double, 7> arr;
-        string value;
-        for (int i = 0; i < 7; i++) {
-            if (!getline(iss, value, ',')) {
-                cerr << "Error" << line << endl;
-                return 1;
-            }
-            arr[i] = stod(value);
-        }
-        jntTargets.push_back(arr);
-    }
-    file.close();
-
 
     // 示例程序使用机型: xMateER7 Pro
     // 1. 从当前位置MoveJ运动到拖拽位置
     // std::array<double, 7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0};
     std::array<double, 7> q_drag_xm7p = {0, M_PI/4, 0, M_PI/4, 0, M_PI/4, 0};
     std::array<double, 7> q_next_xm7p = {0, 0, 0, 0, 0, 0, 0};
-    // std::vector<std::array<double, 7>> jntTargets = {
-    //   {0, 0, 0, 0, 0, 0, 0},
-    //   {0, -0.4, 0.2, 0.2, 0.1, 0.2, 0},
-    //   {0, 0.4, -0.2, 0, 0, 0, 0},
-    //   {0, 0.6, 0, 0, 0, 0, 0},
-    //   {0, -0.2, 0, 0, 0, 0, 0},
-    //   {0, 0.4, 0, 0, 0, 0, 0},
-    //   {0, 0.6, 0, 0, 0, 0, 0},
-    //   {0, -0.4, 0, 0, 0, 0, 0}
-    // };    
-    // rtCon->MoveJ(0.4, robot.jointPos(ec), q_drag_xm7p);
-    // print(os, "Now position:", robot.jointPos(ec));
-    print(os, "real position:", q_next_xm7p);
-    for (int i = 0; i < jntTargets.size(); i++){
-      rtCon->MoveJ(0.4, robot.jointPos(ec), jntTargets[i]); 
-      print(os, "Now position:", robot.jointPos(ec));
+ 
 
-    }
-    
-
-    rtCon->MoveJ(0.4, robot.jointPos(ec), q_drag_xm7p); 
+    // rtCon->MoveJ(0.4, robot.jointPos(ec), q_drag_xm7p); 
     rtCon->MoveJ(0.4, robot.jointPos(ec), q_next_xm7p); 
-
 
 
     // 4. 关闭实时模式

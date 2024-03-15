@@ -11,6 +11,7 @@ set(RT_EXAMPLES
     cartesian_s_line
     rt_industrial
     param_identify
+    roake_param_identify
     )
 
 foreach(example ${RT_EXAMPLES})
