@@ -29,6 +29,7 @@ int main() {
     std::string ip = "192.168.0.160";
     std::error_code ec;
     rokae::xMateErProRobot robot(ip, "192.168.0.180"); // 本机地址192.168.0.100
+    auto model = robot.model();
 
     robot.setOperateMode(rokae::OperateMode::automatic, ec);
     robot.setMotionControlMode(MotionControlMode::RtCommand, ec);
@@ -39,7 +40,8 @@ int main() {
     // 设置要接收数据。其中jointPos_m是本示例程序会用到的
     robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m, 
                                                                 RtSupportedFields::jointVel_m, 
-                                                                RtSupportedFields::tau_m});
+                                                                RtSupportedFields::tau_m,
+                                                                RtSupportedFields::jointAcc_c});
 
     static bool init = true;
     double time = 0;
@@ -48,7 +50,9 @@ int main() {
 
     std::array<double, 7> tau{};
     robot.getStateData(RtSupportedFields::jointPos_m, jntPos);
-    std::array<double,7> q_drag_xm7p = {0, 0, 0, 0, 0, 0, 0};
+    // std::array<double,7> q_drag_xm7p = {0, 0, 0, 0, 0, 0, 0};
+    std::array<double,7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0};
+
 
     // 从当前位置MoveJ运动到拖拽位姿
     rtCon->MoveJ(0.5, jntPos, q_drag_xm7p);
@@ -81,19 +85,28 @@ int main() {
         robot.getStateData(RtSupportedFields::jointPos_m, jntPos);
         init = false;
       }
-      robot.getStateData(RtSupportedFields::tau_m, tau);
+      robot.updateRobotState(chrono::seconds(1));
+
+      robot.getStateData(RtSupportedFields::jointAcc_c, tau);
 
       time += 0.001;
       double delta_angle = M_PI / 20.0 * (1 - std::cos(M_PI / 2 * time));
-      JointPosition cmd = {{jntPos[0] + delta_angle, jntPos[1] + delta_angle,
-                            jntPos[2] + delta_angle, jntPos[3] + delta_angle,
-                            jntPos[4] + delta_angle, jntPos[5] + delta_angle,
-                            jntPos[6] + delta_angle}};
+      // JointPosition cmd = {{jntPos[0] + delta_angle, jntPos[1] + delta_angle,
+      //                       jntPos[2] + delta_angle, jntPos[3] + delta_angle,
+      //                       jntPos[4] + delta_angle, jntPos[5] + delta_angle,
+      //                       jntPos[6] + delta_angle}};
+      JointPosition cmd = {{jntPos[0] + 0, jntPos[1] + 0,
+                            jntPos[2] + 0, jntPos[3] + 0,
+                            jntPos[4] + 0, jntPos[5] + delta_angle,
+                            jntPos[6] + 0}};
 
-      
-      out_txt_file << "Position: " << jntPos << endl;
-      torque_file << "Torque: " << tau << endl;      
-      print(cout, time);
+      cout << tau << endl;
+      cout << robot.jointPos(ec);
+
+      cout << jntPos << endl;
+      // out_txt_file << "Position: " << jntPos << endl;
+      // torque_file << "Torque: " << tau << endl;      
+      // print(cout, time);
 
       if(time > 10) {
         cmd.setFinished(); // 60秒后结束

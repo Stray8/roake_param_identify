@@ -235,71 +235,6 @@ sdk_example/fast:
 .PHONY : sdk_example/fast
 
 #=============================================================================
-# Target rules for targets named joint_position_control
-
-# Build rule for target.
-joint_position_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 joint_position_control
-.PHONY : joint_position_control
-
-# fast build rule for target.
-joint_position_control/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_position_control.dir/build.make example/cpp/rt/CMakeFiles/joint_position_control.dir/build
-.PHONY : joint_position_control/fast
-
-#=============================================================================
-# Target rules for targets named joint_impedance_control
-
-# Build rule for target.
-joint_impedance_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 joint_impedance_control
-.PHONY : joint_impedance_control
-
-# fast build rule for target.
-joint_impedance_control/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_impedance_control.dir/build.make example/cpp/rt/CMakeFiles/joint_impedance_control.dir/build
-.PHONY : joint_impedance_control/fast
-
-#=============================================================================
-# Target rules for targets named cartesian_impedance_control
-
-# Build rule for target.
-cartesian_impedance_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cartesian_impedance_control
-.PHONY : cartesian_impedance_control
-
-# fast build rule for target.
-cartesian_impedance_control/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/cartesian_impedance_control.dir/build.make example/cpp/rt/CMakeFiles/cartesian_impedance_control.dir/build
-.PHONY : cartesian_impedance_control/fast
-
-#=============================================================================
-# Target rules for targets named move_commands
-
-# Build rule for target.
-move_commands: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 move_commands
-.PHONY : move_commands
-
-# fast build rule for target.
-move_commands/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/move_commands.dir/build.make example/cpp/rt/CMakeFiles/move_commands.dir/build
-.PHONY : move_commands/fast
-
-#=============================================================================
-# Target rules for targets named joint_s_line
-
-# Build rule for target.
-joint_s_line: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 joint_s_line
-.PHONY : joint_s_line
-
-# fast build rule for target.
-joint_s_line/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_s_line.dir/build.make example/cpp/rt/CMakeFiles/joint_s_line.dir/build
-.PHONY : joint_s_line/fast
-
-#=============================================================================
 # Target rules for targets named torque_control
 
 # Build rule for target.
@@ -311,45 +246,6 @@ torque_control: cmake_check_build_system
 torque_control/fast:
 	$(MAKE) -f example/cpp/rt/CMakeFiles/torque_control.dir/build.make example/cpp/rt/CMakeFiles/torque_control.dir/build
 .PHONY : torque_control/fast
-
-#=============================================================================
-# Target rules for targets named cartesian_s_line
-
-# Build rule for target.
-cartesian_s_line: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cartesian_s_line
-.PHONY : cartesian_s_line
-
-# fast build rule for target.
-cartesian_s_line/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/cartesian_s_line.dir/build.make example/cpp/rt/CMakeFiles/cartesian_s_line.dir/build
-.PHONY : cartesian_s_line/fast
-
-#=============================================================================
-# Target rules for targets named rt_industrial
-
-# Build rule for target.
-rt_industrial: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rt_industrial
-.PHONY : rt_industrial
-
-# fast build rule for target.
-rt_industrial/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/rt_industrial.dir/build.make example/cpp/rt/CMakeFiles/rt_industrial.dir/build
-.PHONY : rt_industrial/fast
-
-#=============================================================================
-# Target rules for targets named param_identify
-
-# Build rule for target.
-param_identify: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 param_identify
-.PHONY : param_identify
-
-# fast build rule for target.
-param_identify/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/param_identify.dir/build.make example/cpp/rt/CMakeFiles/param_identify.dir/build
-.PHONY : param_identify/fast
 
 #=============================================================================
 # Target rules for targets named roake_param_identify
@@ -365,17 +261,121 @@ roake_param_identify/fast:
 .PHONY : roake_param_identify/fast
 
 #=============================================================================
-# Target rules for targets named follow_joint_position
+# Target rules for targets named cartesian_s_line
 
 # Build rule for target.
-follow_joint_position: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 follow_joint_position
-.PHONY : follow_joint_position
+cartesian_s_line: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cartesian_s_line
+.PHONY : cartesian_s_line
 
 # fast build rule for target.
-follow_joint_position/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/follow_joint_position.dir/build.make example/cpp/rt/CMakeFiles/follow_joint_position.dir/build
-.PHONY : follow_joint_position/fast
+cartesian_s_line/fast:
+	$(MAKE) -f example/cpp/rt/CMakeFiles/cartesian_s_line.dir/build.make example/cpp/rt/CMakeFiles/cartesian_s_line.dir/build
+.PHONY : cartesian_s_line/fast
+
+#=============================================================================
+# Target rules for targets named cartesian_impedance_control
+
+# Build rule for target.
+cartesian_impedance_control: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cartesian_impedance_control
+.PHONY : cartesian_impedance_control
+
+# fast build rule for target.
+cartesian_impedance_control/fast:
+	$(MAKE) -f example/cpp/rt/CMakeFiles/cartesian_impedance_control.dir/build.make example/cpp/rt/CMakeFiles/cartesian_impedance_control.dir/build
+.PHONY : cartesian_impedance_control/fast
+
+#=============================================================================
+# Target rules for targets named joint_impedance_control
+
+# Build rule for target.
+joint_impedance_control: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 joint_impedance_control
+.PHONY : joint_impedance_control
+
+# fast build rule for target.
+joint_impedance_control/fast:
+	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_impedance_control.dir/build.make example/cpp/rt/CMakeFiles/joint_impedance_control.dir/build
+.PHONY : joint_impedance_control/fast
+
+#=============================================================================
+# Target rules for targets named joint_position_control
+
+# Build rule for target.
+joint_position_control: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 joint_position_control
+.PHONY : joint_position_control
+
+# fast build rule for target.
+joint_position_control/fast:
+	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_position_control.dir/build.make example/cpp/rt/CMakeFiles/joint_position_control.dir/build
+.PHONY : joint_position_control/fast
+
+#=============================================================================
+# Target rules for targets named force_control
+
+# Build rule for target.
+force_control: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 force_control
+.PHONY : force_control
+
+# fast build rule for target.
+force_control/fast:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/build
+.PHONY : force_control/fast
+
+#=============================================================================
+# Target rules for targets named PD
+
+# Build rule for target.
+PD: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PD
+.PHONY : PD
+
+# fast build rule for target.
+PD/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/PD.dir/build.make example/cpp/ly/CMakeFiles/PD.dir/build
+.PHONY : PD/fast
+
+#=============================================================================
+# Target rules for targets named SGPR_robot
+
+# Build rule for target.
+SGPR_robot: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SGPR_robot
+.PHONY : SGPR_robot
+
+# fast build rule for target.
+SGPR_robot/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot.dir/build
+.PHONY : SGPR_robot/fast
+
+#=============================================================================
+# Target rules for targets named test_collect
+
+# Build rule for target.
+test_collect: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_collect
+.PHONY : test_collect
+
+# fast build rule for target.
+test_collect/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/test_collect.dir/build.make example/cpp/ly/CMakeFiles/test_collect.dir/build
+.PHONY : test_collect/fast
+
+#=============================================================================
+# Target rules for targets named ly
+
+# Build rule for target.
+ly: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ly
+.PHONY : ly
+
+# fast build rule for target.
+ly/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/ly.dir/build.make example/cpp/ly/CMakeFiles/ly.dir/build
+.PHONY : ly/fast
 
 #=============================================================================
 # Target rules for targets named doc
@@ -408,17 +408,17 @@ help:
 	@echo "... xmatemodel_er3_er7p"
 	@echo "... move_example"
 	@echo "... sdk_example"
-	@echo "... joint_position_control"
-	@echo "... joint_impedance_control"
-	@echo "... cartesian_impedance_control"
-	@echo "... move_commands"
-	@echo "... joint_s_line"
 	@echo "... torque_control"
-	@echo "... cartesian_s_line"
-	@echo "... rt_industrial"
-	@echo "... param_identify"
 	@echo "... roake_param_identify"
-	@echo "... follow_joint_position"
+	@echo "... cartesian_s_line"
+	@echo "... cartesian_impedance_control"
+	@echo "... joint_impedance_control"
+	@echo "... joint_position_control"
+	@echo "... force_control"
+	@echo "... PD"
+	@echo "... SGPR_robot"
+	@echo "... test_collect"
+	@echo "... ly"
 	@echo "... doc"
 .PHONY : help
 

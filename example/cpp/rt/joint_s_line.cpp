@@ -29,8 +29,10 @@ int main() {
     auto rtCon = robot.getRtMotionController().lock();
 
     // 设置要接收数据
-    robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m});
-    std::array<double,7> jntPos{}, delta{};
+    robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m, RtSupportedFields::jointAcc_c});
+    robot.updateRobotState(std::chrono::milliseconds(1));
+
+    std::array<double,7> jntPos{}, delta{}, acc{}, pisi{}, jntposi{};
     JointPosition cmd(7);
 
     static bool init = true;
@@ -68,14 +70,19 @@ int main() {
         // 读取当前轴角度
         jntPos = robot.jointPos(ec);
         init = false;
+
         // print(std::cout, "joint angle: ", robot.jointPos(ec));
       }
+      // robot.updateRobotState(std::chrono::milliseconds(1));
+      robot.getStateData(RtSupportedFields::jointPos_m, pisi);
+      // cout << acc << endl;
+      jntposi = robot.jointPos(ec);
+      cout << "jntPos" << jntposi << endl;
+      cout  << "Posi" << pisi << endl;
+
 
       JointMotionGenerator joint_s(1, *it);
       joint_s.calculateSynchronizedValues(jntPos);
-      // print(std::cout, "joint angle: ", robot.jointPos(ec));
-      print(std::cout, "joint Torque: ", robot.jointTorque(ec));
-
       // 获取每个周期计算的角度偏移
       if (!joint_s.calculateDesiredValues(time, delta)) {
         for(unsigned i = 0; i < cmd.joints.size(); ++i) {

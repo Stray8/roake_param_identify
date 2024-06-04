@@ -11,6 +11,7 @@ message(STATUS "")
 #------------------------------------------------------------------------------
 ## General settings
 
+
 # Setup output path
 include(GNUInstallDirs)
 
@@ -77,5 +78,4 @@ message(STATUS "CMAKE_BUILD_TYPE:     ${CMAKE_BUILD_TYPE}")
 message(STATUS "  possible options: Debug Release RelWithDebInfo MinSizeRel")
 message(STATUS "  set with ` cmake -DCMAKE_BUILD_TYPE=Debug .. `")
 message(STATUS "")
-
 

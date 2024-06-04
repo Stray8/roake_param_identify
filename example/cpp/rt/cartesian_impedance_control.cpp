@@ -29,16 +29,17 @@ int main() {
 
     auto rtCon = robot.getRtMotionController().lock();
 
-    std::array<double,7> q_drag_xm7p = {0,M_PI/6,0,M_PI/3,0,M_PI/2,0};
-    rtCon->MoveJ(0.5, robot.jointPos(ec), q_drag_xm7p);
-
+    // std::array<double,7> q_drag_xm7p = {0,M_PI/6,0,M_PI/3,0,M_PI/2,0};
+    std::array<double,7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0 };
+    rtCon->MoveJ(0.1, robot.jointPos(ec), q_drag_xm7p);
+    cout << "over" << endl;
     // 设置力控坐标系为工具坐标系, 末端相对法兰的坐标系
     std::array<double, 16> toolToFlange = {0, 0, 1, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 1};
     rtCon->setFcCoor(toolToFlange, ForceControlFrameType::tool, ec);
     // 设置笛卡尔阻抗系数
-    rtCon->setCartesianImpedance({1200, 1200, 0, 100, 100, 0}, ec);
+    rtCon->setCartesianImpedance({1200, 1200, 1200, 0, 0, 0}, ec);
     // 设置X和Z方向3N的期望力
-    rtCon->setCartesianImpedanceDesiredTorque({3, 0, 3, 0, 0, 0}, ec);
+    rtCon->setCartesianImpedanceDesiredTorque({0, 0, 0, 0, 0, 0}, ec);
 
     std::array<double, 16> init_position {};
     Utils::postureToTransArray(robot.posture(rokae::CoordinateType::flangeInBase, ec), init_position);
@@ -56,6 +57,9 @@ int main() {
       CartesianPosition output{};
       output.pos = init_position;
       output.pos[7] += delta_z;
+      
+      Eigen::Vector3d pos_1(output.pos[3], output.pos[7], output.pos[11]);
+      cout << "Position: " << pos_1.transpose() << endl;
 
       if(time > 40){
         std::cout << "运动结束" <<std::endl;

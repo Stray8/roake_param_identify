@@ -20,7 +20,7 @@ int main() {
   try {
     std::string ip = "192.168.0.160";
     std::error_code ec;
-    rokae::xMateErProRobot robot(ip, "192.168.0.100"); // 本机地址192.168.0.100
+    rokae::xMateErProRobot robot(ip, "192.168.0.180"); // 本机地址192.168.0.100
 
     robot.setOperateMode(rokae::OperateMode::automatic,ec);
     robot.setMotionControlMode(MotionControlMode::RtCommand, ec);
@@ -29,10 +29,12 @@ int main() {
     auto rtCon = robot.getRtMotionController().lock();
 
     // 设置要接收数据
-    robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m, RtSupportedFields::tcpPose_m});
-    std::array<double, 16> init_pos{}, end_pos{};
+    robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m, 
+                                                                RtSupportedFields::tcpPose_m,
+                                                                RtSupportedFields::tau_m});
+    std::array<double, 16> init_pos{}, end_pos{}, data_test{};
     std::array<double,7> jntPos{}, delta{};
-    Eigen::Quaterniond rot_cur;
+    Eigen::Quaterniond ro_cur;
     Eigen::Matrix3d mat_cur;
     double delta_s;
 
@@ -45,6 +47,7 @@ int main() {
 
     static bool init = true;
     double time = 0;
+    array<double, 7> jnt_Pos{}, jnt_torque{};
 
     //开始运动前先设置为笛卡尔空间位置控制
     rtCon->startMove(RtControllerMode::cartesianPosition);
@@ -55,9 +58,19 @@ int main() {
         // 读取当前位置
         robot.getStateData(RtSupportedFields::tcpPose_m, init_pos);
         end_pos = init_pos;
-        end_pos[11] -= 0.2;
+        end_pos[3] -= 0.2;
+        // end_pos[7] -= 0.2;
+
         init = false;
       }
+      robot.updateRobotState(chrono::seconds(1));
+      // robot.getStateData(RtSupportedFields::jointPos_m,jnt_Pos);
+      // robot.getStateData(RtSupportedFields::tau_m,jnt_torque);
+      // cout << "Position" <<jnt_Pos << endl;
+      // cout << "Torque " << jnt_torque << endl;
+      robot.getStateData(RtSupportedFields::tcpPose_m,data_test);
+      cout << "TCP_pose " << data_test << endl;
+
 
       std::array<double, 16> pose_start = init_pos;
 

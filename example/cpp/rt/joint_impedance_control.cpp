@@ -20,7 +20,7 @@ int main() {
   try {
     std::string ip = "192.168.0.160";
     std::error_code ec;
-    rokae::xMateErProRobot robot(ip, "192.168.0.100"); // 本机地址192.168.0.100
+    rokae::xMateErProRobot robot(ip, "192.168.0.180"); // 本机地址192.168.0.100
 
     robot.setOperateMode(rokae::OperateMode::automatic,ec);
     robot.setMotionControlMode(MotionControlMode::RtCommand, ec);
@@ -39,7 +39,7 @@ int main() {
     std::array<double,7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0};
 
     // 从当前位置MoveJ运动到拖拽位姿
-    rtCon->MoveJ(0.5, jntPos, q_drag_xm7p);
+    rtCon->MoveJ(0.2, jntPos, q_drag_xm7p);
 
     // 设置轴空间阻抗系数，开始轴空间阻抗运动
     rtCon->setJointImpedance({500, 500, 500, 500, 50, 50, 50}, ec);
@@ -62,7 +62,7 @@ int main() {
         cmd.joints[i] = jntPos[i] + delta_angle;
       }
 
-      if(time > 60) {
+      if(time > 30) {
         cmd.setFinished(); // 60秒后结束
       }
       return cmd;

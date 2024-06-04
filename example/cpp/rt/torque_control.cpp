@@ -29,7 +29,9 @@ void torqueControl(xMateErProRobot &robot) {
   auto rtCon = robot.getRtMotionController().lock();
   auto model = robot.model();
   error_code ec;
-  std::array<double,7> q_drag = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0 };
+  std::array<double,7> q_drag = {0, M_PI/3, 0, M_PI/6, 0, M_PI/4, 0 };
+  // std::array<double,7> q_drag = {0, 0, 0, 0, 0, 0, 0 };
+
 
   robot.stopReceiveRobotState();
   robot.startReceiveRobotState(std::chrono::milliseconds(1),
@@ -90,6 +92,9 @@ void torqueControl(xMateErProRobot &robot) {
     Eigen::Vector3d position(transform.translation());
     Eigen::Quaterniond orientation(transform.linear());
 
+    cout << " G : "<< gravity << endl;
+    cout << "G_AR : " << gravity_array << endl;
+
     // compute error to desired equilibrium pose
     // position error
     Eigen::Matrix<double, 6, 1> error;
@@ -115,7 +120,7 @@ void torqueControl(xMateErProRobot &robot) {
     Torque cmd(7);
     Eigen::VectorXd::Map(cmd.tau.data(), 7) = tau_d;
 
-    if(time > 30){
+    if(time > 10){
       cmd.setFinished();
     }
     return cmd;
@@ -150,34 +155,13 @@ void zeroTorque(Cobot<DoF> &robot) {
   rtCon->startMove(RtControllerMode::torque);
   Torque cmd {};
   cmd.tau.resize(DoF);
-  char comm = ' ';
 
   std::function<Torque(void)> callback = [&]() {
     static double time=0;
     time += 0.001;
-    if(cin.get() == 'q')
+    cout << robot.jointTorque(ec) << endl;
+    if(time > 30)
       cmd.setFinished();
-
-    // comm = cin.get();
-
-    // print(cout, time);
-    // print(cout, comm);
-    // if(comm == 'q'){
-    //   print(cout, "quit control");
-    //   cmd.setFinished();
-    // }
-    // else if(comm == 'a'){
-    //   print(cout, "录制");
-    //   robot.startRecordPath(30, ec);
-    // }
-    // else if(comm == 'b'){
-    //   print(cout, "停止");
-    //   robot.stopRecordPath(ec);
-    // }
-    // else if(comm == 's'){
-    //   print(cout, "save");
-    //   robot.saveRecordPath("/home/robot", ec);
-    // }
 
     return cmd;
   };

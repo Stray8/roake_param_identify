@@ -27,9 +27,10 @@ int main() {
     robot.setMotionControlMode(rokae::MotionControlMode::NrtCommand, ec);
 
     // 设置数据发送间隔为1s, 接收机器人末端位姿、关节力矩和关节角度
-    robot.startReceiveRobotState(chrono::seconds(1), {tcpPose_m, tau_m, jointPos_m});
+    robot.startReceiveRobotState(chrono::seconds(1), {tcpPose_m, tau_m, jointPos_m,jointAcc_c});
     std::array<double, 16> tcpPose{};
     std::array<double, 7> arr6{};
+    std::array<double, 7> acc{};
 
     std::atomic_bool running{true};
 
@@ -44,8 +45,9 @@ int main() {
         robot.updateRobotState(chrono::seconds(1));
         robot.getStateData(tcpPose_m, tcpPose);
         robot.getStateData(jointPos_m, arr6);
+        robot.getStateData(jointAcc_c, acc);
         print(os, robot.jointTorque(ec));
-        print(os, "TCP pose:", tcpPose, "\nJoint:", arr6);
+        print(os, "Acc", acc);
       }
     });
 

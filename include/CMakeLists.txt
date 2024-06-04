@@ -1,6 +1,9 @@
 # Public headers
 set(SHARED_INCLUDEDIR ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
 
+
+# include_directories(/usr/local/include)
+
 # Here puts required headers
 set(SHARED_HEADERS
     base.h
@@ -11,6 +14,7 @@ set(SHARED_HEADERS
     planner.h
     motion_control_rt.h
     utility.h
+    sgpr.h
     )
 
 list(TRANSFORM SHARED_HEADERS PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/rokae/")

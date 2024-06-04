@@ -16,6 +16,14 @@ set(EXAMPLES
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package (Threads REQUIRED)
 
+include_directories(
+    /usr/include/python3.8
+)
+
+# include_directories(
+#     /home/robot/robot/roake_param_identify/include/rokae
+# )
+
 foreach(example ${EXAMPLES})
     add_executable(${example} cpp/${example}.cpp cpp/print_helper.hpp)
     target_include_directories(${example} PUBLIC
@@ -47,6 +55,9 @@ endif()
 
 # ------------------------------------------------------------------------------
 add_subdirectory(cpp/rt)
+add_subdirectory(cpp/xdz)
+add_subdirectory(cpp/ly)
+
 
 #-------------------------------------------------------------------------------
 # Installation
@@ -54,3 +65,4 @@ install(TARGETS ${EXAMPLES}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     )
+

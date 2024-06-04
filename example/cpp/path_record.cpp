@@ -14,6 +14,7 @@
 
 using namespace std;
 using namespace rokae;
+using namespace Eigen;
 
 char parseInput(std::string &str);
 void WaitRobot(BaseRobot *robot);
@@ -25,10 +26,9 @@ int main() {
     error_code ec;
     std::vector<std::string> paths;
     xMateErProRobot robot(ip); // xMate 6轴机型
+    array<double,7> tau;
 
     robot.setMotionControlMode(MotionControlMode::NrtCommand, ec);
-
-
     printHelp();
 
     char cmd = ' ';
@@ -49,7 +49,16 @@ int main() {
           if(ec) break; continue;
         case 'd':
           // 打开拖动前置条件: 需要切换机器人操作模式为手动模式，并下电
-          if(str == "on") { robot.enableDrag(DragParameter::cartesianSpace, DragParameter::freely, ec); cout << "* 打开拖动\n"; }
+          if(str == "on") { 
+            // robot.enableDrag(DragParameter::cartesianSpace, DragParameter::freely, ec); 
+            robot.enableDrag(DragParameter::Space::jointSpace, DragParameter::Type::freely, ec);
+            cout << "* 打开拖动\n"; 
+            while (true){
+              robot.jointTorque(ec);
+            }
+            
+
+            }
           else { robot.disableDrag(ec); std::cout << "* 关闭拖动\n"; }
           if(ec) break; continue;
         case 'a':

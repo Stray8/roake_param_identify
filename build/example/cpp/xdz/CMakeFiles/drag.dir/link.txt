@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/drag.dir/drag.cpp.o  -o ../../../bin/drag  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a /usr/lib/x86_64-linux-gnu/libpython3.8.so ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

@@ -27,10 +27,11 @@ int main(){
     ofstream position_file;
     ofstream torque_file;
     ofstream velociy_file;
+    ofstream acc_file;
     position_file.open("position.txt");
     torque_file.open("torque.txt");
     velociy_file.open("velocity.txt");
-
+    acc_file.open("acc.txt");
 
     string ip = "192.168.0.160";
     error_code ec;
@@ -41,7 +42,8 @@ int main(){
     robot.setPowerState(true, ec);
 
     auto rtCon = robot.getRtMotionController().lock();
-    robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m, RtSupportedFields::jointVel_m, RtSupportedFields::tau_m});
+    robot.stopReceiveRobotState();
+    robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m, RtSupportedFields::jointVel_m, RtSupportedFields::tau_m, RtSupportedFields::jointAcc_c});
 
     std::array<double,7> q_drag_xm7p = {0, 0, 0, 0, 0, 0, 0};
 
@@ -87,31 +89,40 @@ int main(){
 		joint_motion_vector.push_back(q_end);
 	}
 
+
+
     static bool init = true;
     double time = 0;
     array<double, 7> init_position;
 	int vec_cnt = 0;	// counter for joint_motion_vector
 
-
-    array<double,7> jntPos{}, jntVel{}, tau{};
+    array<double,7> jntPos{}, jntVel{}, tau{}, acc{};
     JointPosition cmd;
     function<JointPosition(void)> callback = [&, rtCon](){
         time += 0.001;
+        robot.updateRobotState(chrono::milliseconds(1));
+        robot.getStateData(RtSupportedFields::jointPos_m, jntPos);
+        robot.getStateData(RtSupportedFields::jointVel_m, jntVel);
+        robot.getStateData(RtSupportedFields::tau_m, tau);
+        robot.getStateData(RtSupportedFields::jointAcc_c, acc);
+
+
 		// initialize
         if(init == true){
             init_position = robot.jointPos(ec);
             init = false;
         }
 
-        jntPos = robot.jointPos(ec);
-        jntVel = robot.jointVel(ec);
-        tau = robot.jointTorque(ec);
-
         cout << jntPos << endl;
+        cout << jntVel << endl;
+        cout << "tau: " << tau << endl;
+
+
         position_file << "Position: " << jntPos << endl;
         velociy_file << "Velocity: " << jntVel << endl;
         torque_file << "Torque: " << tau << endl;
-
+        acc_file << "Acc: " << acc << endl;
+        
         // give cmd 
         cmd = {{joint_motion_vector[vec_cnt][0], joint_motion_vector[vec_cnt][1],
 				   joint_motion_vector[vec_cnt][2], joint_motion_vector[vec_cnt][3],
@@ -134,6 +145,7 @@ int main(){
     position_file.close();
     torque_file.close();
     velociy_file.close();
+    acc_file.close();
         // 关闭实时模式
     robot.setMotionControlMode(rokae::MotionControlMode::NrtCommand, ec);
     robot.setOperateMode(rokae::OperateMode::manual, ec);

@@ -120,6 +120,8 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/robot/robot/roake_param_identify/build/example/cpp/rt/cmake_install.cmake")
+  include("/home/robot/robot/roake_param_identify/build/example/cpp/xdz/cmake_install.cmake")
+  include("/home/robot/robot/roake_param_identify/build/example/cpp/ly/cmake_install.cmake")
 
 endif()
 
