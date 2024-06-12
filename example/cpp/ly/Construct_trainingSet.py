@@ -6,12 +6,19 @@ gap = 10
 Robot_DoF = 7
 # The structure is M, q, dq, x, Cdq, tau, g, time
 
-inertia = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/inertia_file.txt')[0::gap, :]
-coriolis = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/coriolis_file.txt')[0::gap, :]
-gravity = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/gravity_file.txt')[0::gap, :]
-torque = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/torque_file.txt')[0::gap, :]
-q = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/position_ly.txt')[0::gap, :]
-dq = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/velocity_file.txt')[0::gap, :]
+# inertia = np.loadtxt('/home/robot/robot/roake_param_identify/build/collect/inertia.txt')[0::gap, :]
+# coriolis = np.loadtxt('/home/robot/robot/roake_param_identify/build/collect/coriolis.txt')[0::gap, :]
+# gravity = np.loadtxt('/home/robot/robot/roake_param_identify/build/collect/gravity.txt')[0::gap, :]
+# torque = np.loadtxt('/home/robot/robot/roake_param_identify/build/collect/torque.txt')[0::gap, :]
+# q = np.loadtxt('/home/robot/robot/roake_param_identify/build/collect/position.txt')[0::gap, :]
+# dq = np.loadtxt('/home/robot/robot/roake_param_identify/build/collect/velocity.txt')[0::gap, :]
+
+inertia = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/inertia_file.txt')[0::gap, :]
+coriolis = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/coriolis_file.txt')[0::gap, :]
+gravity = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/gravity_file.txt')[0::gap, :]
+torque = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/torque_file.txt')[0::gap, :]
+q = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/position_ly.txt')[0::gap, :]
+dq = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/velocity_file.txt')[0::gap, :]
 
 # q filter
 N = np.shape(q)[0]
@@ -54,7 +61,8 @@ for i in range(N - 2): # i是从0开始的
     Y[i, :] = hat_tau_i - hat_g_i - hat_c_i - hat_i_i
 
 training_set = np.hstack((X, Y))
-np.savetxt('/home/robot/robot/roake_param_identify/build/PD_error/trainingSet_ly.txt', training_set)
+# np.savetxt('/home/robot/robot/roake_param_identify/build/collect/trainingSet.txt', training_set)
+np.savetxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/trainingSet_ly.txt', training_set)
 
 static_error = q[-1, :] - q[0, :]
 print('static error is ', static_error)

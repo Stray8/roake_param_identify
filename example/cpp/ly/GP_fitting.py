@@ -12,7 +12,7 @@ np.random.seed(5) #生成随机数
 faulthandler.enable()
 
 class sgpr:
-    def __init__(self, X, y, likelihood_noise=0.1, restart=1):
+    def __init__(self, X, y, likelihood_noise=0.5, restart=1):
         '''
         :param X: q, dq, ddq
         :param y: output for one dim

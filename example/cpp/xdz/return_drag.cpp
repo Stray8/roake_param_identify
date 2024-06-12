@@ -36,6 +36,7 @@ int main() {
 
     std::array<double, 7> jntPos{};
     robot.getStateData(RtSupportedFields::jointPos_m, jntPos);
+    cout << jntPos << endl;
     std::array<double,7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0};
 
     // 从当前位置MoveJ运动到拖拽位姿

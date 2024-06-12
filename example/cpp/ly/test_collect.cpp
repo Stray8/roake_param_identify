@@ -1,13 +1,3 @@
-/**
- * @file joint_position_control.cpp
- * @brief 实时模式 - 轴角度控制
- *
- * @copyright Copyright (C) 2023 ROKAE (Beijing) Technology Co., LTD. All Rights Reserved.
- * Information in this file is the intellectual property of Rokae Technology Co., Ltd,
- * And may contains trade secrets that must be stored and viewed confidentially.
- */
-
-
 #include <iostream>
 #include <cmath>
 #include <thread>
@@ -25,22 +15,16 @@ int main() {
   // 初始化
   ofstream position_file;
   ofstream velocity_file;
-  ofstream accelation_file;
-  ofstream gravity_file;
   ofstream inertia_file;
   ofstream coriolis_file;
+  ofstream gravity_file;
   ofstream torque_file;
-  ofstream jp_file;
-  ofstream jv_file;
-  position_file.open("position_ly.txt");
-  velocity_file.open("velocity_ly.txt");
-  accelation_file.open("accelation_ly.txt");
-  inertia_file.open("inertia_ly.txt");
-  coriolis_file.open("coriolis_ly.txt");
-  gravity_file.open("gravity_ly.txt");
-  torque_file.open("torque_ly.txt");
-  jp_file.open("jp_ly.txt");
-  jv_file.open("jv_ly.txt");
+  position_file.open("./collect/position.txt");
+  velocity_file.open("./collect/velocity.txt");
+  inertia_file.open("./collect/inertia.txt");
+  coriolis_file.open("./collect/coriolis.txt");
+  gravity_file.open("./collect/gravity.txt");
+  torque_file.open("./collect/torque.txt");
 
   try {
     std::string ip = "192.168.0.160";
@@ -107,14 +91,6 @@ int main() {
       double delta_angle4 = M_PI / 60.0 * (1 - std::cos(M_PI / 2 * 4 * time));
       double delta_angle6 = M_PI / 70.0 * (1 - std::cos(M_PI / 2 * 3 * time));
 
-      // double delta_angle0 =  M_PI / 300.0;
-      // double delta_angle1 =  M_PI / 300.0;
-      // double delta_angle2 =  M_PI / 300.0;
-      // double delta_angle3 =  M_PI / 300.0;
-      // double delta_angle4 =  M_PI / 300.0;
-      // double delta_angle5 =  M_PI / 300.0;
-      // double delta_angle6 =  M_PI / 300.0;
-
       if(time > 8)
       {
         delta_angle0 = 0;
@@ -126,28 +102,17 @@ int main() {
         delta_angle6 = 0;
       }
 
-
       JointPosition cmd = {{jntPos[0] + delta_angle0, jntPos[1] + delta_angle1,
                             jntPos[2] + delta_angle2, jntPos[3] + delta_angle3,
                             jntPos[4] + delta_angle4, jntPos[5] + delta_angle5,
                             jntPos[6] + delta_angle6}};
-
       // 保存数据
-      position_file << q << endl;
-      velocity_file << dq_m << endl;
-      accelation_file << ddq_c << endl;
       inertia_file << inertia_array << endl;
       coriolis_file << coriolis_array << endl;
       gravity_file << gravity_array << endl;
-      jp_file << jp << endl;
-      jv_file << jv << endl;
+      position_file << jp << endl;
+      velocity_file << jv << endl;
       torque_file << tor << endl;
-
-      // cout << tor << endl;
-
-      // cout << "tau: " << tau << endl;
-      // cout << "torque:" << tor << endl;
-      // cout << time << endl;
     
       if(time > 10)
         cmd.setFinished(); // 60秒后结束
@@ -158,15 +123,12 @@ int main() {
     // 阻塞loop
     rtCon->startLoop(true);
     print(std::cout, "控制结束");
-    
-    position_file.close();
-    velocity_file.close();
-    accelation_file.close();
+
     inertia_file.close();
     coriolis_file.close();
     gravity_file.close();
-    jp_file.close();
-    jv_file.close();
+    position_file.close();
+    velocity_file.close();
     torque_file.close();
 
 

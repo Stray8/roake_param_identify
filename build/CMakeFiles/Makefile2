@@ -190,6 +190,8 @@ example/cpp/rt/clean: example/cpp/rt/CMakeFiles/joint_position_control.dir/clean
 
 # Recursive "all" directory target.
 example/cpp/xdz/all: example/cpp/xdz/CMakeFiles/force_control.dir/all
+example/cpp/xdz/all: example/cpp/xdz/CMakeFiles/force_collect.dir/all
+example/cpp/xdz/all: example/cpp/xdz/CMakeFiles/return_drag.dir/all
 
 .PHONY : example/cpp/xdz/all
 
@@ -200,6 +202,8 @@ example/cpp/xdz/preinstall:
 
 # Recursive "clean" directory target.
 example/cpp/xdz/clean: example/cpp/xdz/CMakeFiles/force_control.dir/clean
+example/cpp/xdz/clean: example/cpp/xdz/CMakeFiles/force_collect.dir/clean
+example/cpp/xdz/clean: example/cpp/xdz/CMakeFiles/return_drag.dir/clean
 
 .PHONY : example/cpp/xdz/clean
 
@@ -264,7 +268,7 @@ lib/clean:
 example/CMakeFiles/read_robot_state.dir/all:
 	$(MAKE) -f example/CMakeFiles/read_robot_state.dir/build.make example/CMakeFiles/read_robot_state.dir/depend
 	$(MAKE) -f example/CMakeFiles/read_robot_state.dir/build.make example/CMakeFiles/read_robot_state.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=22,23 "Built target read_robot_state"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=24,25 "Built target read_robot_state"
 .PHONY : example/CMakeFiles/read_robot_state.dir/all
 
 # Build rule for subdir invocation for target.
@@ -291,7 +295,7 @@ example/CMakeFiles/read_robot_state.dir/clean:
 example/CMakeFiles/rl_project.dir/all:
 	$(MAKE) -f example/CMakeFiles/rl_project.dir/build.make example/CMakeFiles/rl_project.dir/depend
 	$(MAKE) -f example/CMakeFiles/rl_project.dir/build.make example/CMakeFiles/rl_project.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=24,25 "Built target rl_project"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=28,29 "Built target rl_project"
 .PHONY : example/CMakeFiles/rl_project.dir/all
 
 # Build rule for subdir invocation for target.
@@ -318,7 +322,7 @@ example/CMakeFiles/rl_project.dir/clean:
 example/CMakeFiles/path_record.dir/all:
 	$(MAKE) -f example/CMakeFiles/path_record.dir/build.make example/CMakeFiles/path_record.dir/depend
 	$(MAKE) -f example/CMakeFiles/path_record.dir/build.make example/CMakeFiles/path_record.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=20,21 "Built target path_record"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=22,23 "Built target path_record"
 .PHONY : example/CMakeFiles/path_record.dir/all
 
 # Build rule for subdir invocation for target.
@@ -345,7 +349,7 @@ example/CMakeFiles/path_record.dir/clean:
 example/CMakeFiles/xmatemodel_er3_er7p.dir/all:
 	$(MAKE) -f example/CMakeFiles/xmatemodel_er3_er7p.dir/build.make example/CMakeFiles/xmatemodel_er3_er7p.dir/depend
 	$(MAKE) -f example/CMakeFiles/xmatemodel_er3_er7p.dir/build.make example/CMakeFiles/xmatemodel_er3_er7p.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=34,35 "Built target xmatemodel_er3_er7p"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=38,39 "Built target xmatemodel_er3_er7p"
 .PHONY : example/CMakeFiles/xmatemodel_er3_er7p.dir/all
 
 # Build rule for subdir invocation for target.
@@ -372,7 +376,7 @@ example/CMakeFiles/xmatemodel_er3_er7p.dir/clean:
 example/CMakeFiles/move_example.dir/all:
 	$(MAKE) -f example/CMakeFiles/move_example.dir/build.make example/CMakeFiles/move_example.dir/depend
 	$(MAKE) -f example/CMakeFiles/move_example.dir/build.make example/CMakeFiles/move_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=18,19 "Built target move_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=20,21 "Built target move_example"
 .PHONY : example/CMakeFiles/move_example.dir/all
 
 # Build rule for subdir invocation for target.
@@ -399,7 +403,7 @@ example/CMakeFiles/move_example.dir/clean:
 example/CMakeFiles/sdk_example.dir/all:
 	$(MAKE) -f example/CMakeFiles/sdk_example.dir/build.make example/CMakeFiles/sdk_example.dir/depend
 	$(MAKE) -f example/CMakeFiles/sdk_example.dir/build.make example/CMakeFiles/sdk_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=28,29 "Built target sdk_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=32,33 "Built target sdk_example"
 .PHONY : example/CMakeFiles/sdk_example.dir/all
 
 # Build rule for subdir invocation for target.
@@ -426,7 +430,7 @@ example/CMakeFiles/sdk_example.dir/clean:
 example/cpp/rt/CMakeFiles/torque_control.dir/all:
 	$(MAKE) -f example/cpp/rt/CMakeFiles/torque_control.dir/build.make example/cpp/rt/CMakeFiles/torque_control.dir/depend
 	$(MAKE) -f example/cpp/rt/CMakeFiles/torque_control.dir/build.make example/cpp/rt/CMakeFiles/torque_control.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=32,33 "Built target torque_control"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=36,37 "Built target torque_control"
 .PHONY : example/cpp/rt/CMakeFiles/torque_control.dir/all
 
 # Build rule for subdir invocation for target.
@@ -453,7 +457,7 @@ example/cpp/rt/CMakeFiles/torque_control.dir/clean:
 example/cpp/rt/CMakeFiles/roake_param_identify.dir/all:
 	$(MAKE) -f example/cpp/rt/CMakeFiles/roake_param_identify.dir/build.make example/cpp/rt/CMakeFiles/roake_param_identify.dir/depend
 	$(MAKE) -f example/cpp/rt/CMakeFiles/roake_param_identify.dir/build.make example/cpp/rt/CMakeFiles/roake_param_identify.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=26,27 "Built target roake_param_identify"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=30,31 "Built target roake_param_identify"
 .PHONY : example/cpp/rt/CMakeFiles/roake_param_identify.dir/all
 
 # Build rule for subdir invocation for target.
@@ -534,7 +538,7 @@ example/cpp/rt/CMakeFiles/cartesian_impedance_control.dir/clean:
 example/cpp/rt/CMakeFiles/joint_impedance_control.dir/all:
 	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_impedance_control.dir/build.make example/cpp/rt/CMakeFiles/joint_impedance_control.dir/depend
 	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_impedance_control.dir/build.make example/cpp/rt/CMakeFiles/joint_impedance_control.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=12,13 "Built target joint_impedance_control"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=14,15 "Built target joint_impedance_control"
 .PHONY : example/cpp/rt/CMakeFiles/joint_impedance_control.dir/all
 
 # Build rule for subdir invocation for target.
@@ -561,7 +565,7 @@ example/cpp/rt/CMakeFiles/joint_impedance_control.dir/clean:
 example/cpp/rt/CMakeFiles/joint_position_control.dir/all:
 	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_position_control.dir/build.make example/cpp/rt/CMakeFiles/joint_position_control.dir/depend
 	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_position_control.dir/build.make example/cpp/rt/CMakeFiles/joint_position_control.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=14,15 "Built target joint_position_control"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=16,17 "Built target joint_position_control"
 .PHONY : example/cpp/rt/CMakeFiles/joint_position_control.dir/all
 
 # Build rule for subdir invocation for target.
@@ -588,7 +592,7 @@ example/cpp/rt/CMakeFiles/joint_position_control.dir/clean:
 example/cpp/xdz/CMakeFiles/force_control.dir/all:
 	$(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/depend
 	$(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=10,11 "Built target force_control"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=12,13 "Built target force_control"
 .PHONY : example/cpp/xdz/CMakeFiles/force_control.dir/all
 
 # Build rule for subdir invocation for target.
@@ -607,6 +611,60 @@ force_control: example/cpp/xdz/CMakeFiles/force_control.dir/rule
 example/cpp/xdz/CMakeFiles/force_control.dir/clean:
 	$(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/clean
 .PHONY : example/cpp/xdz/CMakeFiles/force_control.dir/clean
+
+#=============================================================================
+# Target rules for target example/cpp/xdz/CMakeFiles/force_collect.dir
+
+# All Build rule for target.
+example/cpp/xdz/CMakeFiles/force_collect.dir/all:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/depend
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=10,11 "Built target force_collect"
+.PHONY : example/cpp/xdz/CMakeFiles/force_collect.dir/all
+
+# Build rule for subdir invocation for target.
+example/cpp/xdz/CMakeFiles/force_collect.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/robot/robot/roake_param_identify/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/force_collect.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/robot/robot/roake_param_identify/build/CMakeFiles 0
+.PHONY : example/cpp/xdz/CMakeFiles/force_collect.dir/rule
+
+# Convenience name for target.
+force_collect: example/cpp/xdz/CMakeFiles/force_collect.dir/rule
+
+.PHONY : force_collect
+
+# clean rule for target.
+example/cpp/xdz/CMakeFiles/force_collect.dir/clean:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/clean
+.PHONY : example/cpp/xdz/CMakeFiles/force_collect.dir/clean
+
+#=============================================================================
+# Target rules for target example/cpp/xdz/CMakeFiles/return_drag.dir
+
+# All Build rule for target.
+example/cpp/xdz/CMakeFiles/return_drag.dir/all:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/depend
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=26,27 "Built target return_drag"
+.PHONY : example/cpp/xdz/CMakeFiles/return_drag.dir/all
+
+# Build rule for subdir invocation for target.
+example/cpp/xdz/CMakeFiles/return_drag.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/robot/robot/roake_param_identify/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/return_drag.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/robot/robot/roake_param_identify/build/CMakeFiles 0
+.PHONY : example/cpp/xdz/CMakeFiles/return_drag.dir/rule
+
+# Convenience name for target.
+return_drag: example/cpp/xdz/CMakeFiles/return_drag.dir/rule
+
+.PHONY : return_drag
+
+# clean rule for target.
+example/cpp/xdz/CMakeFiles/return_drag.dir/clean:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/clean
+.PHONY : example/cpp/xdz/CMakeFiles/return_drag.dir/clean
 
 #=============================================================================
 # Target rules for target example/cpp/ly/CMakeFiles/PD.dir
@@ -669,7 +727,7 @@ example/cpp/ly/CMakeFiles/SGPR_robot.dir/clean:
 example/cpp/ly/CMakeFiles/test_collect.dir/all:
 	$(MAKE) -f example/cpp/ly/CMakeFiles/test_collect.dir/build.make example/cpp/ly/CMakeFiles/test_collect.dir/depend
 	$(MAKE) -f example/cpp/ly/CMakeFiles/test_collect.dir/build.make example/cpp/ly/CMakeFiles/test_collect.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=30,31 "Built target test_collect"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=34,35 "Built target test_collect"
 .PHONY : example/cpp/ly/CMakeFiles/test_collect.dir/all
 
 # Build rule for subdir invocation for target.
@@ -696,7 +754,7 @@ example/cpp/ly/CMakeFiles/test_collect.dir/clean:
 example/cpp/ly/CMakeFiles/ly.dir/all:
 	$(MAKE) -f example/cpp/ly/CMakeFiles/ly.dir/build.make example/cpp/ly/CMakeFiles/ly.dir/depend
 	$(MAKE) -f example/cpp/ly/CMakeFiles/ly.dir/build.make example/cpp/ly/CMakeFiles/ly.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=16,17 "Built target ly"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=18,19 "Built target ly"
 .PHONY : example/cpp/ly/CMakeFiles/ly.dir/all
 
 # Build rule for subdir invocation for target.

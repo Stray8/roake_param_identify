@@ -80,7 +80,6 @@ force_control_EXTERNAL_OBJECTS =
 bin/force_control: example/cpp/xdz/CMakeFiles/force_control.dir/force_control.cpp.o
 bin/force_control: example/cpp/xdz/CMakeFiles/force_control.dir/build.make
 bin/force_control: ../lib/Linux/cpp/x86_64/libxCoreSDK.a
-bin/force_control: /usr/lib/x86_64-linux-gnu/libpython3.8.so
 bin/force_control: ../lib/Linux/cpp/x86_64/libxMateModel.a
 bin/force_control: example/cpp/xdz/CMakeFiles/force_control.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../../../bin/force_control"

@@ -83,6 +83,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "example/cpp/rt/CMakeFiles/joint_impedance_control.dir/DependInfo.cmake"
   "example/cpp/rt/CMakeFiles/joint_position_control.dir/DependInfo.cmake"
   "example/cpp/xdz/CMakeFiles/force_control.dir/DependInfo.cmake"
+  "example/cpp/xdz/CMakeFiles/force_collect.dir/DependInfo.cmake"
+  "example/cpp/xdz/CMakeFiles/return_drag.dir/DependInfo.cmake"
   "example/cpp/ly/CMakeFiles/PD.dir/DependInfo.cmake"
   "example/cpp/ly/CMakeFiles/SGPR_robot.dir/DependInfo.cmake"
   "example/cpp/ly/CMakeFiles/test_collect.dir/DependInfo.cmake"

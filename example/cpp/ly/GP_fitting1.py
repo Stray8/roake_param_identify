@@ -41,6 +41,9 @@ class sgpr:
         kn_m = 0.1 * np.random.normal(size=1) # 均值为1，标准差为0.1
         kn_c = 0.1 * np.random.normal(size=1) # 均值为1，标准差为0.1
         self.param = np.hstack((kn_m, sqrt_kls_m, kn_c, sqrt_kls_c))
+    
+    # def save_param(self, /home/robot/robot/roake_param_identify/build/collect/parameter.txt):
+        # np.savetxt('/home/robot/robot/roake_param_identify/build/collect/parameter.txt', self.param)
         
     def set_param(self, param):
         self.param = param.copy()
@@ -118,7 +121,8 @@ class sgpr:
 
 
 Robot_DOF = 7
-trainingSet = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/trainingSet_ly.txt')
+# trainingSet = np.loadtxt('/home/robot/robot/roake_param_identify/build/collect/trainingSet.txt')
+trainingSet = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/trainingSet_ly.txt')
 X, Y = trainingSet[:, 0:(3*Robot_DOF)], trainingSet[:, (3*Robot_DOF):]
 y0 = Y[:, 0]
 y1 = Y[:, 1]
@@ -145,6 +149,7 @@ gpr_fitting6 = sgpr(X, y6)
 gpr_fitting6.train()
 print('end training ... ')
 
+
 def prediction(input):
     pre0,_ = gpr_fitting0.predict_determined_input(input)
     pre1,_ = gpr_fitting1.predict_determined_input(input)
@@ -163,53 +168,53 @@ def prediction(input):
     pre = np.hstack((pre0, pre1, pre2, pre3, pre4, pre5, pre6))
     return pre
 
-# print(X[0, :])
-# input = X
-# pre = prediction(input)
-# hat_y0 = pre[:,0]
-# hat_y1 = pre[:,1]
-# hat_y2 = pre[:,2]
-# hat_y3 = pre[:,3]
-# hat_y4 = pre[:,4]
-# hat_y5 = pre[:,5]
-# hat_y6 = pre[:,6]
+print(X[0, :])
+input = X
+pre = prediction(input)
+hat_y0 = pre[:,0]
+hat_y1 = pre[:,1]
+hat_y2 = pre[:,2]
+hat_y3 = pre[:,3]
+hat_y4 = pre[:,4]
+hat_y5 = pre[:,5]
+hat_y6 = pre[:,6]
 
-# data_Size = np.shape(trainingSet)[0]
-# # print("pre is", pre)
-# # 绘制第1个子图：y0和hat_y0
-# plt.subplot(421)
-# plt.plot(np.arange(data_Size), y0, c='red', label='$tau_1$')
-# plt.plot(np.arange(data_Size), hat_y0, c='blue', label='$\hat tau_1$')
-# plt.legend()
-# # 绘制第2个子图：y1和hat_y1
-# plt.subplot(422)
-# plt.plot(np.arange(data_Size), y1, c='red', label='$tau_2$')
-# plt.plot(np.arange(data_Size), hat_y1, c='blue', label='$\hat tau_2$')
-# plt.legend()
-# # 绘制第3个子图：y2和hat_y2
-# plt.subplot(423)
-# plt.plot(np.arange(data_Size), y2, c='red', label='$tau_3$')
-# plt.plot(np.arange(data_Size), hat_y2, c='blue', label='$\hat tau_3$')
-# plt.legend()
-# # 绘制第4个子图：y3和hat_y3
-# plt.subplot(424)
-# plt.plot(np.arange(data_Size), y3, c='red', label='$tau_4$')
-# plt.plot(np.arange(data_Size), hat_y3, c='blue', label='$\hat tau_4$')
-# plt.legend()
-# # 绘制第5个子图：y4和hat_y4
-# plt.subplot(425)
-# plt.plot(np.arange(data_Size), y4, c='red', label='$tau_5$')
-# plt.plot(np.arange(data_Size), hat_y4, c='blue', label='$\hat tau_5$')
-# plt.legend()
-# # 绘制第6个子图：y5和hat_y5
-# plt.subplot(426)
-# plt.plot(np.arange(data_Size), y5, c='red', label='$tau_6$')
-# plt.plot(np.arange(data_Size), hat_y5, c='blue', label='$\hat tau_6$')
-# plt.legend()
-# # 绘制第7个子图：y6和hat_y6
-# plt.subplot(427)
-# plt.plot(np.arange(data_Size), y6, c='red', label='$tau_7$')
-# plt.plot(np.arange(data_Size), hat_y6, c='blue', label='$\hat tau_7$')
-# plt.legend()
-# # 显示图形
-# plt.show()
+data_Size = np.shape(trainingSet)[0]
+# print("pre is", pre)
+# 绘制第1个子图：y0和hat_y0
+plt.subplot(421)
+plt.plot(np.arange(data_Size), y0, c='red', label='$tau_1$')
+plt.plot(np.arange(data_Size), hat_y0, c='blue', label='$\hat tau_1$')
+plt.legend()
+# 绘制第2个子图：y1和hat_y1
+plt.subplot(422)
+plt.plot(np.arange(data_Size), y1, c='red', label='$tau_2$')
+plt.plot(np.arange(data_Size), hat_y1, c='blue', label='$\hat tau_2$')
+plt.legend()
+# 绘制第3个子图：y2和hat_y2
+plt.subplot(423)
+plt.plot(np.arange(data_Size), y2, c='red', label='$tau_3$')
+plt.plot(np.arange(data_Size), hat_y2, c='blue', label='$\hat tau_3$')
+plt.legend()
+# 绘制第4个子图：y3和hat_y3
+plt.subplot(424)
+plt.plot(np.arange(data_Size), y3, c='red', label='$tau_4$')
+plt.plot(np.arange(data_Size), hat_y3, c='blue', label='$\hat tau_4$')
+plt.legend()
+# 绘制第5个子图：y4和hat_y4
+plt.subplot(425)
+plt.plot(np.arange(data_Size), y4, c='red', label='$tau_5$')
+plt.plot(np.arange(data_Size), hat_y4, c='blue', label='$\hat tau_5$')
+plt.legend()
+# 绘制第6个子图：y5和hat_y5
+plt.subplot(426)
+plt.plot(np.arange(data_Size), y5, c='red', label='$tau_6$')
+plt.plot(np.arange(data_Size), hat_y5, c='blue', label='$\hat tau_6$')
+plt.legend()
+# 绘制第7个子图：y6和hat_y6
+plt.subplot(427)
+plt.plot(np.arange(data_Size), y6, c='red', label='$tau_7$')
+plt.plot(np.arange(data_Size), hat_y6, c='blue', label='$\hat tau_7$')
+plt.legend()
+# 显示图形
+plt.show()

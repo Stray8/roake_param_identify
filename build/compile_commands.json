@@ -61,8 +61,18 @@
 },
 {
   "directory": "/home/robot/robot/roake_param_identify/build/example/cpp/xdz",
-  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/usr/include/python3.8 -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/force_control.dir/force_control.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/xdz/force_control.cpp",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -DXMATEMODEL_LIB_SUPPORTED -I/usr/include/python3.8 -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/force_control.dir/force_control.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/xdz/force_control.cpp",
   "file": "/home/robot/robot/roake_param_identify/example/cpp/xdz/force_control.cpp"
+},
+{
+  "directory": "/home/robot/robot/roake_param_identify/build/example/cpp/xdz",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/usr/include/python3.8 -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/force_collect.dir/force_collect.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/xdz/force_collect.cpp",
+  "file": "/home/robot/robot/roake_param_identify/example/cpp/xdz/force_collect.cpp"
+},
+{
+  "directory": "/home/robot/robot/roake_param_identify/build/example/cpp/xdz",
+  "command": "/usr/bin/c++  -DEIGEN_DONT_ALIGN_STATICALLY -I/usr/include/python3.8 -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external  -O3 -DNDEBUG   -pthread -std=gnu++17 -o CMakeFiles/return_drag.dir/return_drag.cpp.o -c /home/robot/robot/roake_param_identify/example/cpp/xdz/return_drag.cpp",
+  "file": "/home/robot/robot/roake_param_identify/example/cpp/xdz/return_drag.cpp"
 },
 {
   "directory": "/home/robot/robot/roake_param_identify/build/example/cpp/ly",

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS = -O3 -DNDEBUG   -pthread -std=gnu++17
 
-CXX_DEFINES = -DEIGEN_DONT_ALIGN_STATICALLY
+CXX_DEFINES = -DEIGEN_DONT_ALIGN_STATICALLY -DXMATEMODEL_LIB_SUPPORTED
 
 CXX_INCLUDES = -I/usr/include/python3.8 -I/home/robot/robot/roake_param_identify/include -I/home/robot/robot/roake_param_identify/external 
 

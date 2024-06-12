@@ -10,6 +10,7 @@ delta_angle3 = np.pi / 70.0 * (1 - np.cos(np.pi * t)) + np.pi / 3
 delta_angle4 = np.pi / 60.0 * (1 - np.cos(np.pi * t))
 delta_angle5 = np.pi / 60.0 * (1 - np.cos(np.pi / 2 * 4 * t)) + np.pi / 2
 delta_angle6 = np.pi / 70.0 * (1 - np.cos(np.pi / 2 * 3 * t))
+error_std = t - t
 index_8 = int(8/0.01)
 delta_angle0[index_8:] = 0
 delta_angle1[index_8:] = np.pi / 6
@@ -20,44 +21,69 @@ delta_angle5[index_8:] = np.pi / 2
 delta_angle6[index_8:] = 0
 
 dp = np.hstack((delta_angle0, delta_angle1, delta_angle2, delta_angle3, delta_angle4, delta_angle5, delta_angle6))
-# p = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/position_ly.txt')[0::gap,:]
-# ep = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/position_error_ly.txt')[0::gap,:]
+p_pd = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/position_ly.txt')[0::gap,:]
+ep_pd = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/position_error_ly.txt')[0::gap,:]
 
-p = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/position_ly.txt')[0::gap,:]
-ep = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/position_error_ly.txt')[0::gap,:]
+# p_pd = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/position_ly.txt')[0::gap,:]
+# ep_pd = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/position_error_ly.txt')[0::gap,:]
+
+p = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_2/position_ly.txt')[0::gap,:]
+ep = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_2/position_error_ly.txt')[0::gap,:]
+
 plt.subplot(4,2,1)
 plt.plot(p[:,0], c='red',label='$p_1$')
+plt.plot(p_pd[:,0], c='purple',label='$p_pd1$')
 plt.plot(delta_angle0, c='green',label='$dp_1$')
 plt.plot(ep[:,0], c='blue',label='$ep_1$')
+plt.plot(ep_pd[:,0], c='cyan',label='$ep_pd1$')
+# plt.plot(error_std, c='orange')
 plt.legend()
 plt.subplot(4,2,2)
 plt.plot(p[:,1], c='red',label='$p_2$')
+plt.plot(p_pd[:,1], c='purple',label='$p_pd2$')
 plt.plot(delta_angle1, c='green',label='$dp_2$')
 plt.plot(ep[:,1], c='blue',label='$ep_2$')
+plt.plot(ep_pd[:,1], c='cyan',label='$ep_pd2$')
+# plt.plot(error_std, c='orange')
 plt.legend()
 plt.subplot(4,2,3)
 plt.plot(p[:,2], c='red',label='$p_3$')
+plt.plot(p_pd[:,2], c='purple',label='$p_pd3$')
 plt.plot(delta_angle2, c='green',label='$dp_3$')
 plt.plot(ep[:,2], c='blue',label='$ep_3$')
+plt.plot(ep_pd[:,2], c='cyan',label='$ep_pd3$')
+# plt.plot(error_std, c='orange')
 plt.legend()
 plt.subplot(4,2,4)
 plt.plot(p[:,3], c='red',label='$p_4$')
+plt.plot(p_pd[:,3], c='purple',label='$p_pd4$')
 plt.plot(delta_angle3, c='green',label='$dp_4$')
 plt.plot(ep[:,3], c='blue',label='$ep_4$')
+plt.plot(ep_pd[:,3], c='cyan',label='$ep_pd4$')
+# plt.plot(error_std, c='orange')
 plt.legend()
 plt.subplot(4,2,5)
 plt.plot(p[:,4], c='red',label='$p_5$')
+plt.plot(p_pd[:,4], c='purple',label='$p_pd5$')
 plt.plot(delta_angle4, c='green',label='$dp_5$')
 plt.plot(ep[:,4], c='blue',label='$ep_5$')
+plt.plot(ep_pd[:,4], c='cyan',label='$ep_pd5$')
+# plt.plot(error_std, c='orange')
 plt.legend()
 plt.subplot(4,2,6)
 plt.plot(p[:,5], c='red',label='$p_6$')
+plt.plot(p_pd[:,5], c='purple',label='$p_pd6$')
 plt.plot(delta_angle5, c='green',label='$dp_6$')
 plt.plot(ep[:,5], c='blue',label='$ep_6$')
+plt.plot(ep_pd[:,5], c='cyan',label='$ep_pd6$')
+# plt.plot(error_std, c='orange')
 plt.legend()
 plt.subplot(4,2,7)
 plt.plot(p[:,6], c='red',label='$p_7$')
+plt.plot(p_pd[:,6], c='purple',label='$p_pd7$')
 plt.plot(delta_angle6, c='green',label='$dp_7$')
 plt.plot(ep[:,6], c='blue',label='$ep_7$')
+plt.plot(ep_pd[:,6], c='cyan',label='$ep_pd7$')
+# plt.plot(error_std, c='orange')
 plt.legend()
 plt.show()

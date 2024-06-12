@@ -171,6 +171,63 @@ force_control/fast:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/build
 .PHONY : force_control/fast
 
+# Convenience name for target.
+example/cpp/xdz/CMakeFiles/force_collect.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/force_collect.dir/rule
+.PHONY : example/cpp/xdz/CMakeFiles/force_collect.dir/rule
+
+# Convenience name for target.
+force_collect: example/cpp/xdz/CMakeFiles/force_collect.dir/rule
+
+.PHONY : force_collect
+
+# fast build rule for target.
+force_collect/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/build
+.PHONY : force_collect/fast
+
+# Convenience name for target.
+example/cpp/xdz/CMakeFiles/return_drag.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/return_drag.dir/rule
+.PHONY : example/cpp/xdz/CMakeFiles/return_drag.dir/rule
+
+# Convenience name for target.
+return_drag: example/cpp/xdz/CMakeFiles/return_drag.dir/rule
+
+.PHONY : return_drag
+
+# fast build rule for target.
+return_drag/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/build
+.PHONY : return_drag/fast
+
+force_collect.o: force_collect.cpp.o
+
+.PHONY : force_collect.o
+
+# target to build an object file
+force_collect.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/force_collect.cpp.o
+.PHONY : force_collect.cpp.o
+
+force_collect.i: force_collect.cpp.i
+
+.PHONY : force_collect.i
+
+# target to preprocess a source file
+force_collect.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/force_collect.cpp.i
+.PHONY : force_collect.cpp.i
+
+force_collect.s: force_collect.cpp.s
+
+.PHONY : force_collect.s
+
+# target to generate assembly for a file
+force_collect.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/force_collect.cpp.s
+.PHONY : force_collect.cpp.s
+
 force_control.o: force_control.cpp.o
 
 .PHONY : force_control.o
@@ -198,6 +255,33 @@ force_control.cpp.s:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/force_control.cpp.s
 .PHONY : force_control.cpp.s
 
+return_drag.o: return_drag.cpp.o
+
+.PHONY : return_drag.o
+
+# target to build an object file
+return_drag.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/return_drag.cpp.o
+.PHONY : return_drag.cpp.o
+
+return_drag.i: return_drag.cpp.i
+
+.PHONY : return_drag.i
+
+# target to preprocess a source file
+return_drag.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/return_drag.cpp.i
+.PHONY : return_drag.cpp.i
+
+return_drag.s: return_drag.cpp.s
+
+.PHONY : return_drag.s
+
+# target to generate assembly for a file
+return_drag.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/return_drag.cpp.s
+.PHONY : return_drag.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -211,9 +295,17 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... force_control"
+	@echo "... force_collect"
+	@echo "... return_drag"
+	@echo "... force_collect.o"
+	@echo "... force_collect.i"
+	@echo "... force_collect.s"
 	@echo "... force_control.o"
 	@echo "... force_control.i"
 	@echo "... force_control.s"
+	@echo "... return_drag.o"
+	@echo "... return_drag.i"
+	@echo "... return_drag.s"
 .PHONY : help
 
 

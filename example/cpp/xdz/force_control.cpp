@@ -28,7 +28,7 @@ int main() {
     cart_position_file.open("cart_position.txt");
     std::string ip = "192.168.0.160";
     std::error_code ec;
-    rokae::xMateErProRobot robot(ip, "192.168.0.100"); // ****   xMate 7-axis
+    rokae::xMateErProRobot robot(ip, "192.168.0.180"); // ****   xMate 7-axis
     robot.setRtNetworkTolerance(100, ec);
     robot.setOperateMode(rokae::OperateMode::automatic,ec);
     robot.setMotionControlMode(MotionControlMode::RtCommand, ec);
@@ -38,10 +38,10 @@ int main() {
     auto rtCon = robot.getRtMotionController().lock();
     cout << "moveJ start!" << endl;
 
-    // robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::tauExt_inBase});
+    robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::tauExt_inBase});
 
-    // std::array<double,7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0 };
-    // rtCon->MoveJ(0.2, robot.jointPos(ec), q_drag_xm7p);
+    std::array<double,7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0 };
+    rtCon->MoveJ(0.2, robot.jointPos(ec), q_drag_xm7p);
     cout << "moveJ done!" << endl;
     // 设置力控坐标系为工具坐标系, 末端相对法兰的坐标系
     std::array<double, 16> toolToFlange = {0, 0, 1, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 1};
@@ -64,7 +64,7 @@ int main() {
     std::function<CartesianPosition(void)> callback = [&, rtCon]()->CartesianPosition{
       time += 0.001;
 
-      // robot.getStateData(RtSupportedFields::tauExt_inBase, exterl_force);
+      robot.getStateData(RtSupportedFields::tauExt_inBase, exterl_force);
 
       
       constexpr double kRadius = 0.2;
@@ -82,12 +82,9 @@ int main() {
       Eigen::Vector3d pos_1(real_position[3], real_position[7], real_position[11]);
 
 
-      // cout << "Position: " << pos_1.transpose() << endl;
-      for (int i = 0; i < exterl_force.size(); i++){
-        cout << exterl_force[i] << endl;
-      }
+      cout << "Position: " << pos_1.transpose() << endl;
       
-
+      // cout << "Force: " << exterl_force << endl;
       // ext_force_file  << exterl_force << endl;
       cart_position_file <<  "Cart_position:" << pos_1.transpose() << endl;
 

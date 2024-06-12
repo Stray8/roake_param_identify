@@ -53,6 +53,8 @@
 /home/robot/robot/roake_param_identify/build/example/cpp/xdz/CMakeFiles/rebuild_cache.dir
 /home/robot/robot/roake_param_identify/build/example/cpp/xdz/CMakeFiles/edit_cache.dir
 /home/robot/robot/roake_param_identify/build/example/cpp/xdz/CMakeFiles/force_control.dir
+/home/robot/robot/roake_param_identify/build/example/cpp/xdz/CMakeFiles/force_collect.dir
+/home/robot/robot/roake_param_identify/build/example/cpp/xdz/CMakeFiles/return_drag.dir
 /home/robot/robot/roake_param_identify/build/example/cpp/ly/CMakeFiles/install.dir
 /home/robot/robot/roake_param_identify/build/example/cpp/ly/CMakeFiles/list_install_components.dir
 /home/robot/robot/roake_param_identify/build/example/cpp/ly/CMakeFiles/rebuild_cache.dir

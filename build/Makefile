@@ -326,6 +326,32 @@ force_control/fast:
 .PHONY : force_control/fast
 
 #=============================================================================
+# Target rules for targets named force_collect
+
+# Build rule for target.
+force_collect: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 force_collect
+.PHONY : force_collect
+
+# fast build rule for target.
+force_collect/fast:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/build
+.PHONY : force_collect/fast
+
+#=============================================================================
+# Target rules for targets named return_drag
+
+# Build rule for target.
+return_drag: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 return_drag
+.PHONY : return_drag
+
+# fast build rule for target.
+return_drag/fast:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/build
+.PHONY : return_drag/fast
+
+#=============================================================================
 # Target rules for targets named PD
 
 # Build rule for target.
@@ -415,6 +441,8 @@ help:
 	@echo "... joint_impedance_control"
 	@echo "... joint_position_control"
 	@echo "... force_control"
+	@echo "... force_collect"
+	@echo "... return_drag"
 	@echo "... PD"
 	@echo "... SGPR_robot"
 	@echo "... test_collect"

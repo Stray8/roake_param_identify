@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 from GP_fitting import sgpr
 
 np.random.seed(5)
-trainingSet = np.loadtxt('/home/robot/robot/roake_param_identify/build/PD_error/trainingSet_ly.txt')
+# trainingSet = np.loadtxt('/home/robot/robot/roake_param_identify/build/collect/trainingSet.txt')
+trainingSet = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/trainingSet_ly.txt')
 print('the training size is ', np.shape(trainingSet)[0])
 Robot_DoF = 7
 X, Y = trainingSet[:, 0:(3 * Robot_DoF)], trainingSet[:, (3 * Robot_DoF):]

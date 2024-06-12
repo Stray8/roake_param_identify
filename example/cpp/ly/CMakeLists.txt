@@ -29,6 +29,7 @@ if(XCORE_USE_XMATE_MODEL)
         test_collect
         SGPR_robot
         PD
+        # vic
         )
     foreach(example ${EXAMPLES_USE_XMATEMODEL})
         add_executable(${example} ${example}.cpp ${xCoreSDK-examples_SOURCE_DIR}/cpp/print_helper.hpp)

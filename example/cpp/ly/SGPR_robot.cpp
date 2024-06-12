@@ -69,16 +69,22 @@ void torqueControl(xMateErProRobot &robot)
  
     std::array<double, 16> init_position {};
     Utils::postureToTransArray(robot.posture(rokae::CoordinateType::flangeInBase, ec), init_position);
-    std::array<double, 7> q{}, dq_m{}, ddq_c{}, dq_before{};
-    for(int i=0; i<7; i++)
-    {
-        dq_before[i] = 0;
-    }
+    std::array<double, 7> q{}, dq_m{}, ddq_m{}, dq_c{}, ddq_c{}, tau{};
 
     ofstream position_file;
     ofstream position_error_file;
-    position_file.open("./simulation_data_1/position_ly.txt");
-    position_error_file.open("./simulation_data_1/position_error_ly.txt");
+    ofstream velocity_file;
+    ofstream inertia_file;
+    ofstream coriolis_file;
+    ofstream gravity_file;
+    ofstream torque_file;
+    position_file.open("./simulation_data_2/position_ly.txt");
+    position_error_file.open("./simulation_data_2/position_error_ly.txt");
+    velocity_file.open("./simulation_data_2/velocity_file.txt");
+    inertia_file.open("./simulation_data_2/inertia_file.txt");
+    coriolis_file.open("./simulation_data_2/coriolis_file.txt");
+    gravity_file.open("./simulation_data_2/gravity_file.txt");
+    torque_file.open("./simulation_data_2/torque_file.txt");
     
     std::function<Torque(void)> callback = [&]
     {
@@ -87,31 +93,9 @@ void torqueControl(xMateErProRobot &robot)
       // 接收设置为true, 回调函数中可以直接读取
       q = robot.jointPos(ec);
       dq_m = robot.jointVel(ec);
-
-      for(int i=0; i<7; i++)
-      {
-          ddq_c[i] = (dq_m[i]-dq_before[i])/0.001;
-      }
-      dq_before = dq_m;
-
-      // 计算mu
-      double X[1][21];
-      std::array<double, 7> mu{};
-      for(int i=0; i<7; i++)
-      {
-        X[0][i]=q[i];
-        X[0][i+7]=dq_m[i];
-        X[0][i+14]=ddq_c[i];
-      }
-      PyObject* pintput_X = PyArray_SimpleNewFromData(2, dims, NPY_DOUBLE, (void*)X);
-      PyTuple_SetItem(args, 0, pintput_X);
-      PyObject* pRet = PyObject_CallObject(prediction, args);
-      PyArrayObject* pArray = (PyArrayObject*)(pRet);
-      double* result = (double*)(PyArray_DATA(pArray));
-      for(int i=0; i<7; i++)
-      {
-        mu[i] = result[i];
-      }
+      tau = robot.jointTorque(ec);
+      robot.updateRobotState(chrono::milliseconds(1));
+      robot.getStateData(RtSupportedFields::jointAcc_c, ddq_m);
 
       //定义参考轨迹
       // '''参考位置'''
@@ -130,6 +114,14 @@ void torqueControl(xMateErProRobot &robot)
       double dot_delta_angle4 = M_PI / 60.0 * M_PI * std::sin(M_PI * time);
       double dot_delta_angle5 = M_PI / 60.0 * M_PI / 2 * 4 * std::sin(M_PI / 2 * 4 * time);
       double dot_delta_angle6 = M_PI / 70.0 * M_PI / 2 * 3 * std::sin(M_PI / 2 * 3 * time);
+      // 参考加速度
+      double dot_dot_angle0 = M_PI / 50.0 * M_PI / 4 * 1 * M_PI / 4 * 1 * std::cos(M_PI / 4 * 1 * time);
+      double dot_dot_angle1 = M_PI / 50.0 * M_PI / 4 * 3 * M_PI / 4 * 3 * std::cos(M_PI / 4 * 3 * time);
+      double dot_dot_angle2 = M_PI / 50.0 * M_PI / 2 * 1 * M_PI / 2 * 1 * std::cos(M_PI / 2 * 1 * time);
+      double dot_dot_angle3 = M_PI / 70.0 * M_PI * M_PI * std::cos(M_PI * time);
+      double dot_dot_angle4 = M_PI / 60.0 * M_PI * M_PI * std::cos(M_PI * time);
+      double dot_dot_angle5 = M_PI / 60.0 * M_PI / 2 * 4 * M_PI / 2 * 4 * std::cos(M_PI / 2 * 4 * time);
+      double dot_dot_angle6 = M_PI / 70.0 * M_PI / 2 * 3 * M_PI / 2 * 3 * std::cos(M_PI / 2 * 3 * time);
       if(time > 8)
       {
       delta_angle0 = 0;
@@ -146,6 +138,45 @@ void torqueControl(xMateErProRobot &robot)
       dot_delta_angle4 = 0;
       dot_delta_angle5 = 0;
       dot_delta_angle6 = 0;
+      dot_dot_angle0 = 0;
+      dot_dot_angle1 = 0;
+      dot_dot_angle2 = 0;
+      dot_dot_angle3 = 0;
+      dot_dot_angle4 = 0;
+      dot_dot_angle5 = 0;
+      dot_dot_angle6 = 0;
+      }
+      dq_c[0] = dot_delta_angle0;
+      dq_c[1] = dot_delta_angle1;
+      dq_c[2] = dot_delta_angle2;
+      dq_c[3] = dot_delta_angle3;
+      dq_c[4] = dot_delta_angle4;
+      dq_c[5] = dot_delta_angle5;
+      dq_c[6] = dot_delta_angle6;
+      ddq_c[0] = dot_dot_angle0;
+      ddq_c[1] = dot_dot_angle1;
+      ddq_c[2] = dot_dot_angle2;
+      ddq_c[3] = dot_dot_angle3;
+      ddq_c[4] = dot_dot_angle4;
+      ddq_c[5] = dot_dot_angle5;
+      ddq_c[6] = dot_dot_angle6;
+      // 计算mu
+      double X[1][21];
+      std::array<double, 7> mu{};
+      for(int i=0; i<7; i++)
+      {
+        X[0][i]=q[i];
+        X[0][i+7]=dq_c[i];
+        X[0][i+14]=ddq_c[i];
+      }
+      PyObject* pintput_X = PyArray_SimpleNewFromData(2, dims, NPY_DOUBLE, (void*)X);
+      PyTuple_SetItem(args, 0, pintput_X);
+      PyObject* pRet = PyObject_CallObject(prediction, args);
+      PyArrayObject* pArray = (PyArrayObject*)(pRet);
+      double* result = (double*)(PyArray_DATA(pArray));
+      for(int i=0; i<7; i++)
+      {
+        mu[i] = result[i];
       }
       //计算误差
       // ''' 位置误差'''
@@ -167,9 +198,9 @@ void torqueControl(xMateErProRobot &robot)
       error_jv[5] = dq_m[5] - dot_delta_angle5;
       error_jv[6] = dq_m[6] - dot_delta_angle6;
       // 获取各项力
-      std::array<double, 7> ine = model.getTorque(q, dq_m, ddq_c, TorqueType::inertia);
-      std::array<double, 7> cor = model.getTorque(q, dq_m, ddq_c, TorqueType::coriolis);
-      std::array<double, 7> gra = model.getTorque(q, dq_m, ddq_c, TorqueType::gravity);
+      std::array<double, 7> ine = model.getTorque(q, dq_c, ddq_c, TorqueType::inertia);
+      std::array<double, 7> cor = model.getTorque(q, dq_c, ddq_c, TorqueType::coriolis);
+      std::array<double, 7> gra = model.getTorque(q, dq_c, ddq_c, TorqueType::gravity);
       // convert to Eigen
       Eigen::Map<const Eigen::Matrix<double, 7, 1>> error_jp_mat(error_jp.data());
       Eigen::Map<const Eigen::Matrix<double, 7, 1>> error_jv_mat(error_jv.data());
@@ -184,8 +215,8 @@ void torqueControl(xMateErProRobot &robot)
       Eigen::VectorXd tau_fb(7);
       tau_fb = mu_mat;
       Eigen::VectorXd tau_d(7);
-      tau_d = tau_ff;
-      // tau_d = tau_ff + tau_fb;
+      // tau_d = tau_ff;
+      tau_d = tau_ff + tau_fb;
       cout << tau_d.transpose() << endl;
 
       Torque cmd(7);
@@ -194,6 +225,11 @@ void torqueControl(xMateErProRobot &robot)
       // 保存数据
       position_file << q << endl;
       position_error_file << error_jp << endl;
+      velocity_file << dq_m << endl;
+      inertia_file << ine << endl;
+      coriolis_file << cor << endl;
+      gravity_file << gra << endl;
+      torque_file << tau << endl;
 
       if(time > 10)
       {
@@ -206,8 +242,14 @@ void torqueControl(xMateErProRobot &robot)
     rtCon->setControlLoop(callback, 0, true);
     rtCon->startLoop(true);
     print(std::cout, "力矩控制结束");
+
     position_file.close();
     position_error_file.close();
+    velocity_file.close();
+    inertia_file.close();
+    coriolis_file.close();
+    gravity_file.close();
+    torque_file.close();
 }
 
 int main() 

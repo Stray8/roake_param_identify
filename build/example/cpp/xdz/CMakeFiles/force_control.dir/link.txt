@@ -1,1 +1,1 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/force_control.dir/force_control.cpp.o  -o ../../../bin/force_control  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a /usr/lib/x86_64-linux-gnu/libpython3.8.so ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/force_control.dir/force_control.cpp.o  -o ../../../bin/force_control  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 
