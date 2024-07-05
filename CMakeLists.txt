@@ -1,5 +1,6 @@
 cmake_minimum_required (VERSION 3.12)
 
+set(CMAKE_BUILD_TYPE Debug)
 #------------------------------------------------------------------------------
 ## Project setup
 project (xCoreSDK VERSION 0.3.3)

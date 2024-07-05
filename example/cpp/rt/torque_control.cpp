@@ -16,9 +16,8 @@
 #include "../print_helper.hpp"
 #include "rokae/utility.h"
 
-
-using namespace std;
 using namespace rokae;
+
 /**
  * @brief 力矩控制. 注意:
  * 1) 力矩值不要超过机型的限制条件(见手册);
@@ -29,9 +28,7 @@ void torqueControl(xMateErProRobot &robot) {
   auto rtCon = robot.getRtMotionController().lock();
   auto model = robot.model();
   error_code ec;
-  std::array<double,7> q_drag = {0, M_PI/3, 0, M_PI/6, 0, M_PI/4, 0 };
-  // std::array<double,7> q_drag = {0, 0, 0, 0, 0, 0, 0 };
-
+  std::array<double,7> q_drag = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0 };
 
   robot.stopReceiveRobotState();
   robot.startReceiveRobotState(std::chrono::milliseconds(1),
@@ -67,7 +64,10 @@ void torqueControl(xMateErProRobot &robot) {
     Eigen::Affine3d initial_transform(Eigen::Matrix4d::Map(init_position.data()).transpose());
     Eigen::Vector3d position_d(initial_transform.translation());
     Eigen::Quaterniond orientation_d(initial_transform.linear());
-
+    constexpr double kRadius = 0.2;
+    double angle = M_PI / 4 * (1 - std::cos(M_PI / 2 * time));
+    double delta_z = kRadius * (std::cos(angle) - 1);
+    position_d[0] += delta_z;
     std::array<double, 7> q{}, dq_m{}, ddq_c{};
     std::array<double, 16> pos_m {};
 
@@ -75,6 +75,8 @@ void torqueControl(xMateErProRobot &robot) {
     robot.getStateData(jointPos_m, q);
     robot.getStateData(jointVel_m, dq_m);
     robot.getStateData(jointAcc_c, ddq_c);
+
+    std::cout << ddq_c << std::endl;
 
     std::array<double, 42> jacobian_array = model.jacobian(q);
     std::array<double, 7> gravity_array = model.getTorque(q, dq_m, ddq_c, TorqueType::gravity);
@@ -91,9 +93,6 @@ void torqueControl(xMateErProRobot &robot) {
     Eigen::Affine3d transform(Eigen::Matrix4d::Map(pos_m.data()).transpose());
     Eigen::Vector3d position(transform.translation());
     Eigen::Quaterniond orientation(transform.linear());
-
-    cout << " G : "<< gravity << endl;
-    cout << "G_AR : " << gravity_array << endl;
 
     // compute error to desired equilibrium pose
     // position error
@@ -119,8 +118,8 @@ void torqueControl(xMateErProRobot &robot) {
 
     Torque cmd(7);
     Eigen::VectorXd::Map(cmd.tau.data(), 7) = tau_d;
-
-    if(time > 10){
+    // std::cout << "tau:" << position_d << std::endl;
+    if(time > 30){
       cmd.setFinished();
     }
     return cmd;
@@ -130,8 +129,6 @@ void torqueControl(xMateErProRobot &robot) {
   // 并且调用startReceiveRobotState()时, 设定的发送周期是1ms
   rtCon->setControlLoop(callback, 0, true);
   rtCon->startLoop(true);
-  print(std::cout, "力矩控制结束");
-
 }
 
 /**
@@ -139,17 +136,12 @@ void torqueControl(xMateErProRobot &robot) {
  */
 template <unsigned short DoF>
 void zeroTorque(Cobot<DoF> &robot) {
-  std::vector<std::string> paths;
-
   error_code ec;
-  std::array<double,7> q_drag = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0};
-  array<double, 7> q_start = {0, 0, 0, 0, 0, 0, 0};
+  std::array<double,7> q_drag = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0 };
   auto rtCon = robot.getRtMotionController().lock();
 
   // 运动到拖拽位置
-  rtCon->MoveJ(0.5, robot.jointPos(ec), q_drag);
-  print(cout, "move done");
-
+  rtCon->MoveJ(0.2, robot.jointPos(ec), q_drag);
 
   // 控制模式为力矩控制
   rtCon->startMove(RtControllerMode::torque);
@@ -159,17 +151,15 @@ void zeroTorque(Cobot<DoF> &robot) {
   std::function<Torque(void)> callback = [&]() {
     static double time=0;
     time += 0.001;
-    cout << robot.jointTorque(ec) << endl;
-    if(time > 30)
+    if(time > 30){
       cmd.setFinished();
-
+    }
     return cmd;
   };
 
   rtCon->setControlLoop(callback);
   rtCon->startLoop();
   print(std::cout, "力矩控制结束");
-  rtCon->MoveJ(0.6, robot.jointPos(ec), q_start);
 }
 
 int main() {
@@ -181,7 +171,7 @@ int main() {
     robot.setMotionControlMode(MotionControlMode::RtCommand, ec);
     robot.setPowerState(true, ec);
     try {
-      zeroTorque(robot);
+      torqueControl(robot);
     } catch (const rokae::RealtimeMotionException &e) {
       print(std::cerr, e.what());
       // 发生错误, 切换回非实时模式

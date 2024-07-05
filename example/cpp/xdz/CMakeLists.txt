@@ -4,9 +4,10 @@
 # Here puts required example source files
 
 set(XDZ_EXAMPLES
-    # call_python
     return_drag
     force_collect
+    
+    drag
     )
 
 foreach(example ${XDZ_EXAMPLES})
@@ -22,7 +23,7 @@ endforeach()
 # check for xMateModel library option
 if(XCORE_USE_XMATE_MODEL)
     set(EXAMPLES_USE_XMATEMODEL
-        force_control
+        cart_control
         )
     foreach(example ${EXAMPLES_USE_XMATEMODEL})
         add_executable(${example} ${example}.cpp ${xCoreSDK-examples_SOURCE_DIR}/cpp/print_helper.hpp)

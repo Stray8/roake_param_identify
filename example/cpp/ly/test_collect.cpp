@@ -13,18 +13,18 @@ using namespace std;
 
 int main() {
   // 初始化
-  ofstream position_file;
-  ofstream velocity_file;
-  ofstream inertia_file;
-  ofstream coriolis_file;
-  ofstream gravity_file;
-  ofstream torque_file;
-  position_file.open("./collect/position.txt");
-  velocity_file.open("./collect/velocity.txt");
-  inertia_file.open("./collect/inertia.txt");
-  coriolis_file.open("./collect/coriolis.txt");
-  gravity_file.open("./collect/gravity.txt");
-  torque_file.open("./collect/torque.txt");
+  // ofstream position_file;
+  // ofstream velocity_file;
+  // ofstream inertia_file;
+  // ofstream coriolis_file;
+  // ofstream gravity_file;
+  // ofstream torque_file;
+  // position_file.open("./test/collect/position.txt");
+  // velocity_file.open("./test/collect/velocity.txt");
+  // inertia_file.open("./test/collect/inertia.txt");
+  // coriolis_file.open("./test/collect/coriolis.txt");
+  // gravity_file.open("./test/collect/gravity.txt");
+  // torque_file.open("./test/collect/torque.txt");
 
   try {
     std::string ip = "192.168.0.160";
@@ -82,6 +82,7 @@ int main() {
       std::array<double, 7> inertia_array = model.getTorque(q, dq_m, ddq_c, TorqueType::inertia);
       std::array<double, 7> coriolis_array = model.getTorque(q, dq_m, ddq_c, TorqueType::coriolis);
       std::array<double, 7> gravity_array = model.getTorque(q, dq_m, ddq_c, TorqueType::gravity);
+      cout << inertia_array << endl;
 
       double delta_angle0 = M_PI / 50.0 * (1 - std::cos(M_PI / 4 * 1 * time));
       double delta_angle1 = M_PI / 50.0 * (1 - std::cos(M_PI / 4 * 3 * time));
@@ -106,13 +107,13 @@ int main() {
                             jntPos[2] + delta_angle2, jntPos[3] + delta_angle3,
                             jntPos[4] + delta_angle4, jntPos[5] + delta_angle5,
                             jntPos[6] + delta_angle6}};
-      // 保存数据
-      inertia_file << inertia_array << endl;
-      coriolis_file << coriolis_array << endl;
-      gravity_file << gravity_array << endl;
-      position_file << jp << endl;
-      velocity_file << jv << endl;
-      torque_file << tor << endl;
+      // // 保存数据
+      // inertia_file << inertia_array << endl;
+      // coriolis_file << coriolis_array << endl;
+      // gravity_file << gravity_array << endl;
+      // position_file << jp << endl;
+      // velocity_file << jv << endl;
+      // torque_file << tor << endl;
     
       if(time > 10)
         cmd.setFinished(); // 60秒后结束
@@ -124,12 +125,12 @@ int main() {
     rtCon->startLoop(true);
     print(std::cout, "控制结束");
 
-    inertia_file.close();
-    coriolis_file.close();
-    gravity_file.close();
-    position_file.close();
-    velocity_file.close();
-    torque_file.close();
+    // inertia_file.close();
+    // coriolis_file.close();
+    // gravity_file.close();
+    // position_file.close();
+    // velocity_file.close();
+    // torque_file.close();
 
 
   } catch (const std::exception &e) {

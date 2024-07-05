@@ -38,10 +38,10 @@ void torqueControl(xMateErProRobot &robot)
     // stiffness.topLeftCorner(7, 7) << translational_stiffness * Eigen::MatrixXd::Identity(7, 7);
     // damping.setZero();
     // damping.topLeftCorner(7, 7) << translational_stiffness * Eigen::MatrixXd::Identity(7, 7);
-    stiffness << -1000, 0, 0, 0, 0, 0, 0,
-                 0, -1000, 0, 0, 0, 0, 0,
-                 0, 0, -1000, 0, 0, 0, 0,
-                 0, 0, 0, -1000, 0, 0, 0,
+    stiffness << -1500, 0, 0, 0, 0, 0, 0,
+                 0, -1500, 0, 0, 0, 0, 0,
+                 0, 0, -1500, 0, 0, 0, 0,
+                 0, 0, 0, -1500, 0, 0, 0,
                  0, 0, 0, 0, -500, 0, 0,
                  0, 0, 0, 0, 0, -500, 0,
                  0, 0, 0, 0, 0, 0, -500;  
@@ -61,22 +61,22 @@ void torqueControl(xMateErProRobot &robot)
         dq_before[i] = 0;
     }
 
-    ofstream position_file;
-    ofstream position_error_file;
-    ofstream velocity_file;
-    ofstream acceleration_file;
-    ofstream inertia_file;
-    ofstream coriolis_file;
-    ofstream gravity_file;
-    ofstream torque_file;
-    position_file.open("./PD_error/position_ly.txt");
-    position_error_file.open("./PD_error/position_error_ly.txt");
-    velocity_file.open("./PD_error/velocity_file.txt");
-    acceleration_file.open("./PD_error/acceleration_file.txt");
-    inertia_file.open("./PD_error/inertia_file.txt");
-    coriolis_file.open("./PD_error/coriolis_file.txt");
-    gravity_file.open("./PD_error/gravity_file.txt");
-    torque_file.open("./PD_error/torque_file.txt");
+    // ofstream position_file;
+    // ofstream position_error_file;
+    // ofstream velocity_file;
+    // ofstream acceleration_file;
+    // ofstream inertia_file;
+    // ofstream coriolis_file;
+    // ofstream gravity_file;
+    // ofstream torque_file;
+    // position_file.open("./test/PD_error/position_ly.txt");
+    // position_error_file.open("./test/PD_error/position_error_ly.txt");
+    // velocity_file.open("./test/PD_error/velocity_file.txt");
+    // acceleration_file.open("./test/PD_error/acceleration_file.txt");
+    // inertia_file.open("./test/PD_error/inertia_file.txt");
+    // coriolis_file.open("./test/PD_error/coriolis_file.txt");
+    // gravity_file.open("./test/PD_error/gravity_file.txt");
+    // torque_file.open("./test/PD_error/torque_file.txt");
     
     std::function<Torque(void)> callback = [&]
     {
@@ -158,19 +158,20 @@ void torqueControl(xMateErProRobot &robot)
       tau_ff = stiffness * error_jp_mat + damping * error_jv_mat;
       Eigen::VectorXd tau_d(7);
       tau_d = tau_ff;
+      cout << tau_d.transpose() << endl;
 
       Torque cmd(7);
       Eigen::VectorXd::Map(cmd.tau.data(), 7) = tau_d;
 
-      // 保存数据
-      position_file << q << endl;
-      position_error_file << error_jp << endl;
-      velocity_file << dq_m << endl;
-      acceleration_file << ddq_c << endl;
-      inertia_file << ine << endl;
-      coriolis_file << cor << endl;
-      gravity_file << gra << endl;
-      torque_file << tau << endl;
+      // // 保存数据
+      // position_file << q << endl;
+      // position_error_file << error_jp << endl;
+      // velocity_file << dq_m << endl;
+      // acceleration_file << ddq_c << endl;
+      // inertia_file << ine << endl;
+      // coriolis_file << cor << endl;
+      // gravity_file << gra << endl;
+      // torque_file << tau << endl;
 
 
       if(time > 10)
@@ -185,14 +186,14 @@ void torqueControl(xMateErProRobot &robot)
     rtCon->startLoop(true);
     print(std::cout, "力矩控制结束");
 
-    position_file.close();
-    position_error_file.close();
-    velocity_file.close();
-    acceleration_file.close();
-    inertia_file.close();
-    coriolis_file.close();
-    gravity_file.close();
-    torque_file.close();
+    // position_file.close();
+    // position_error_file.close();
+    // velocity_file.close();
+    // acceleration_file.close();
+    // inertia_file.close();
+    // coriolis_file.close();
+    // gravity_file.close();
+    // torque_file.close();
 
 }
 

@@ -6,6 +6,7 @@
 set(LY_EXAMPLES
     # test_collect
     ly
+    read_data
     )
 
 include_directories(/home/robot/robot/roake_param_identify/include/rokae/)
@@ -29,7 +30,12 @@ if(XCORE_USE_XMATE_MODEL)
         test_collect
         SGPR_robot
         PD
-        # vic
+        PD1
+        record
+        SGPR_robot1
+        de-noise
+        ly_CIC_ESO
+        ly_CIC_PD
         )
     foreach(example ${EXAMPLES_USE_XMATEMODEL})
         add_executable(${example} ${example}.cpp ${xCoreSDK-examples_SOURCE_DIR}/cpp/print_helper.hpp)

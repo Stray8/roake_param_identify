@@ -313,17 +313,30 @@ joint_position_control/fast:
 .PHONY : joint_position_control/fast
 
 #=============================================================================
-# Target rules for targets named force_control
+# Target rules for targets named cart_control
 
 # Build rule for target.
-force_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 force_control
-.PHONY : force_control
+cart_control: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cart_control
+.PHONY : cart_control
 
 # fast build rule for target.
-force_control/fast:
-	$(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/build
-.PHONY : force_control/fast
+cart_control/fast:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/cart_control.dir/build.make example/cpp/xdz/CMakeFiles/cart_control.dir/build
+.PHONY : cart_control/fast
+
+#=============================================================================
+# Target rules for targets named drag
+
+# Build rule for target.
+drag: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 drag
+.PHONY : drag
+
+# fast build rule for target.
+drag/fast:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/drag.dir/build.make example/cpp/xdz/CMakeFiles/drag.dir/build
+.PHONY : drag/fast
 
 #=============================================================================
 # Target rules for targets named force_collect
@@ -352,30 +365,56 @@ return_drag/fast:
 .PHONY : return_drag/fast
 
 #=============================================================================
-# Target rules for targets named PD
+# Target rules for targets named read_data
 
 # Build rule for target.
-PD: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 PD
-.PHONY : PD
+read_data: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 read_data
+.PHONY : read_data
 
 # fast build rule for target.
-PD/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/PD.dir/build.make example/cpp/ly/CMakeFiles/PD.dir/build
-.PHONY : PD/fast
+read_data/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/read_data.dir/build.make example/cpp/ly/CMakeFiles/read_data.dir/build
+.PHONY : read_data/fast
 
 #=============================================================================
-# Target rules for targets named SGPR_robot
+# Target rules for targets named ly
 
 # Build rule for target.
-SGPR_robot: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 SGPR_robot
-.PHONY : SGPR_robot
+ly: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ly
+.PHONY : ly
 
 # fast build rule for target.
-SGPR_robot/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot.dir/build
-.PHONY : SGPR_robot/fast
+ly/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/ly.dir/build.make example/cpp/ly/CMakeFiles/ly.dir/build
+.PHONY : ly/fast
+
+#=============================================================================
+# Target rules for targets named PD1
+
+# Build rule for target.
+PD1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PD1
+.PHONY : PD1
+
+# fast build rule for target.
+PD1/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/PD1.dir/build.make example/cpp/ly/CMakeFiles/PD1.dir/build
+.PHONY : PD1/fast
+
+#=============================================================================
+# Target rules for targets named record
+
+# Build rule for target.
+record: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 record
+.PHONY : record
+
+# fast build rule for target.
+record/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/record.dir/build.make example/cpp/ly/CMakeFiles/record.dir/build
+.PHONY : record/fast
 
 #=============================================================================
 # Target rules for targets named test_collect
@@ -391,17 +430,82 @@ test_collect/fast:
 .PHONY : test_collect/fast
 
 #=============================================================================
-# Target rules for targets named ly
+# Target rules for targets named SGPR_robot
 
 # Build rule for target.
-ly: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ly
-.PHONY : ly
+SGPR_robot: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SGPR_robot
+.PHONY : SGPR_robot
 
 # fast build rule for target.
-ly/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/ly.dir/build.make example/cpp/ly/CMakeFiles/ly.dir/build
-.PHONY : ly/fast
+SGPR_robot/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot.dir/build
+.PHONY : SGPR_robot/fast
+
+#=============================================================================
+# Target rules for targets named ly_CIC_ESO
+
+# Build rule for target.
+ly_CIC_ESO: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ly_CIC_ESO
+.PHONY : ly_CIC_ESO
+
+# fast build rule for target.
+ly_CIC_ESO/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/build
+.PHONY : ly_CIC_ESO/fast
+
+#=============================================================================
+# Target rules for targets named PD
+
+# Build rule for target.
+PD: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PD
+.PHONY : PD
+
+# fast build rule for target.
+PD/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/PD.dir/build.make example/cpp/ly/CMakeFiles/PD.dir/build
+.PHONY : PD/fast
+
+#=============================================================================
+# Target rules for targets named de-noise
+
+# Build rule for target.
+de-noise: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 de-noise
+.PHONY : de-noise
+
+# fast build rule for target.
+de-noise/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/de-noise.dir/build.make example/cpp/ly/CMakeFiles/de-noise.dir/build
+.PHONY : de-noise/fast
+
+#=============================================================================
+# Target rules for targets named SGPR_robot1
+
+# Build rule for target.
+SGPR_robot1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SGPR_robot1
+.PHONY : SGPR_robot1
+
+# fast build rule for target.
+SGPR_robot1/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot1.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot1.dir/build
+.PHONY : SGPR_robot1/fast
+
+#=============================================================================
+# Target rules for targets named ly_CIC_PD
+
+# Build rule for target.
+ly_CIC_PD: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ly_CIC_PD
+.PHONY : ly_CIC_PD
+
+# fast build rule for target.
+ly_CIC_PD/fast:
+	$(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/build
+.PHONY : ly_CIC_PD/fast
 
 #=============================================================================
 # Target rules for targets named doc
@@ -440,13 +544,21 @@ help:
 	@echo "... cartesian_impedance_control"
 	@echo "... joint_impedance_control"
 	@echo "... joint_position_control"
-	@echo "... force_control"
+	@echo "... cart_control"
+	@echo "... drag"
 	@echo "... force_collect"
 	@echo "... return_drag"
-	@echo "... PD"
-	@echo "... SGPR_robot"
-	@echo "... test_collect"
+	@echo "... read_data"
 	@echo "... ly"
+	@echo "... PD1"
+	@echo "... record"
+	@echo "... test_collect"
+	@echo "... SGPR_robot"
+	@echo "... ly_CIC_ESO"
+	@echo "... PD"
+	@echo "... de-noise"
+	@echo "... SGPR_robot1"
+	@echo "... ly_CIC_PD"
 	@echo "... doc"
 .PHONY : help
 

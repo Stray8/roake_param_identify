@@ -12,7 +12,7 @@ np.random.seed(5) #生成随机数
 faulthandler.enable()
 
 class sgpr:
-    def __init__(self, X, y, likelihood_noise=0.1, restart=1):
+    def __init__(self, X, y, likelihood_noise=0.05, restart=1):
         '''
         :param X: q, dq, ddq
         :param y: output for one dim
@@ -121,8 +121,20 @@ class sgpr:
 
 
 Robot_DOF = 7
-# trainingSet = np.loadtxt('/home/robot/robot/roake_param_identify/build/collect/trainingSet.txt')
-trainingSet = np.loadtxt('/home/robot/robot/roake_param_identify/build/simulation_data_1/trainingSet_ly.txt')
+trainingSet_collect = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/collect/trainingSet_collect.txt')
+# trainingSet_s1 = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_1/trainingSet_s1.txt')
+# trainingSet_s2 = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_2/trainingSet_s2.txt')
+# trainingSet_s3 = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_3/trainingSet_s3.txt')
+# trainingSet_s4 = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_4/trainingSet_s4.txt')
+# trainingSet_s5 = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/trainingSet_s5.txt')
+
+trainingSet = trainingSet_collect
+# trainingSet = np.hstack((trainingSet_collect, trainingSet_s1))
+# trainingSet = np.hstack((trainingSet_collect, trainingSet_s1, trainingSet_s2))
+# trainingSet = np.hstack((trainingSet_collect, trainingSet_s1, trainingSet_s2, trainingSet_s3))
+# trainingSet = np.hstack((trainingSet_collect, trainingSet_s1, trainingSet_s2, trainingSet_s3, trainingSet_s4))
+# trainingSet = np.hstack((trainingSet_collect, trainingSet_s1, trainingSet_s2, trainingSet_s3, trainingSet_s4, trainingSet_s5))
+
 X, Y = trainingSet[:, 0:(3*Robot_DOF)], trainingSet[:, (3*Robot_DOF):]
 y0 = Y[:, 0]
 y1 = Y[:, 1]
@@ -183,38 +195,52 @@ data_Size = np.shape(trainingSet)[0]
 # print("pre is", pre)
 # 绘制第1个子图：y0和hat_y0
 plt.subplot(421)
-plt.plot(np.arange(data_Size), y0, c='red', label='$tau_1$')
-plt.plot(np.arange(data_Size), hat_y0, c='blue', label='$\hat tau_1$')
+plt.plot(np.arange(data_Size), y0, color=(26/255, 111/255, 223/255), label='$tau_1$')
+plt.plot(np.arange(data_Size), hat_y0, color=(241/255, 64/255, 64/255), label='$\hat tau_1$')
+plt.ylabel('$mu$')
+# plt.xlabel('steps')
 plt.legend()
 # 绘制第2个子图：y1和hat_y1
 plt.subplot(422)
-plt.plot(np.arange(data_Size), y1, c='red', label='$tau_2$')
-plt.plot(np.arange(data_Size), hat_y1, c='blue', label='$\hat tau_2$')
+plt.plot(np.arange(data_Size), y1, color=(26/255, 111/255, 223/255), label='$tau_2$')
+plt.plot(np.arange(data_Size), hat_y1, color=(241/255, 64/255, 64/255), label='$\hat tau_2$')
+plt.ylabel('$mu$')
+# plt.xlabel('steps')
 plt.legend()
 # 绘制第3个子图：y2和hat_y2
 plt.subplot(423)
-plt.plot(np.arange(data_Size), y2, c='red', label='$tau_3$')
-plt.plot(np.arange(data_Size), hat_y2, c='blue', label='$\hat tau_3$')
+plt.plot(np.arange(data_Size), y2, color=(26/255, 111/255, 223/255), label='$tau_3$')
+plt.plot(np.arange(data_Size), hat_y2, color=(241/255, 64/255, 64/255), label='$\hat tau_3$')
+plt.ylabel('$mu$')
+# plt.xlabel('steps')
 plt.legend()
 # 绘制第4个子图：y3和hat_y3
 plt.subplot(424)
-plt.plot(np.arange(data_Size), y3, c='red', label='$tau_4$')
-plt.plot(np.arange(data_Size), hat_y3, c='blue', label='$\hat tau_4$')
+plt.plot(np.arange(data_Size), y3, color=(26/255, 111/255, 223/255), label='$tau_4$')
+plt.plot(np.arange(data_Size), hat_y3, color=(241/255, 64/255, 64/255), label='$\hat tau_4$')
+plt.ylabel('$mu$')
+# plt.xlabel('steps')
 plt.legend()
 # 绘制第5个子图：y4和hat_y4
 plt.subplot(425)
-plt.plot(np.arange(data_Size), y4, c='red', label='$tau_5$')
-plt.plot(np.arange(data_Size), hat_y4, c='blue', label='$\hat tau_5$')
+plt.plot(np.arange(data_Size), y4, color=(26/255, 111/255, 223/255), label='$tau_5$')
+plt.plot(np.arange(data_Size), hat_y4, color=(241/255, 64/255, 64/255), label='$\hat tau_5$')
+plt.ylabel('$mu$')
+# plt.xlabel('steps')
 plt.legend()
 # 绘制第6个子图：y5和hat_y5
 plt.subplot(426)
-plt.plot(np.arange(data_Size), y5, c='red', label='$tau_6$')
-plt.plot(np.arange(data_Size), hat_y5, c='blue', label='$\hat tau_6$')
+plt.plot(np.arange(data_Size), y5, color=(26/255, 111/255, 223/255), label='$tau_6$')
+plt.plot(np.arange(data_Size), hat_y5, color=(241/255, 64/255, 64/255), label='$\hat tau_6$')
+plt.ylabel('$mu$')
+plt.xlabel('steps')
 plt.legend()
 # 绘制第7个子图：y6和hat_y6
 plt.subplot(427)
-plt.plot(np.arange(data_Size), y6, c='red', label='$tau_7$')
-plt.plot(np.arange(data_Size), hat_y6, c='blue', label='$\hat tau_7$')
+plt.plot(np.arange(data_Size), y6, color=(26/255, 111/255, 223/255), label='$tau_7$')
+plt.plot(np.arange(data_Size), hat_y6, color=(241/255, 64/255, 64/255), label='$\hat tau_7$')
+plt.ylabel('$mu$')
+plt.xlabel('steps')
 plt.legend()
 # 显示图形
 plt.show()

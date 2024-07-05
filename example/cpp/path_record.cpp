@@ -55,6 +55,7 @@ int main() {
             cout << "* 打开拖动\n"; 
             while (true){
               robot.jointTorque(ec);
+              
             }
             
 
@@ -90,6 +91,15 @@ int main() {
           robot.replayPath(str, 1.0, ec);
           if (ec) break;
           cout << "* 开始回放路径\"" << str << "\", 速率100%\n";
+          while(true)
+          {
+            std::array<double, 7> q_m{}, dq_m{}, ddq_m{};
+            robot.updateRobotState(chrono::milliseconds(1));
+            robot.getStateData(RtSupportedFields::jointPos_m, q_m);
+            robot.getStateData(RtSupportedFields::jointVel_m, dq_m);
+            robot.getStateData(RtSupportedFields::jointAcc_c, ddq_m);
+            std::cout << ddq_m[5] << std::endl;
+          }
           WaitRobot(&robot);
           cout << "* 回放结束\n";
           continue;

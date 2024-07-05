@@ -68,18 +68,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -124,6 +112,18 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
 # The main all target
 all: cmake_check_build_system
 	cd /home/robot/robot/roake_param_identify/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/robot/robot/roake_param_identify/build/CMakeFiles /home/robot/robot/roake_param_identify/build/example/cpp/xdz/CMakeFiles/progress.marks
@@ -157,19 +157,34 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-example/cpp/xdz/CMakeFiles/force_control.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/force_control.dir/rule
-.PHONY : example/cpp/xdz/CMakeFiles/force_control.dir/rule
+example/cpp/xdz/CMakeFiles/cart_control.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/cart_control.dir/rule
+.PHONY : example/cpp/xdz/CMakeFiles/cart_control.dir/rule
 
 # Convenience name for target.
-force_control: example/cpp/xdz/CMakeFiles/force_control.dir/rule
+cart_control: example/cpp/xdz/CMakeFiles/cart_control.dir/rule
 
-.PHONY : force_control
+.PHONY : cart_control
 
 # fast build rule for target.
-force_control/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/build
-.PHONY : force_control/fast
+cart_control/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/cart_control.dir/build.make example/cpp/xdz/CMakeFiles/cart_control.dir/build
+.PHONY : cart_control/fast
+
+# Convenience name for target.
+example/cpp/xdz/CMakeFiles/drag.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/drag.dir/rule
+.PHONY : example/cpp/xdz/CMakeFiles/drag.dir/rule
+
+# Convenience name for target.
+drag: example/cpp/xdz/CMakeFiles/drag.dir/rule
+
+.PHONY : drag
+
+# fast build rule for target.
+drag/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/drag.dir/build.make example/cpp/xdz/CMakeFiles/drag.dir/build
+.PHONY : drag/fast
 
 # Convenience name for target.
 example/cpp/xdz/CMakeFiles/force_collect.dir/rule:
@@ -201,6 +216,60 @@ return_drag/fast:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/build
 .PHONY : return_drag/fast
 
+cart_control.o: cart_control.cpp.o
+
+.PHONY : cart_control.o
+
+# target to build an object file
+cart_control.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/cart_control.dir/build.make example/cpp/xdz/CMakeFiles/cart_control.dir/cart_control.cpp.o
+.PHONY : cart_control.cpp.o
+
+cart_control.i: cart_control.cpp.i
+
+.PHONY : cart_control.i
+
+# target to preprocess a source file
+cart_control.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/cart_control.dir/build.make example/cpp/xdz/CMakeFiles/cart_control.dir/cart_control.cpp.i
+.PHONY : cart_control.cpp.i
+
+cart_control.s: cart_control.cpp.s
+
+.PHONY : cart_control.s
+
+# target to generate assembly for a file
+cart_control.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/cart_control.dir/build.make example/cpp/xdz/CMakeFiles/cart_control.dir/cart_control.cpp.s
+.PHONY : cart_control.cpp.s
+
+drag.o: drag.cpp.o
+
+.PHONY : drag.o
+
+# target to build an object file
+drag.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/drag.dir/build.make example/cpp/xdz/CMakeFiles/drag.dir/drag.cpp.o
+.PHONY : drag.cpp.o
+
+drag.i: drag.cpp.i
+
+.PHONY : drag.i
+
+# target to preprocess a source file
+drag.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/drag.dir/build.make example/cpp/xdz/CMakeFiles/drag.dir/drag.cpp.i
+.PHONY : drag.cpp.i
+
+drag.s: drag.cpp.s
+
+.PHONY : drag.s
+
+# target to generate assembly for a file
+drag.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/drag.dir/build.make example/cpp/xdz/CMakeFiles/drag.dir/drag.cpp.s
+.PHONY : drag.cpp.s
+
 force_collect.o: force_collect.cpp.o
 
 .PHONY : force_collect.o
@@ -227,33 +296,6 @@ force_collect.s: force_collect.cpp.s
 force_collect.cpp.s:
 	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/force_collect.cpp.s
 .PHONY : force_collect.cpp.s
-
-force_control.o: force_control.cpp.o
-
-.PHONY : force_control.o
-
-# target to build an object file
-force_control.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/force_control.cpp.o
-.PHONY : force_control.cpp.o
-
-force_control.i: force_control.cpp.i
-
-.PHONY : force_control.i
-
-# target to preprocess a source file
-force_control.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/force_control.cpp.i
-.PHONY : force_control.cpp.i
-
-force_control.s: force_control.cpp.s
-
-.PHONY : force_control.s
-
-# target to generate assembly for a file
-force_control.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_control.dir/build.make example/cpp/xdz/CMakeFiles/force_control.dir/force_control.cpp.s
-.PHONY : force_control.cpp.s
 
 return_drag.o: return_drag.cpp.o
 
@@ -289,20 +331,24 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... force_control"
+	@echo "... install/local"
+	@echo "... cart_control"
+	@echo "... drag"
 	@echo "... force_collect"
 	@echo "... return_drag"
+	@echo "... cart_control.o"
+	@echo "... cart_control.i"
+	@echo "... cart_control.s"
+	@echo "... drag.o"
+	@echo "... drag.i"
+	@echo "... drag.s"
 	@echo "... force_collect.o"
 	@echo "... force_collect.i"
 	@echo "... force_collect.s"
-	@echo "... force_control.o"
-	@echo "... force_control.i"
-	@echo "... force_control.s"
 	@echo "... return_drag.o"
 	@echo "... return_drag.i"
 	@echo "... return_drag.s"

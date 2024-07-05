@@ -1,1 +1,1 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/read_robot_state.dir/cpp/read_robot_state.cpp.o  -o ../bin/read_robot_state  ../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 
+/usr/bin/c++  -g   CMakeFiles/read_robot_state.dir/cpp/read_robot_state.cpp.o  -o ../bin/read_robot_state  ../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

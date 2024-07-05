@@ -1,177 +1,104 @@
-/**
- * @file path_record.cpp
- * @brief 协作机型拖动示教，路径录制和回放
- *
- * @copyright Copyright (C) 2023 ROKAE (Beijing) Technology Co., LTD. All Rights Reserved.
- * Information in this file is the intellectual property of Rokae Technology Co., Ltd,
- * And may contains trade secrets that must be stored and viewed confidentially.
- */
-
 #include <iostream>
-#include <thread>
-#include <unordered_map>
-#include "rokae/robot.h"
 #include <cmath>
-#include "../print_helper.hpp"
+#include <thread>
+#include <atomic>
+#include "rokae/robot.h"
+#include "rokae/utility.h"
 #include <fstream>
 
-using namespace std;
+
 using namespace rokae;
+using namespace std;
 using namespace Eigen;
 
-char parseInput(std::string &str);
-void WaitRobot(BaseRobot *robot);
-void printHelp();
 
-int main() {
-  try {
-    std::string ip = "192.168.0.160";
-    error_code ec;
-    std::vector<std::string> paths;
-    xMateErProRobot robot(ip); // xMate 6轴机型
-    std::array<double, 7> tau{};
-    ofstream tor_file;
-    tor_file.open("drag_torque.txt");
-    robot.setMotionControlMode(MotionControlMode::NrtCommand, ec);
-    printHelp();
+int main(){
+    ofstream cart_position_file;
+    ofstream ext_force_file;
+    ofstream ext_force_base_file;
+    ext_force_base_file.open("ext_force_base.txt");
+    cart_position_file.open("cart_position.txt");
+    std::string ip = "192.168.0.160";  
+    std::error_code ec;
+    rokae::xMateErProRobot robot(ip, "192.168.0.180"); 
+    // robot.setRtNetworkTolerance(100, ec);
+    robot.setOperateMode(rokae::OperateMode::automatic,ec);
+    robot.setMotionControlMode(MotionControlMode::RtCommand, ec);
+    robot.setPowerState(true, ec);
 
-    char cmd = ' ';
-    while(cmd != 'q') {
-      std::string str;
-      // 从控制台读取命令
-      getline(std::cin, str);
-      cmd = parseInput(str);
 
-      switch(cmd) {
-        case 'p':
-          if(str == "on") { robot.setPowerState(true, ec); std::cout << "* 机器人上电\n"; }
-          else { robot.setPowerState(false, ec); std::cout << "* 机器人下电\n"; }
-          if(ec) break; continue;
-        case 'm':
-          if(str == "manual") { robot.setOperateMode(OperateMode::manual, ec); std::cout << "* 手动模式\n"; }
-          else { robot.setOperateMode(OperateMode::automatic, ec); std::cout << "* 自动模式\n"; }
-          if(ec) break; continue;
-        case 'd':
-          // 打开拖动前置条件: 需要切换机器人操作模式为手动模式，并下电
-          if(str == "on") { 
-            // robot.enableDrag(DragParameter::cartesianSpace, DragParameter::freely, ec); 
-            robot.enableDrag(DragParameter::Space::jointSpace, DragParameter::Type::freely, ec);
-            cout << "* 打开拖动\n";
-            while (true)
-                tor_file << "Torque: " << robot.jointTorque(ec) << endl;
-            }
-          else { robot.disableDrag(ec); std::cout << "* 关闭拖动\n"; }
-          if(ec) break; continue;
-        case 'a':
-          robot.startRecordPath(30, ec); std::cout << "* 开始录制路径\n";
-          if(ec) break; continue;
-        case 'b':
-          robot.stopRecordPath(ec); std::cout << "* 停止录制路径\n";
-          if(ec) break; continue;
-        case 's':
-          robot.saveRecordPath(str, ec); std::cout << "* 保存路径为: " << str << endl;
-          if(ec) break; continue;
-        case 'c':
-          robot.cancelRecordPath(ec); cout << "* 取消录制\n";
-          if(ec) break; continue;
-        case 'u':
-          paths = robot.queryPathLists(ec);
-          if(paths.empty()) cout << "* 没有已保存的路径\n";
-          else {
-            cout << "* 已保存的路径: ";
-            for(auto p : paths) cout << p << ", ";
-            cout << endl;
-          }
-          if(ec) break; continue;
-        case 'v':
-          cout << "* 删除路径\"" << str << "\"\n";
-          robot.removePath(str, ec);
-          if(ec) break; continue;
-        case 'r': {
-          robot.replayPath(str, 1.0, ec);
-          if (ec) break;
-          cout << "* 开始回放路径\"" << str << "\", 速率100%\n";
-          WaitRobot(&robot);
-          cout << "* 回放结束\n";
-          continue;
-        }
-        case 'z':
-          robot.moveReset(ec); cout << "* 重置运动缓存\n";
-          if(ec) break; continue;
-        case 'h':
-          printHelp(); continue;
-        case 'q':
-          std::cout << " --- Quit --- \n"; continue;
-        default:
-          std::cerr << "无效输入\n"; continue;
+    auto rtCon = robot.getRtMotionController().lock();
+
+    robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::tcpPose_m,
+                                                                RtSupportedFields::tcpPoseAbc_m,
+                                                                RtSupportedFields::tauExt_inBase});
+
+    std::array<double,7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0 };
+    rtCon->MoveJ(0.2, robot.jointPos(ec), q_drag_xm7p);
+    // 设置力控坐标系为工具坐标系, 末端相对法兰的坐标系
+    std::array<double, 16> toolToFlange = {0, 0, 1, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 1};
+    rtCon->setFcCoor(toolToFlange, ForceControlFrameType::tool, ec);
+    // 设置笛卡尔阻抗系数
+    rtCon->setCartesianImpedance({1500, 1500, 1000, 100, 100, 100}, ec);
+    // 设置X和Z方向3N的期望力
+    rtCon->setCartesianImpedanceDesiredTorque({3, 0, 3, 0, 0, 0}, ec);
+    //获取当前机器人笛卡尔空间坐标
+    
+    //16个数据是4*4的矩阵
+    // r11,r12,r13,tx
+    // r21,r22,r23,ty
+    // r31,r32,r33,tz
+    // 0,  0,  0,  1
+
+    std::array<double, 16> init_position{}, real_position{};
+    array<double, 6> exterl_force{}, ext_force_base{}, cart_pose{};
+
+    robot.getStateData(RtSupportedFields::tcpPose_m, init_position);
+
+    rtCon->startMove(RtControllerMode::cartesianImpedance);
+
+    double time = 0;
+    // std::atomic<bool> stopManually {true};
+    std::function<CartesianPosition(void)> callback = [&, rtCon]()->CartesianPosition{
+      time += 0.001;
+
+      robot.getStateData(RtSupportedFields::tcpPoseAbc_m, cart_pose);
+      robot.getStateData(RtSupportedFields::tauExt_inBase, ext_force_base);
+
+      
+      constexpr double kRadius = 0.2;
+      double delta_z = kRadius * (cos(time) - 1);
+
+
+      CartesianPosition output{};
+      output.pos = init_position;
+
+      Eigen::Vector3d pos_1(cart_pose[0], cart_pose[1], cart_pose[2]);
+      Eigen::Vector3d ext_force_base(ext_force_base[0],ext_force_base[1],ext_force_base[2]);
+
+      cout << time << endl;
+      cout << "Pos: " << pos_1.transpose() << endl;
+      cout << "Force_bae: " << ext_force_base.transpose() << endl;
+
+      ext_force_base_file << ext_force_base.transpose() << endl;      
+      cart_position_file << pos_1.transpose() << endl;
+
+      if(time > 20){
+        // std::cout << "mode done" <<std::endl;
+        output.setFinished();
+        // stopManually.store(false); // loop为非阻塞，和主线程同步停止状态
       }
-      cerr << "! 错误信息: " << ec.message() << endl;
-    }
-    tor_file.close();
-    robot.disconnectFromRobot(ec);
-  } catch (const rokae::Exception &e) {
-    std::cerr << e.what();
-  }
+      return output;
+    };
+    rtCon->setControlLoop(callback, 0, true);
+    rtCon->startLoop(true);
+    // while(stopManually.load());
+    // rtCon->stopLoop();
+    cart_position_file.close();
+    ext_force_base_file.close();
+    // std::this_thread::sleep_for(std::chrono::seconds(2));
+    rtCon->MoveJ(0.4, robot.jointPos(ec), q_drag_xm7p);
 
-  return 0;
+    return 0;
 }
 
-static const std::unordered_map<std::string, char> ConsoleInput = {
-  {"quit", 'q'},
-  {"power", 'p'},
-  {"drag", 'd'},
-  {"mode", 'm'},
-  {"start", 'a'},
-  {"stop", 'b'},
-  {"save", 's'},
-  {"cancel", 'c'},
-  {"query", 'u'},
-  {"remove", 'v'},
-  {"reset", 'z'},
-  {"replay", 'r'},
-  {"help", 'h'}
-};
-
-void printHelp() {
-  cout << " --- 拖动与路径回放使用示例 --- " << endl
-       << "格式 <命令>[:参数] 例如 save:track0" << endl << endl
-       << "命令                 |  参数"        << endl
-       << "power   机器人上下电   | on|off"      << endl
-       << "mode    手/自动模式    | manual|auto" << endl
-       << "drag    打开关闭拖动   | on|off"      << endl
-       << "start   开始录制路径   |"             << endl
-       << "stop    结束录制路径   |"             << endl
-       << "save    保存路径      | 路径名称"      << endl
-       << "cancel  取消录制      |"             << endl
-       << "query   查询已保存路径 |"            << endl
-       << "remove  删除路径      | 路径名称"     << endl
-       << "reset   重置运动缓存   |"             << endl
-       << "replay  路径回放      | 路径名称"      << endl
-       << "quit    结束\n";
-}
-
-char parseInput(std::string &str) {
-  size_t delimiter;
-  std::string cmd(str);
-  if((delimiter = str.find(':')) != std::string::npos) {
-    cmd = str.substr(0, delimiter);
-    str = str.substr(delimiter + 1);
-  }
-  if(ConsoleInput.count(cmd))  return ConsoleInput.at(cmd);
-  else return ' ';
-}
-
-/**
- * @brief 等待机器人运动结束
- */
-void WaitRobot(BaseRobot *robot) {
-  bool running = true;
-  while (running) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    error_code ec;
-    auto st = robot->operationState(ec);
-    if(st == OperationState::idle || st == OperationState::unknown){
-      running = false;
-    }
-  }
-}

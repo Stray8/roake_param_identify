@@ -80,7 +80,6 @@ drag_EXTERNAL_OBJECTS =
 bin/drag: example/cpp/xdz/CMakeFiles/drag.dir/drag.cpp.o
 bin/drag: example/cpp/xdz/CMakeFiles/drag.dir/build.make
 bin/drag: ../lib/Linux/cpp/x86_64/libxCoreSDK.a
-bin/drag: /usr/lib/x86_64-linux-gnu/libpython3.8.so
 bin/drag: ../lib/Linux/cpp/x86_64/libxMateModel.a
 bin/drag: example/cpp/xdz/CMakeFiles/drag.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/robot/robot/roake_param_identify/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../../../bin/drag"

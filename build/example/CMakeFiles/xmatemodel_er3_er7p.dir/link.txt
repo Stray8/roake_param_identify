@@ -1,1 +1,1 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/xmatemodel_er3_er7p.dir/cpp/xmatemodel_er3_er7p.cpp.o  -o ../bin/xmatemodel_er3_er7p  ../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 
+/usr/bin/c++  -g   CMakeFiles/xmatemodel_er3_er7p.dir/cpp/xmatemodel_er3_er7p.cpp.o  -o ../bin/xmatemodel_er3_er7p  ../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

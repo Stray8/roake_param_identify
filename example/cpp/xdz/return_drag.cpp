@@ -29,14 +29,22 @@ int main() {
     auto rtCon = robot.getRtMotionController().lock();
 
     // 设置要接收数据。其中jointPos_m是本示例程序会用到的
-    robot.startReceiveRobotState(std::chrono::milliseconds(1), { RtSupportedFields::jointPos_m});
+    robot.startReceiveRobotState(std::chrono::milliseconds(1), {RtSupportedFields::jointPos_m,
+                                                                RtSupportedFields::tcpPoseAbc_m,
+                                                                RtSupportedFields::tcpPose_m});
 
     static bool init = true;
     double time = 0;
 
     std::array<double, 7> jntPos{};
+    array<double, 6> tcpabspose{};
+    array<double, 16> tcppose{};
     robot.getStateData(RtSupportedFields::jointPos_m, jntPos);
-    cout << jntPos << endl;
+    robot.getStateData(RtSupportedFields::tcpPoseAbc_m, tcpabspose);
+    robot.getStateData(RtSupportedFields::tcpPose_m, tcppose);
+
+    cout << tcpabspose << endl;
+    cout << tcppose << endl;
     std::array<double,7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0};
 
     // 从当前位置MoveJ运动到拖拽位姿

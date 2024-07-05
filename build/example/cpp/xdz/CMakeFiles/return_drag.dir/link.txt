@@ -1,1 +1,1 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/return_drag.dir/return_drag.cpp.o  -o ../../../bin/return_drag  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 
+/usr/bin/c++  -g   CMakeFiles/return_drag.dir/return_drag.cpp.o  -o ../../../bin/return_drag  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

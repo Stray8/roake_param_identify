@@ -52,10 +52,10 @@ void torqueControl(xMateErProRobot &robot)
     // stiffness.topLeftCorner(7, 7) << translational_stiffness * Eigen::MatrixXd::Identity(7, 7);
     // damping.setZero();
     // damping.topLeftCorner(7, 7) << translational_stiffness * Eigen::MatrixXd::Identity(7, 7);
-    stiffness << -1000, 0, 0, 0, 0, 0, 0,
-                 0, -1000, 0, 0, 0, 0, 0,
-                 0, 0, -1000, 0, 0, 0, 0,
-                 0, 0, 0, -1000, 0, 0, 0,
+    stiffness << -1500, 0, 0, 0, 0, 0, 0,
+                 0, -1500, 0, 0, 0, 0, 0,
+                 0, 0, -1500, 0, 0, 0, 0,
+                 0, 0, 0, -1500, 0, 0, 0,
                  0, 0, 0, 0, -500, 0, 0,
                  0, 0, 0, 0, 0, -500, 0,
                  0, 0, 0, 0, 0, 0, -500;
@@ -78,14 +78,38 @@ void torqueControl(xMateErProRobot &robot)
     ofstream coriolis_file;
     ofstream gravity_file;
     ofstream torque_file;
-    position_file.open("./simulation_data_2/position_ly.txt");
-    position_error_file.open("./simulation_data_2/position_error_ly.txt");
-    velocity_file.open("./simulation_data_2/velocity_file.txt");
-    inertia_file.open("./simulation_data_2/inertia_file.txt");
-    coriolis_file.open("./simulation_data_2/coriolis_file.txt");
-    gravity_file.open("./simulation_data_2/gravity_file.txt");
-    torque_file.open("./simulation_data_2/torque_file.txt");
+    position_file.open("./test/simulation_data_6/position_ly.txt");
+    position_error_file.open("./test/simulation_data_6/position_error_ly.txt");
+    velocity_file.open("./test/simulation_data_6/velocity_file.txt");
+    inertia_file.open("./test/simulation_data_6/inertia_file.txt");
+    coriolis_file.open("./test/simulation_data_6/coriolis_file.txt");
+    gravity_file.open("./test/simulation_data_6/gravity_file.txt");
+    torque_file.open("./test/simulation_data_6/torque_file.txt");
+
+    // position_file.open("./simulation_data_2/position_ly.txt");
+    // position_error_file.open("./simulation_data_2/position_error_ly.txt");
+    // velocity_file.open("./simulation_data_2/velocity_file.txt");
+    // inertia_file.open("./simulation_data_2/inertia_file.txt");
+    // coriolis_file.open("./simulation_data_2/coriolis_file.txt");
+    // gravity_file.open("./simulation_data_2/gravity_file.txt");
+    // torque_file.open("./simulation_data_2/torque_file.txt");
+
+    // position_file.open("./simulation_data_3/position_ly.txt");
+    // position_error_file.open("./simulation_data_3/position_error_ly.txt");
+    // velocity_file.open("./simulation_data_3/velocity_file.txt");
+    // inertia_file.open("./simulation_data_3/inertia_file.txt");
+    // coriolis_file.open("./simulation_data_3/coriolis_file.txt");
+    // gravity_file.open("./simulation_data_3/gravity_file.txt");
+    // torque_file.open("./simulation_data_3/torque_file.txt");
     
+    // position_file.open("./simulation_data_4/position_ly.txt");
+    // position_error_file.open("./simulation_data_4/position_error_ly.txt");
+    // velocity_file.open("./simulation_data_4/velocity_file.txt");
+    // inertia_file.open("./simulation_data_4/inertia_file.txt");
+    // coriolis_file.open("./simulation_data_4/coriolis_file.txt");
+    // gravity_file.open("./simulation_data_4/gravity_file.txt");
+    // torque_file.open("./simulation_data_4/torque_file.txt");
+
     std::function<Torque(void)> callback = [&]
     {
       static double time=0;
@@ -166,7 +190,7 @@ void torqueControl(xMateErProRobot &robot)
       for(int i=0; i<7; i++)
       {
         X[0][i]=q[i];
-        X[0][i+7]=dq_c[i];
+        X[0][i+7]=dq_m[i];
         X[0][i+14]=ddq_c[i];
       }
       PyObject* pintput_X = PyArray_SimpleNewFromData(2, dims, NPY_DOUBLE, (void*)X);

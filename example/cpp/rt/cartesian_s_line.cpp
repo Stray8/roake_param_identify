@@ -69,7 +69,12 @@ int main() {
       // cout << "Position" <<jnt_Pos << endl;
       // cout << "Torque " << jnt_torque << endl;
       robot.getStateData(RtSupportedFields::tcpPose_m,data_test);
-      cout << "TCP_pose " << data_test << endl;
+      // cout << "TCP_pose " << data_test << endl;
+      std::array<double, 7> q_m{}, dq_m, ddq_c{};
+      robot.getStateData(RtSupportedFields::jointPos_m, q_m);
+      robot.getStateData(RtSupportedFields::jointVel_m, dq_m);
+      robot.getStateData(RtSupportedFields::jointAcc_c, ddq_c);
+      cout << q_m << endl;
 
 
       std::array<double, 16> pose_start = init_pos;

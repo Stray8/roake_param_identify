@@ -95,7 +95,7 @@ int main() {
       }
       return output;
     };
-    rtCon->setControlLoop(callback);
+    rtCon->setControlLoop(callback, 0, true);
     rtCon->startLoop(false);
     while(stopManually.load());
     rtCon->stopLoop();

@@ -1,1 +1,1 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/cartesian_s_line.dir/cartesian_s_line.cpp.o  -o ../../../bin/cartesian_s_line  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 
+/usr/bin/c++  -g   CMakeFiles/cartesian_s_line.dir/cartesian_s_line.cpp.o  -o ../../../bin/cartesian_s_line  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 
