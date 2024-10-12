@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/driverSensor.dir/robotiq.cpp.o  -o ../../../bin/driverSensor  ../../../lib/liblibRQSensorLinux.a ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

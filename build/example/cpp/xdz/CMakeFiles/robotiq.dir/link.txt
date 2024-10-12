@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/robotiq.dir/robotiq.cpp.o  -o ../../../bin/robotiq  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

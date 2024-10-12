@@ -55,7 +55,6 @@ int main() {
             cout << "* 打开拖动\n"; 
             while (true){
               robot.jointTorque(ec);
-              
             }
             
 

@@ -56,6 +56,18 @@ CMAKE_BINARY_DIR = /home/robot/robot/roake_param_identify/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -82,36 +94,13 @@ install/fast: preinstall/fast
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Only default component available"
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -123,6 +112,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -157,466 +157,214 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-example/cpp/ly/CMakeFiles/read_data.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/read_data.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/read_data.dir/rule
+example/cpp/ly/CMakeFiles/PD_show.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/PD_show.dir/rule
+.PHONY : example/cpp/ly/CMakeFiles/PD_show.dir/rule
 
 # Convenience name for target.
-read_data: example/cpp/ly/CMakeFiles/read_data.dir/rule
+PD_show: example/cpp/ly/CMakeFiles/PD_show.dir/rule
 
-.PHONY : read_data
+.PHONY : PD_show
 
 # fast build rule for target.
-read_data/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/read_data.dir/build.make example/cpp/ly/CMakeFiles/read_data.dir/build
-.PHONY : read_data/fast
+PD_show/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD_show.dir/build.make example/cpp/ly/CMakeFiles/PD_show.dir/build
+.PHONY : PD_show/fast
 
 # Convenience name for target.
-example/cpp/ly/CMakeFiles/ly.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/ly.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/ly.dir/rule
+example/cpp/ly/CMakeFiles/SCGP_joint.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/SCGP_joint.dir/rule
+.PHONY : example/cpp/ly/CMakeFiles/SCGP_joint.dir/rule
 
 # Convenience name for target.
-ly: example/cpp/ly/CMakeFiles/ly.dir/rule
+SCGP_joint: example/cpp/ly/CMakeFiles/SCGP_joint.dir/rule
 
-.PHONY : ly
+.PHONY : SCGP_joint
 
 # fast build rule for target.
-ly/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly.dir/build.make example/cpp/ly/CMakeFiles/ly.dir/build
-.PHONY : ly/fast
+SCGP_joint/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SCGP_joint.dir/build.make example/cpp/ly/CMakeFiles/SCGP_joint.dir/build
+.PHONY : SCGP_joint/fast
 
 # Convenience name for target.
-example/cpp/ly/CMakeFiles/PD1.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/PD1.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/PD1.dir/rule
+example/cpp/ly/CMakeFiles/SGPR_joint.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/SGPR_joint.dir/rule
+.PHONY : example/cpp/ly/CMakeFiles/SGPR_joint.dir/rule
 
 # Convenience name for target.
-PD1: example/cpp/ly/CMakeFiles/PD1.dir/rule
+SGPR_joint: example/cpp/ly/CMakeFiles/SGPR_joint.dir/rule
 
-.PHONY : PD1
+.PHONY : SGPR_joint
 
 # fast build rule for target.
-PD1/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD1.dir/build.make example/cpp/ly/CMakeFiles/PD1.dir/build
-.PHONY : PD1/fast
+SGPR_joint/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_joint.dir/build.make example/cpp/ly/CMakeFiles/SGPR_joint.dir/build
+.PHONY : SGPR_joint/fast
 
 # Convenience name for target.
-example/cpp/ly/CMakeFiles/record.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/record.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/record.dir/rule
+example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/rule
+.PHONY : example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/rule
 
 # Convenience name for target.
-record: example/cpp/ly/CMakeFiles/record.dir/rule
+SGPR_cartesian: example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/rule
 
-.PHONY : record
+.PHONY : SGPR_cartesian
 
 # fast build rule for target.
-record/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/record.dir/build.make example/cpp/ly/CMakeFiles/record.dir/build
-.PHONY : record/fast
+SGPR_cartesian/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/build.make example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/build
+.PHONY : SGPR_cartesian/fast
 
 # Convenience name for target.
-example/cpp/ly/CMakeFiles/test_collect.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/test_collect.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/test_collect.dir/rule
+example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/rule
+.PHONY : example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/rule
 
 # Convenience name for target.
-test_collect: example/cpp/ly/CMakeFiles/test_collect.dir/rule
+SCGP_cartesian: example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/rule
 
-.PHONY : test_collect
+.PHONY : SCGP_cartesian
 
 # fast build rule for target.
-test_collect/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/test_collect.dir/build.make example/cpp/ly/CMakeFiles/test_collect.dir/build
-.PHONY : test_collect/fast
+SCGP_cartesian/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/build.make example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/build
+.PHONY : SCGP_cartesian/fast
 
-# Convenience name for target.
-example/cpp/ly/CMakeFiles/SGPR_robot.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/SGPR_robot.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/SGPR_robot.dir/rule
+PD_show.o: PD_show.cpp.o
 
-# Convenience name for target.
-SGPR_robot: example/cpp/ly/CMakeFiles/SGPR_robot.dir/rule
-
-.PHONY : SGPR_robot
-
-# fast build rule for target.
-SGPR_robot/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot.dir/build
-.PHONY : SGPR_robot/fast
-
-# Convenience name for target.
-example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/rule
-
-# Convenience name for target.
-ly_CIC_ESO: example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/rule
-
-.PHONY : ly_CIC_ESO
-
-# fast build rule for target.
-ly_CIC_ESO/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/build
-.PHONY : ly_CIC_ESO/fast
-
-# Convenience name for target.
-example/cpp/ly/CMakeFiles/PD.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/PD.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/PD.dir/rule
-
-# Convenience name for target.
-PD: example/cpp/ly/CMakeFiles/PD.dir/rule
-
-.PHONY : PD
-
-# fast build rule for target.
-PD/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD.dir/build.make example/cpp/ly/CMakeFiles/PD.dir/build
-.PHONY : PD/fast
-
-# Convenience name for target.
-example/cpp/ly/CMakeFiles/de-noise.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/de-noise.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/de-noise.dir/rule
-
-# Convenience name for target.
-de-noise: example/cpp/ly/CMakeFiles/de-noise.dir/rule
-
-.PHONY : de-noise
-
-# fast build rule for target.
-de-noise/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/de-noise.dir/build.make example/cpp/ly/CMakeFiles/de-noise.dir/build
-.PHONY : de-noise/fast
-
-# Convenience name for target.
-example/cpp/ly/CMakeFiles/SGPR_robot1.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/SGPR_robot1.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/SGPR_robot1.dir/rule
-
-# Convenience name for target.
-SGPR_robot1: example/cpp/ly/CMakeFiles/SGPR_robot1.dir/rule
-
-.PHONY : SGPR_robot1
-
-# fast build rule for target.
-SGPR_robot1/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot1.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot1.dir/build
-.PHONY : SGPR_robot1/fast
-
-# Convenience name for target.
-example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/rule
-.PHONY : example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/rule
-
-# Convenience name for target.
-ly_CIC_PD: example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/rule
-
-.PHONY : ly_CIC_PD
-
-# fast build rule for target.
-ly_CIC_PD/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/build
-.PHONY : ly_CIC_PD/fast
-
-PD.o: PD.cpp.o
-
-.PHONY : PD.o
+.PHONY : PD_show.o
 
 # target to build an object file
-PD.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD.dir/build.make example/cpp/ly/CMakeFiles/PD.dir/PD.cpp.o
-.PHONY : PD.cpp.o
+PD_show.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD_show.dir/build.make example/cpp/ly/CMakeFiles/PD_show.dir/PD_show.cpp.o
+.PHONY : PD_show.cpp.o
 
-PD.i: PD.cpp.i
+PD_show.i: PD_show.cpp.i
 
-.PHONY : PD.i
+.PHONY : PD_show.i
 
 # target to preprocess a source file
-PD.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD.dir/build.make example/cpp/ly/CMakeFiles/PD.dir/PD.cpp.i
-.PHONY : PD.cpp.i
+PD_show.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD_show.dir/build.make example/cpp/ly/CMakeFiles/PD_show.dir/PD_show.cpp.i
+.PHONY : PD_show.cpp.i
 
-PD.s: PD.cpp.s
+PD_show.s: PD_show.cpp.s
 
-.PHONY : PD.s
+.PHONY : PD_show.s
 
 # target to generate assembly for a file
-PD.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD.dir/build.make example/cpp/ly/CMakeFiles/PD.dir/PD.cpp.s
-.PHONY : PD.cpp.s
+PD_show.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD_show.dir/build.make example/cpp/ly/CMakeFiles/PD_show.dir/PD_show.cpp.s
+.PHONY : PD_show.cpp.s
 
-PD1.o: PD1.cpp.o
+SCGP_cartesian.o: SCGP_cartesian.cpp.o
 
-.PHONY : PD1.o
+.PHONY : SCGP_cartesian.o
 
 # target to build an object file
-PD1.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD1.dir/build.make example/cpp/ly/CMakeFiles/PD1.dir/PD1.cpp.o
-.PHONY : PD1.cpp.o
+SCGP_cartesian.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/build.make example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/SCGP_cartesian.cpp.o
+.PHONY : SCGP_cartesian.cpp.o
 
-PD1.i: PD1.cpp.i
+SCGP_cartesian.i: SCGP_cartesian.cpp.i
 
-.PHONY : PD1.i
+.PHONY : SCGP_cartesian.i
 
 # target to preprocess a source file
-PD1.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD1.dir/build.make example/cpp/ly/CMakeFiles/PD1.dir/PD1.cpp.i
-.PHONY : PD1.cpp.i
+SCGP_cartesian.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/build.make example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/SCGP_cartesian.cpp.i
+.PHONY : SCGP_cartesian.cpp.i
 
-PD1.s: PD1.cpp.s
+SCGP_cartesian.s: SCGP_cartesian.cpp.s
 
-.PHONY : PD1.s
+.PHONY : SCGP_cartesian.s
 
 # target to generate assembly for a file
-PD1.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/PD1.dir/build.make example/cpp/ly/CMakeFiles/PD1.dir/PD1.cpp.s
-.PHONY : PD1.cpp.s
+SCGP_cartesian.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/build.make example/cpp/ly/CMakeFiles/SCGP_cartesian.dir/SCGP_cartesian.cpp.s
+.PHONY : SCGP_cartesian.cpp.s
 
-SGPR_robot.o: SGPR_robot.cpp.o
+SCGP_joint.o: SCGP_joint.cpp.o
 
-.PHONY : SGPR_robot.o
+.PHONY : SCGP_joint.o
 
 # target to build an object file
-SGPR_robot.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot.dir/SGPR_robot.cpp.o
-.PHONY : SGPR_robot.cpp.o
+SCGP_joint.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SCGP_joint.dir/build.make example/cpp/ly/CMakeFiles/SCGP_joint.dir/SCGP_joint.cpp.o
+.PHONY : SCGP_joint.cpp.o
 
-SGPR_robot.i: SGPR_robot.cpp.i
+SCGP_joint.i: SCGP_joint.cpp.i
 
-.PHONY : SGPR_robot.i
+.PHONY : SCGP_joint.i
 
 # target to preprocess a source file
-SGPR_robot.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot.dir/SGPR_robot.cpp.i
-.PHONY : SGPR_robot.cpp.i
+SCGP_joint.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SCGP_joint.dir/build.make example/cpp/ly/CMakeFiles/SCGP_joint.dir/SCGP_joint.cpp.i
+.PHONY : SCGP_joint.cpp.i
 
-SGPR_robot.s: SGPR_robot.cpp.s
+SCGP_joint.s: SCGP_joint.cpp.s
 
-.PHONY : SGPR_robot.s
+.PHONY : SCGP_joint.s
 
 # target to generate assembly for a file
-SGPR_robot.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot.dir/SGPR_robot.cpp.s
-.PHONY : SGPR_robot.cpp.s
+SCGP_joint.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SCGP_joint.dir/build.make example/cpp/ly/CMakeFiles/SCGP_joint.dir/SCGP_joint.cpp.s
+.PHONY : SCGP_joint.cpp.s
 
-SGPR_robot1.o: SGPR_robot1.cpp.o
+SGPR_cartesian.o: SGPR_cartesian.cpp.o
 
-.PHONY : SGPR_robot1.o
+.PHONY : SGPR_cartesian.o
 
 # target to build an object file
-SGPR_robot1.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot1.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot1.dir/SGPR_robot1.cpp.o
-.PHONY : SGPR_robot1.cpp.o
+SGPR_cartesian.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/build.make example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/SGPR_cartesian.cpp.o
+.PHONY : SGPR_cartesian.cpp.o
 
-SGPR_robot1.i: SGPR_robot1.cpp.i
+SGPR_cartesian.i: SGPR_cartesian.cpp.i
 
-.PHONY : SGPR_robot1.i
+.PHONY : SGPR_cartesian.i
 
 # target to preprocess a source file
-SGPR_robot1.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot1.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot1.dir/SGPR_robot1.cpp.i
-.PHONY : SGPR_robot1.cpp.i
+SGPR_cartesian.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/build.make example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/SGPR_cartesian.cpp.i
+.PHONY : SGPR_cartesian.cpp.i
 
-SGPR_robot1.s: SGPR_robot1.cpp.s
+SGPR_cartesian.s: SGPR_cartesian.cpp.s
 
-.PHONY : SGPR_robot1.s
+.PHONY : SGPR_cartesian.s
 
 # target to generate assembly for a file
-SGPR_robot1.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot1.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot1.dir/SGPR_robot1.cpp.s
-.PHONY : SGPR_robot1.cpp.s
+SGPR_cartesian.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/build.make example/cpp/ly/CMakeFiles/SGPR_cartesian.dir/SGPR_cartesian.cpp.s
+.PHONY : SGPR_cartesian.cpp.s
 
-de-noise.o: de-noise.cpp.o
+SGPR_joint.o: SGPR_joint.cpp.o
 
-.PHONY : de-noise.o
+.PHONY : SGPR_joint.o
 
 # target to build an object file
-de-noise.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/de-noise.dir/build.make example/cpp/ly/CMakeFiles/de-noise.dir/de-noise.cpp.o
-.PHONY : de-noise.cpp.o
+SGPR_joint.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_joint.dir/build.make example/cpp/ly/CMakeFiles/SGPR_joint.dir/SGPR_joint.cpp.o
+.PHONY : SGPR_joint.cpp.o
 
-de-noise.i: de-noise.cpp.i
+SGPR_joint.i: SGPR_joint.cpp.i
 
-.PHONY : de-noise.i
-
-# target to preprocess a source file
-de-noise.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/de-noise.dir/build.make example/cpp/ly/CMakeFiles/de-noise.dir/de-noise.cpp.i
-.PHONY : de-noise.cpp.i
-
-de-noise.s: de-noise.cpp.s
-
-.PHONY : de-noise.s
-
-# target to generate assembly for a file
-de-noise.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/de-noise.dir/build.make example/cpp/ly/CMakeFiles/de-noise.dir/de-noise.cpp.s
-.PHONY : de-noise.cpp.s
-
-ly.o: ly.cpp.o
-
-.PHONY : ly.o
-
-# target to build an object file
-ly.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly.dir/build.make example/cpp/ly/CMakeFiles/ly.dir/ly.cpp.o
-.PHONY : ly.cpp.o
-
-ly.i: ly.cpp.i
-
-.PHONY : ly.i
+.PHONY : SGPR_joint.i
 
 # target to preprocess a source file
-ly.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly.dir/build.make example/cpp/ly/CMakeFiles/ly.dir/ly.cpp.i
-.PHONY : ly.cpp.i
+SGPR_joint.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_joint.dir/build.make example/cpp/ly/CMakeFiles/SGPR_joint.dir/SGPR_joint.cpp.i
+.PHONY : SGPR_joint.cpp.i
 
-ly.s: ly.cpp.s
+SGPR_joint.s: SGPR_joint.cpp.s
 
-.PHONY : ly.s
-
-# target to generate assembly for a file
-ly.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly.dir/build.make example/cpp/ly/CMakeFiles/ly.dir/ly.cpp.s
-.PHONY : ly.cpp.s
-
-ly_CIC_ESO.o: ly_CIC_ESO.cpp.o
-
-.PHONY : ly_CIC_ESO.o
-
-# target to build an object file
-ly_CIC_ESO.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/ly_CIC_ESO.cpp.o
-.PHONY : ly_CIC_ESO.cpp.o
-
-ly_CIC_ESO.i: ly_CIC_ESO.cpp.i
-
-.PHONY : ly_CIC_ESO.i
-
-# target to preprocess a source file
-ly_CIC_ESO.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/ly_CIC_ESO.cpp.i
-.PHONY : ly_CIC_ESO.cpp.i
-
-ly_CIC_ESO.s: ly_CIC_ESO.cpp.s
-
-.PHONY : ly_CIC_ESO.s
+.PHONY : SGPR_joint.s
 
 # target to generate assembly for a file
-ly_CIC_ESO.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/ly_CIC_ESO.cpp.s
-.PHONY : ly_CIC_ESO.cpp.s
-
-ly_CIC_PD.o: ly_CIC_PD.cpp.o
-
-.PHONY : ly_CIC_PD.o
-
-# target to build an object file
-ly_CIC_PD.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/ly_CIC_PD.cpp.o
-.PHONY : ly_CIC_PD.cpp.o
-
-ly_CIC_PD.i: ly_CIC_PD.cpp.i
-
-.PHONY : ly_CIC_PD.i
-
-# target to preprocess a source file
-ly_CIC_PD.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/ly_CIC_PD.cpp.i
-.PHONY : ly_CIC_PD.cpp.i
-
-ly_CIC_PD.s: ly_CIC_PD.cpp.s
-
-.PHONY : ly_CIC_PD.s
-
-# target to generate assembly for a file
-ly_CIC_PD.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/ly_CIC_PD.cpp.s
-.PHONY : ly_CIC_PD.cpp.s
-
-read_data.o: read_data.cpp.o
-
-.PHONY : read_data.o
-
-# target to build an object file
-read_data.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/read_data.dir/build.make example/cpp/ly/CMakeFiles/read_data.dir/read_data.cpp.o
-.PHONY : read_data.cpp.o
-
-read_data.i: read_data.cpp.i
-
-.PHONY : read_data.i
-
-# target to preprocess a source file
-read_data.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/read_data.dir/build.make example/cpp/ly/CMakeFiles/read_data.dir/read_data.cpp.i
-.PHONY : read_data.cpp.i
-
-read_data.s: read_data.cpp.s
-
-.PHONY : read_data.s
-
-# target to generate assembly for a file
-read_data.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/read_data.dir/build.make example/cpp/ly/CMakeFiles/read_data.dir/read_data.cpp.s
-.PHONY : read_data.cpp.s
-
-record.o: record.cpp.o
-
-.PHONY : record.o
-
-# target to build an object file
-record.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/record.dir/build.make example/cpp/ly/CMakeFiles/record.dir/record.cpp.o
-.PHONY : record.cpp.o
-
-record.i: record.cpp.i
-
-.PHONY : record.i
-
-# target to preprocess a source file
-record.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/record.dir/build.make example/cpp/ly/CMakeFiles/record.dir/record.cpp.i
-.PHONY : record.cpp.i
-
-record.s: record.cpp.s
-
-.PHONY : record.s
-
-# target to generate assembly for a file
-record.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/record.dir/build.make example/cpp/ly/CMakeFiles/record.dir/record.cpp.s
-.PHONY : record.cpp.s
-
-test_collect.o: test_collect.cpp.o
-
-.PHONY : test_collect.o
-
-# target to build an object file
-test_collect.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/test_collect.dir/build.make example/cpp/ly/CMakeFiles/test_collect.dir/test_collect.cpp.o
-.PHONY : test_collect.cpp.o
-
-test_collect.i: test_collect.cpp.i
-
-.PHONY : test_collect.i
-
-# target to preprocess a source file
-test_collect.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/test_collect.dir/build.make example/cpp/ly/CMakeFiles/test_collect.dir/test_collect.cpp.i
-.PHONY : test_collect.cpp.i
-
-test_collect.s: test_collect.cpp.s
-
-.PHONY : test_collect.s
-
-# target to generate assembly for a file
-test_collect.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/test_collect.dir/build.make example/cpp/ly/CMakeFiles/test_collect.dir/test_collect.cpp.s
-.PHONY : test_collect.cpp.s
+SGPR_joint.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_joint.dir/build.make example/cpp/ly/CMakeFiles/SGPR_joint.dir/SGPR_joint.cpp.s
+.PHONY : SGPR_joint.cpp.s
 
 # Help Target
 help:
@@ -624,56 +372,32 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... read_data"
-	@echo "... ly"
-	@echo "... PD1"
-	@echo "... install/strip"
-	@echo "... record"
-	@echo "... test_collect"
-	@echo "... SGPR_robot"
-	@echo "... ly_CIC_ESO"
-	@echo "... PD"
-	@echo "... de-noise"
-	@echo "... SGPR_robot1"
-	@echo "... ly_CIC_PD"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... PD.o"
-	@echo "... PD.i"
-	@echo "... PD.s"
-	@echo "... PD1.o"
-	@echo "... PD1.i"
-	@echo "... PD1.s"
-	@echo "... SGPR_robot.o"
-	@echo "... SGPR_robot.i"
-	@echo "... SGPR_robot.s"
-	@echo "... SGPR_robot1.o"
-	@echo "... SGPR_robot1.i"
-	@echo "... SGPR_robot1.s"
-	@echo "... de-noise.o"
-	@echo "... de-noise.i"
-	@echo "... de-noise.s"
-	@echo "... ly.o"
-	@echo "... ly.i"
-	@echo "... ly.s"
-	@echo "... ly_CIC_ESO.o"
-	@echo "... ly_CIC_ESO.i"
-	@echo "... ly_CIC_ESO.s"
-	@echo "... ly_CIC_PD.o"
-	@echo "... ly_CIC_PD.i"
-	@echo "... ly_CIC_PD.s"
-	@echo "... read_data.o"
-	@echo "... read_data.i"
-	@echo "... read_data.s"
-	@echo "... record.o"
-	@echo "... record.i"
-	@echo "... record.s"
-	@echo "... test_collect.o"
-	@echo "... test_collect.i"
-	@echo "... test_collect.s"
+	@echo "... PD_show"
+	@echo "... SCGP_joint"
+	@echo "... edit_cache"
+	@echo "... SGPR_joint"
+	@echo "... SGPR_cartesian"
+	@echo "... SCGP_cartesian"
+	@echo "... PD_show.o"
+	@echo "... PD_show.i"
+	@echo "... PD_show.s"
+	@echo "... SCGP_cartesian.o"
+	@echo "... SCGP_cartesian.i"
+	@echo "... SCGP_cartesian.s"
+	@echo "... SCGP_joint.o"
+	@echo "... SCGP_joint.i"
+	@echo "... SCGP_joint.s"
+	@echo "... SGPR_cartesian.o"
+	@echo "... SGPR_cartesian.i"
+	@echo "... SGPR_cartesian.s"
+	@echo "... SGPR_joint.o"
+	@echo "... SGPR_joint.i"
+	@echo "... SGPR_joint.s"
 .PHONY : help
 
 

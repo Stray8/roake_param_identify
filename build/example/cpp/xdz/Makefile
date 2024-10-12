@@ -82,7 +82,7 @@ install/fast: preinstall/fast
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Only default component available"
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -157,172 +157,115 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-example/cpp/xdz/CMakeFiles/cart_control.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/cart_control.dir/rule
-.PHONY : example/cpp/xdz/CMakeFiles/cart_control.dir/rule
+example/cpp/xdz/CMakeFiles/driverSensor.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/driverSensor.dir/rule
+.PHONY : example/cpp/xdz/CMakeFiles/driverSensor.dir/rule
 
 # Convenience name for target.
-cart_control: example/cpp/xdz/CMakeFiles/cart_control.dir/rule
+driverSensor: example/cpp/xdz/CMakeFiles/driverSensor.dir/rule
 
-.PHONY : cart_control
+.PHONY : driverSensor
 
 # fast build rule for target.
-cart_control/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/cart_control.dir/build.make example/cpp/xdz/CMakeFiles/cart_control.dir/build
-.PHONY : cart_control/fast
+driverSensor/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/driverSensor.dir/build.make example/cpp/xdz/CMakeFiles/driverSensor.dir/build
+.PHONY : driverSensor/fast
 
 # Convenience name for target.
-example/cpp/xdz/CMakeFiles/drag.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/drag.dir/rule
-.PHONY : example/cpp/xdz/CMakeFiles/drag.dir/rule
+example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/rule:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/rule
+.PHONY : example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/rule
 
 # Convenience name for target.
-drag: example/cpp/xdz/CMakeFiles/drag.dir/rule
+RQSensorLinux: example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/rule
 
-.PHONY : drag
+.PHONY : RQSensorLinux
 
 # fast build rule for target.
-drag/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/drag.dir/build.make example/cpp/xdz/CMakeFiles/drag.dir/build
-.PHONY : drag/fast
+RQSensorLinux/fast:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/build.make example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/build
+.PHONY : RQSensorLinux/fast
 
-# Convenience name for target.
-example/cpp/xdz/CMakeFiles/force_collect.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/force_collect.dir/rule
-.PHONY : example/cpp/xdz/CMakeFiles/force_collect.dir/rule
+__/__/__/include/robotiq/rq_sensor_com.o: __/__/__/include/robotiq/rq_sensor_com.c.o
 
-# Convenience name for target.
-force_collect: example/cpp/xdz/CMakeFiles/force_collect.dir/rule
-
-.PHONY : force_collect
-
-# fast build rule for target.
-force_collect/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/build
-.PHONY : force_collect/fast
-
-# Convenience name for target.
-example/cpp/xdz/CMakeFiles/return_drag.dir/rule:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f CMakeFiles/Makefile2 example/cpp/xdz/CMakeFiles/return_drag.dir/rule
-.PHONY : example/cpp/xdz/CMakeFiles/return_drag.dir/rule
-
-# Convenience name for target.
-return_drag: example/cpp/xdz/CMakeFiles/return_drag.dir/rule
-
-.PHONY : return_drag
-
-# fast build rule for target.
-return_drag/fast:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/build
-.PHONY : return_drag/fast
-
-cart_control.o: cart_control.cpp.o
-
-.PHONY : cart_control.o
+.PHONY : __/__/__/include/robotiq/rq_sensor_com.o
 
 # target to build an object file
-cart_control.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/cart_control.dir/build.make example/cpp/xdz/CMakeFiles/cart_control.dir/cart_control.cpp.o
-.PHONY : cart_control.cpp.o
+__/__/__/include/robotiq/rq_sensor_com.c.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/build.make example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/__/__/__/include/robotiq/rq_sensor_com.c.o
+.PHONY : __/__/__/include/robotiq/rq_sensor_com.c.o
 
-cart_control.i: cart_control.cpp.i
+__/__/__/include/robotiq/rq_sensor_com.i: __/__/__/include/robotiq/rq_sensor_com.c.i
 
-.PHONY : cart_control.i
+.PHONY : __/__/__/include/robotiq/rq_sensor_com.i
 
 # target to preprocess a source file
-cart_control.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/cart_control.dir/build.make example/cpp/xdz/CMakeFiles/cart_control.dir/cart_control.cpp.i
-.PHONY : cart_control.cpp.i
+__/__/__/include/robotiq/rq_sensor_com.c.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/build.make example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/__/__/__/include/robotiq/rq_sensor_com.c.i
+.PHONY : __/__/__/include/robotiq/rq_sensor_com.c.i
 
-cart_control.s: cart_control.cpp.s
+__/__/__/include/robotiq/rq_sensor_com.s: __/__/__/include/robotiq/rq_sensor_com.c.s
 
-.PHONY : cart_control.s
+.PHONY : __/__/__/include/robotiq/rq_sensor_com.s
 
 # target to generate assembly for a file
-cart_control.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/cart_control.dir/build.make example/cpp/xdz/CMakeFiles/cart_control.dir/cart_control.cpp.s
-.PHONY : cart_control.cpp.s
+__/__/__/include/robotiq/rq_sensor_com.c.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/build.make example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/__/__/__/include/robotiq/rq_sensor_com.c.s
+.PHONY : __/__/__/include/robotiq/rq_sensor_com.c.s
 
-drag.o: drag.cpp.o
+__/__/__/include/robotiq/rq_sensor_state.o: __/__/__/include/robotiq/rq_sensor_state.c.o
 
-.PHONY : drag.o
+.PHONY : __/__/__/include/robotiq/rq_sensor_state.o
 
 # target to build an object file
-drag.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/drag.dir/build.make example/cpp/xdz/CMakeFiles/drag.dir/drag.cpp.o
-.PHONY : drag.cpp.o
+__/__/__/include/robotiq/rq_sensor_state.c.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/build.make example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/__/__/__/include/robotiq/rq_sensor_state.c.o
+.PHONY : __/__/__/include/robotiq/rq_sensor_state.c.o
 
-drag.i: drag.cpp.i
+__/__/__/include/robotiq/rq_sensor_state.i: __/__/__/include/robotiq/rq_sensor_state.c.i
 
-.PHONY : drag.i
+.PHONY : __/__/__/include/robotiq/rq_sensor_state.i
 
 # target to preprocess a source file
-drag.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/drag.dir/build.make example/cpp/xdz/CMakeFiles/drag.dir/drag.cpp.i
-.PHONY : drag.cpp.i
+__/__/__/include/robotiq/rq_sensor_state.c.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/build.make example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/__/__/__/include/robotiq/rq_sensor_state.c.i
+.PHONY : __/__/__/include/robotiq/rq_sensor_state.c.i
 
-drag.s: drag.cpp.s
+__/__/__/include/robotiq/rq_sensor_state.s: __/__/__/include/robotiq/rq_sensor_state.c.s
 
-.PHONY : drag.s
+.PHONY : __/__/__/include/robotiq/rq_sensor_state.s
 
 # target to generate assembly for a file
-drag.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/drag.dir/build.make example/cpp/xdz/CMakeFiles/drag.dir/drag.cpp.s
-.PHONY : drag.cpp.s
+__/__/__/include/robotiq/rq_sensor_state.c.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/build.make example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/__/__/__/include/robotiq/rq_sensor_state.c.s
+.PHONY : __/__/__/include/robotiq/rq_sensor_state.c.s
 
-force_collect.o: force_collect.cpp.o
+robotiq.o: robotiq.cpp.o
 
-.PHONY : force_collect.o
+.PHONY : robotiq.o
 
 # target to build an object file
-force_collect.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/force_collect.cpp.o
-.PHONY : force_collect.cpp.o
+robotiq.cpp.o:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/driverSensor.dir/build.make example/cpp/xdz/CMakeFiles/driverSensor.dir/robotiq.cpp.o
+.PHONY : robotiq.cpp.o
 
-force_collect.i: force_collect.cpp.i
+robotiq.i: robotiq.cpp.i
 
-.PHONY : force_collect.i
-
-# target to preprocess a source file
-force_collect.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/force_collect.cpp.i
-.PHONY : force_collect.cpp.i
-
-force_collect.s: force_collect.cpp.s
-
-.PHONY : force_collect.s
-
-# target to generate assembly for a file
-force_collect.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/force_collect.cpp.s
-.PHONY : force_collect.cpp.s
-
-return_drag.o: return_drag.cpp.o
-
-.PHONY : return_drag.o
-
-# target to build an object file
-return_drag.cpp.o:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/return_drag.cpp.o
-.PHONY : return_drag.cpp.o
-
-return_drag.i: return_drag.cpp.i
-
-.PHONY : return_drag.i
+.PHONY : robotiq.i
 
 # target to preprocess a source file
-return_drag.cpp.i:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/return_drag.cpp.i
-.PHONY : return_drag.cpp.i
+robotiq.cpp.i:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/driverSensor.dir/build.make example/cpp/xdz/CMakeFiles/driverSensor.dir/robotiq.cpp.i
+.PHONY : robotiq.cpp.i
 
-return_drag.s: return_drag.cpp.s
+robotiq.s: robotiq.cpp.s
 
-.PHONY : return_drag.s
+.PHONY : robotiq.s
 
 # target to generate assembly for a file
-return_drag.cpp.s:
-	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/return_drag.cpp.s
-.PHONY : return_drag.cpp.s
+robotiq.cpp.s:
+	cd /home/robot/robot/roake_param_identify/build && $(MAKE) -f example/cpp/xdz/CMakeFiles/driverSensor.dir/build.make example/cpp/xdz/CMakeFiles/driverSensor.dir/robotiq.cpp.s
+.PHONY : robotiq.cpp.s
 
 # Help Target
 help:
@@ -336,22 +279,17 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... install/local"
-	@echo "... cart_control"
-	@echo "... drag"
-	@echo "... force_collect"
-	@echo "... return_drag"
-	@echo "... cart_control.o"
-	@echo "... cart_control.i"
-	@echo "... cart_control.s"
-	@echo "... drag.o"
-	@echo "... drag.i"
-	@echo "... drag.s"
-	@echo "... force_collect.o"
-	@echo "... force_collect.i"
-	@echo "... force_collect.s"
-	@echo "... return_drag.o"
-	@echo "... return_drag.i"
-	@echo "... return_drag.s"
+	@echo "... driverSensor"
+	@echo "... RQSensorLinux"
+	@echo "... __/__/__/include/robotiq/rq_sensor_com.o"
+	@echo "... __/__/__/include/robotiq/rq_sensor_com.i"
+	@echo "... __/__/__/include/robotiq/rq_sensor_com.s"
+	@echo "... __/__/__/include/robotiq/rq_sensor_state.o"
+	@echo "... __/__/__/include/robotiq/rq_sensor_state.i"
+	@echo "... __/__/__/include/robotiq/rq_sensor_state.s"
+	@echo "... robotiq.o"
+	@echo "... robotiq.i"
+	@echo "... robotiq.s"
 .PHONY : help
 
 

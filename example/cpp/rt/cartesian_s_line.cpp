@@ -14,9 +14,9 @@
 #include "../print_helper.hpp"
 
 using namespace rokae;
+using namespace std;
 
 int main() {
-  using namespace std;
   try {
     std::string ip = "192.168.0.160";
     std::error_code ec;

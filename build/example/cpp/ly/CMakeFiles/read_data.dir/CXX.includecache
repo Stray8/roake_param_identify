@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/robot/robot/roake_param_identify/example/cpp/ly/read_data.cpp
+iostream
+-
+fstream
+-
+string
+-
+vector
+-
+sstream
+-
+

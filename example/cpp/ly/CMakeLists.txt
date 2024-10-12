@@ -5,8 +5,8 @@
 
 set(LY_EXAMPLES
     # test_collect
-    ly
-    read_data
+    # ly
+    # read_data
     )
 
 include_directories(/home/robot/robot/roake_param_identify/include/rokae/)
@@ -27,15 +27,25 @@ endforeach()
 # check for xMateModel library option
 if(XCORE_USE_XMATE_MODEL)
     set(EXAMPLES_USE_XMATEMODEL
-        test_collect
-        SGPR_robot
-        PD
-        PD1
-        record
-        SGPR_robot1
-        de-noise
-        ly_CIC_ESO
-        ly_CIC_PD
+        # test_collect
+        # SGPR_robot
+        # PD
+        # PD1
+        # record
+        # SGPR_robot1
+        # de-noise
+        # ly_CIC_ESO
+        # ly_CIC_PD
+        # PD_show
+        # PD_testSet
+        # SGPR_robot1_sparse
+        # SGPR_robot_copy
+        # test_vic
+        SCGP_cartesian
+        SGPR_cartesian
+        SGPR_joint
+        SCGP_joint
+        PD_show
         )
     foreach(example ${EXAMPLES_USE_XMATEMODEL})
         add_executable(${example} ${example}.cpp ${xCoreSDK-examples_SOURCE_DIR}/cpp/print_helper.hpp)

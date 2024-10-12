@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/SCGP_cartesian.dir/SCGP_cartesian.cpp.o  -o ../../../bin/SCGP_cartesian  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a /usr/lib/x86_64-linux-gnu/libpython3.8.so ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

@@ -41,12 +41,27 @@ Robot_DoF = 7
 # q = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/collect/position.txt')[0::gap, :]
 # dq = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/collect/velocity.txt')[0::gap, :]
 
-inertia = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/inertia_file.txt')[0::gap, :]
-coriolis = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/coriolis_file.txt')[0::gap, :]
-gravity = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/gravity_file.txt')[0::gap, :]
-torque = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/torque_file.txt')[0::gap, :]
-q = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/position_ly.txt')[0::gap, :]
-dq = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/velocity_file.txt')[0::gap, :]
+# inertia = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/inertia_file.txt')[0::gap, :]
+# coriolis = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/coriolis_file.txt')[0::gap, :]
+# gravity = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/gravity_file.txt')[0::gap, :]
+# torque = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/torque_file.txt')[0::gap, :]
+# q = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/position_ly.txt')[0::gap, :]
+# dq = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/velocity_file.txt')[0::gap, :]
+
+
+# inertia = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/collect/inertia.txt')[0::gap, :]
+# coriolis = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/collect/coriolis.txt')[0::gap, :]
+# gravity = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/collect/gravity.txt')[0::gap, :]
+# torque = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/collect/torque.txt')[0::gap, :]
+# q = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/collect/position.txt')[0::gap, :]
+# dq = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/collect/velocity.txt')[0::gap, :]
+
+inertia = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/s3/inertia_file.txt')[0::gap, :]
+coriolis = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/s3/coriolis_file.txt')[0::gap, :]
+gravity = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/s3/gravity_file.txt')[0::gap, :]
+torque = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/s3/torque_file.txt')[0::gap, :]
+q = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/s3/position_ly.txt')[0::gap, :]
+dq = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/s3/velocity_file.txt')[0::gap, :]
 
 # q filter
 N = np.shape(q)[0]
@@ -95,7 +110,11 @@ training_set = np.hstack((X, Y))
 # np.savetxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_2/trainingSet_s2.txt', training_set)
 # np.savetxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_3/trainingSet_s3.txt', training_set)
 # np.savetxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_4/trainingSet_s4.txt', training_set)
-np.savetxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/trainingSet_s5.txt', training_set)
+# np.savetxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/trainingSet_s5.txt', training_set)
+
+# np.savetxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/collect/trainingset.txt', training_set)
+np.savetxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/s3/trainingset.txt', training_set)
+
 
 
 static_error = q[-1, :] - q[0, :]

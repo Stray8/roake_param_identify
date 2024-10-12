@@ -13,18 +13,25 @@ using namespace std;
 
 int main() {
   // 初始化
-  // ofstream position_file;
-  // ofstream velocity_file;
-  // ofstream inertia_file;
-  // ofstream coriolis_file;
-  // ofstream gravity_file;
-  // ofstream torque_file;
-  // position_file.open("./test/collect/position.txt");
-  // velocity_file.open("./test/collect/velocity.txt");
-  // inertia_file.open("./test/collect/inertia.txt");
-  // coriolis_file.open("./test/collect/coriolis.txt");
-  // gravity_file.open("./test/collect/gravity.txt");
-  // torque_file.open("./test/collect/torque.txt");
+  ofstream position_file;
+  ofstream velocity_file;
+  ofstream inertia_file;
+  ofstream coriolis_file;
+  ofstream gravity_file;
+  ofstream torque_file;
+  // position_file.open("./ly_data/SGPR_joint/collect/position.txt");
+  // velocity_file.open("./ly_data/SGPR_joint/collect/velocity.txt");
+  // inertia_file.open("./ly_data/SGPR_joint/collect/inertia.txt");
+  // coriolis_file.open("./ly_data/SGPR_joint/collect/coriolis.txt");
+  // gravity_file.open("./ly_data/SGPR_joint/collect/gravity.txt");
+  // torque_file.open("./ly_data/SGPR_joint/collect/torque.txt");
+
+  position_file.open("/home/robot/robot/roake_param_identify/build/ly_data/SGPR_sparse/joint/collect/position.txt");
+  velocity_file.open("/home/robot/robot/roake_param_identify/build/ly_data/SGPR_sparse/joint/collect/velocity.txt");
+  inertia_file.open("/home/robot/robot/roake_param_identify/build/ly_data/SGPR_sparse/joint/collect/inertia.txt");
+  coriolis_file.open("/home/robot/robot/roake_param_identify/build/ly_data/SGPR_sparse/joint/collect/coriolis.txt");
+  gravity_file.open("/home/robot/robot/roake_param_identify/build/ly_data/SGPR_sparse/joint/collect/gravity.txt");
+  torque_file.open("/home/robot/robot/roake_param_identify/build/ly_data/SGPR_sparse/joint/collect/torque.txt");
 
   try {
     std::string ip = "192.168.0.160";
@@ -54,7 +61,8 @@ int main() {
     // std::array<double,7> q_drag_xm7p = {-M_PI/15, -M_PI/15, -M_PI/15, -M_PI/15, -M_PI/15, -M_PI/15,- M_PI/15};
     std::array<double,7> q_drag_xm7p = {0, M_PI/6, 0, M_PI/3, 0, M_PI/2, 0};
     // std::array<double,7> q_drag_xm7p = {0, 0, 0, 0, 0, 0, 0};
-    std::array<double, 7> q{}, ddq_c{}, dq_m{}, tau{}, jp{}, jv{}, tor{}, full_array{}, inertia_array{}, coriolis_array{}, gravity_array{}, ja{}, jv_before{};
+    std::array<double, 7> q{}, ddq_c{}, dq_m{}, tau{}, jp{}, jv{}, tor{}, full_array{}, inertia_array{}, 
+                          coriolis_array{}, gravity_array{}, ja{}, jv_before{};
 
     // 从当前位置MoveJ运动到拖拽位姿
     rtCon->MoveJ(0.2, jntPos, q_drag_xm7p);
@@ -69,19 +77,25 @@ int main() {
       }
 
       time += 0.001;
-      robot.updateRobotState(chrono::milliseconds(1));
-      robot.getStateData(RtSupportedFields::jointPos_m, q);
-      robot.getStateData(RtSupportedFields::jointVel_m, dq_m);
-      robot.getStateData(RtSupportedFields::jointAcc_c, ddq_c);
+      // robot.updateRobotState(chrono::milliseconds(1));
+      // robot.getStateData(RtSupportedFields::jointPos_m, q);
+      // robot.getStateData(RtSupportedFields::jointVel_m, dq_m);
+      // robot.getStateData(RtSupportedFields::jointAcc_c, ddq_c);
       // robot.getStateData(RtSupportedFields::tau_m, tau);
 
       jp = robot.jointPos(ec);
       jv = robot.jointVel(ec);
       tor = robot.jointTorque(ec);
 
-      std::array<double, 7> inertia_array = model.getTorque(q, dq_m, ddq_c, TorqueType::inertia);
-      std::array<double, 7> coriolis_array = model.getTorque(q, dq_m, ddq_c, TorqueType::coriolis);
-      std::array<double, 7> gravity_array = model.getTorque(q, dq_m, ddq_c, TorqueType::gravity);
+      for(int i=0;i<7;i++)
+      {
+        ja[i] = (jv[i] - jv_before[i]) / 0.001;
+      }
+      jv_before = jv;
+
+      std::array<double, 7> inertia_array = model.getTorque(jp, jv, ja, TorqueType::inertia);
+      std::array<double, 7> coriolis_array = model.getTorque(jp, jv, ja, TorqueType::coriolis);
+      std::array<double, 7> gravity_array = model.getTorque(jp, jv, ja, TorqueType::gravity);
       cout << inertia_array << endl;
 
       double delta_angle0 = M_PI / 50.0 * (1 - std::cos(M_PI / 4 * 1 * time));
@@ -107,15 +121,15 @@ int main() {
                             jntPos[2] + delta_angle2, jntPos[3] + delta_angle3,
                             jntPos[4] + delta_angle4, jntPos[5] + delta_angle5,
                             jntPos[6] + delta_angle6}};
-      // // 保存数据
-      // inertia_file << inertia_array << endl;
-      // coriolis_file << coriolis_array << endl;
-      // gravity_file << gravity_array << endl;
-      // position_file << jp << endl;
-      // velocity_file << jv << endl;
-      // torque_file << tor << endl;
+      // 保存数据
+      inertia_file << inertia_array << endl;
+      coriolis_file << coriolis_array << endl;
+      gravity_file << gravity_array << endl;
+      position_file << jp << endl;
+      velocity_file << jv << endl;
+      torque_file << tor << endl;
     
-      if(time > 10)
+      if(time > 8)
         cmd.setFinished(); // 60秒后结束
       return cmd;
     };
@@ -125,12 +139,12 @@ int main() {
     rtCon->startLoop(true);
     print(std::cout, "控制结束");
 
-    // inertia_file.close();
-    // coriolis_file.close();
-    // gravity_file.close();
-    // position_file.close();
-    // velocity_file.close();
-    // torque_file.close();
+    inertia_file.close();
+    coriolis_file.close();
+    gravity_file.close();
+    position_file.close();
+    velocity_file.close();
+    torque_file.close();
 
 
   } catch (const std::exception &e) {

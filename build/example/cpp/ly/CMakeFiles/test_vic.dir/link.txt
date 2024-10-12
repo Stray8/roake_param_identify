@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/test_vic.dir/test_vic.cpp.o  -o ../../../bin/test_vic  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a /usr/lib/x86_64-linux-gnu/libpython3.8.so ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

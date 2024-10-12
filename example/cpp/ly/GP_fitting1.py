@@ -12,7 +12,7 @@ np.random.seed(5) #生成随机数
 faulthandler.enable()
 
 class sgpr:
-    def __init__(self, X, y, likelihood_noise=0.05, restart=1):
+    def __init__(self, X, y, likelihood_noise=0.1, restart=1):
         '''
         :param X: q, dq, ddq
         :param y: output for one dim
@@ -128,10 +128,14 @@ trainingSet_collect = np.loadtxt('/home/robot/robot/roake_param_identify/build/t
 # trainingSet_s4 = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_4/trainingSet_s4.txt')
 # trainingSet_s5 = np.loadtxt('/home/robot/robot/roake_param_identify/build/test/simulation_data_5/trainingSet_s5.txt')
 
-trainingSet = trainingSet_collect
+# trainingSet_collect = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/collect/trainingset.txt')
+trainingSet_s1 = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/s1/trainingset.txt')
+trainingSet_s2 = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/s2/trainingset.txt')
+trainingSet_s3 = np.loadtxt('/home/robot/robot/roake_param_identify/build/ly_data/SGPR_joint/s3/trainingset.txt')
+# trainingSet = trainingSet_collect
 # trainingSet = np.hstack((trainingSet_collect, trainingSet_s1))
 # trainingSet = np.hstack((trainingSet_collect, trainingSet_s1, trainingSet_s2))
-# trainingSet = np.hstack((trainingSet_collect, trainingSet_s1, trainingSet_s2, trainingSet_s3))
+trainingSet = np.hstack((trainingSet_collect, trainingSet_s1, trainingSet_s2, trainingSet_s3))
 # trainingSet = np.hstack((trainingSet_collect, trainingSet_s1, trainingSet_s2, trainingSet_s3, trainingSet_s4))
 # trainingSet = np.hstack((trainingSet_collect, trainingSet_s1, trainingSet_s2, trainingSet_s3, trainingSet_s4, trainingSet_s5))
 
@@ -192,55 +196,73 @@ hat_y5 = pre[:,5]
 hat_y6 = pre[:,6]
 
 data_Size = np.shape(trainingSet)[0]
+
+plt.figure(figsize=(12, 8))
+plt.rcParams.update({'font.size':12})
 # print("pre is", pre)
 # 绘制第1个子图：y0和hat_y0
 plt.subplot(421)
-plt.plot(np.arange(data_Size), y0, color=(26/255, 111/255, 223/255), label='$tau_1$')
-plt.plot(np.arange(data_Size), hat_y0, color=(241/255, 64/255, 64/255), label='$\hat tau_1$')
-plt.ylabel('$mu$')
+plt.plot(np.arange(data_Size), y0, color=(26/255, 111/255, 223/255), label='$\mu_1$')
+plt.plot(np.arange(data_Size), hat_y0, color=(241/255, 64/255, 64/255), label='$\hat \mu_1$')
+plt.ylabel('$\mu$',fontsize=12)
 # plt.xlabel('steps')
-plt.legend()
+plt.tick_params(direction='in', which='both')
+plt.legend(fontsize=12, loc='upper right')
+
 # 绘制第2个子图：y1和hat_y1
 plt.subplot(422)
-plt.plot(np.arange(data_Size), y1, color=(26/255, 111/255, 223/255), label='$tau_2$')
-plt.plot(np.arange(data_Size), hat_y1, color=(241/255, 64/255, 64/255), label='$\hat tau_2$')
-plt.ylabel('$mu$')
+plt.plot(np.arange(data_Size), y1, color=(26/255, 111/255, 223/255), label='$\mu_2$')
+plt.plot(np.arange(data_Size), hat_y1, color=(241/255, 64/255, 64/255), label='$\hat \mu_2$')
+# plt.ylabel('$mu$')
 # plt.xlabel('steps')
-plt.legend()
+plt.tick_params(direction='in', which='both')
+plt.legend(fontsize=12, loc='upper right')
+
 # 绘制第3个子图：y2和hat_y2
 plt.subplot(423)
-plt.plot(np.arange(data_Size), y2, color=(26/255, 111/255, 223/255), label='$tau_3$')
-plt.plot(np.arange(data_Size), hat_y2, color=(241/255, 64/255, 64/255), label='$\hat tau_3$')
-plt.ylabel('$mu$')
+plt.plot(np.arange(data_Size), y2, color=(26/255, 111/255, 223/255), label='$\mu_3$')
+plt.plot(np.arange(data_Size), hat_y2, color=(241/255, 64/255, 64/255), label='$\hat \mu_3$')
+plt.ylabel('$\mu$',fontsize=12)
 # plt.xlabel('steps')
-plt.legend()
+plt.tick_params(direction='in', which='both')
+plt.legend(fontsize=12, loc='upper right')
+
 # 绘制第4个子图：y3和hat_y3
 plt.subplot(424)
-plt.plot(np.arange(data_Size), y3, color=(26/255, 111/255, 223/255), label='$tau_4$')
-plt.plot(np.arange(data_Size), hat_y3, color=(241/255, 64/255, 64/255), label='$\hat tau_4$')
-plt.ylabel('$mu$')
+plt.plot(np.arange(data_Size), y3, color=(26/255, 111/255, 223/255), label='$\mu_4$')
+plt.plot(np.arange(data_Size), hat_y3, color=(241/255, 64/255, 64/255), label='$\hat \mu_4$')
+# plt.ylabel('$mu$')
 # plt.xlabel('steps')
-plt.legend()
+plt.tick_params(direction='in', which='both')
+plt.legend(fontsize=12, loc='upper right')
+
 # 绘制第5个子图：y4和hat_y4
 plt.subplot(425)
-plt.plot(np.arange(data_Size), y4, color=(26/255, 111/255, 223/255), label='$tau_5$')
-plt.plot(np.arange(data_Size), hat_y4, color=(241/255, 64/255, 64/255), label='$\hat tau_5$')
-plt.ylabel('$mu$')
+plt.plot(np.arange(data_Size), y4, color=(26/255, 111/255, 223/255), label='$\mu_5$')
+plt.plot(np.arange(data_Size), hat_y4, color=(241/255, 64/255, 64/255), label='$\hat \mu_5$')
+plt.ylabel('$\mu$',fontsize=12)
 # plt.xlabel('steps')
-plt.legend()
+plt.tick_params(direction='in', which='both')
+plt.legend(fontsize=12, loc='upper right')
+
 # 绘制第6个子图：y5和hat_y5
 plt.subplot(426)
-plt.plot(np.arange(data_Size), y5, color=(26/255, 111/255, 223/255), label='$tau_6$')
-plt.plot(np.arange(data_Size), hat_y5, color=(241/255, 64/255, 64/255), label='$\hat tau_6$')
-plt.ylabel('$mu$')
-plt.xlabel('steps')
-plt.legend()
+plt.plot(np.arange(data_Size), y5, color=(26/255, 111/255, 223/255), label='$\mu_6$')
+plt.plot(np.arange(data_Size), hat_y5, color=(241/255, 64/255, 64/255), label='$\hat \mu_6$')
+# plt.ylabel('$mu$')
+plt.xlabel('steps',fontsize=12)
+plt.tick_params(direction='in', which='both')
+plt.legend(fontsize=12, loc='upper right')
+
 # 绘制第7个子图：y6和hat_y6
 plt.subplot(427)
-plt.plot(np.arange(data_Size), y6, color=(26/255, 111/255, 223/255), label='$tau_7$')
-plt.plot(np.arange(data_Size), hat_y6, color=(241/255, 64/255, 64/255), label='$\hat tau_7$')
-plt.ylabel('$mu$')
-plt.xlabel('steps')
-plt.legend()
+plt.plot(np.arange(data_Size), y6, color=(26/255, 111/255, 223/255), label='$\mu_7$')
+plt.plot(np.arange(data_Size), hat_y6, color=(241/255, 64/255, 64/255), label='$\hat \mu_7$')
+plt.ylabel('$\mu$',fontsize=12)
+plt.xlabel('steps',fontsize=12)
+plt.tick_params(direction='in', which='both')
+plt.legend(fontsize=12, loc='upper right')
+
 # 显示图形
+plt.savefig("fig7.png", dpi=800)
 plt.show()

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/de-noise.dir/de-noise.cpp.o  -o ../../../bin/de-noise  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a /usr/lib/x86_64-linux-gnu/libpython3.8.so ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

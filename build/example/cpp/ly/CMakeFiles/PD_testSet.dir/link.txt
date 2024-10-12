@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/PD_testSet.dir/PD_testSet.cpp.o  -o ../../../bin/PD_testSet  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a /usr/lib/x86_64-linux-gnu/libpython3.8.so ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

@@ -94,7 +94,7 @@ install/fast: preinstall/fast
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Only default component available"
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -157,45 +157,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named read_robot_state
-
-# Build rule for target.
-read_robot_state: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 read_robot_state
-.PHONY : read_robot_state
-
-# fast build rule for target.
-read_robot_state/fast:
-	$(MAKE) -f example/CMakeFiles/read_robot_state.dir/build.make example/CMakeFiles/read_robot_state.dir/build
-.PHONY : read_robot_state/fast
-
-#=============================================================================
-# Target rules for targets named rl_project
-
-# Build rule for target.
-rl_project: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rl_project
-.PHONY : rl_project
-
-# fast build rule for target.
-rl_project/fast:
-	$(MAKE) -f example/CMakeFiles/rl_project.dir/build.make example/CMakeFiles/rl_project.dir/build
-.PHONY : rl_project/fast
-
-#=============================================================================
-# Target rules for targets named path_record
-
-# Build rule for target.
-path_record: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 path_record
-.PHONY : path_record
-
-# fast build rule for target.
-path_record/fast:
-	$(MAKE) -f example/CMakeFiles/path_record.dir/build.make example/CMakeFiles/path_record.dir/build
-.PHONY : path_record/fast
-
-#=============================================================================
 # Target rules for targets named xmatemodel_er3_er7p
 
 # Build rule for target.
@@ -209,303 +170,30 @@ xmatemodel_er3_er7p/fast:
 .PHONY : xmatemodel_er3_er7p/fast
 
 #=============================================================================
-# Target rules for targets named move_example
+# Target rules for targets named driverSensor
 
 # Build rule for target.
-move_example: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 move_example
-.PHONY : move_example
+driverSensor: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 driverSensor
+.PHONY : driverSensor
 
 # fast build rule for target.
-move_example/fast:
-	$(MAKE) -f example/CMakeFiles/move_example.dir/build.make example/CMakeFiles/move_example.dir/build
-.PHONY : move_example/fast
+driverSensor/fast:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/driverSensor.dir/build.make example/cpp/xdz/CMakeFiles/driverSensor.dir/build
+.PHONY : driverSensor/fast
 
 #=============================================================================
-# Target rules for targets named sdk_example
+# Target rules for targets named RQSensorLinux
 
 # Build rule for target.
-sdk_example: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sdk_example
-.PHONY : sdk_example
+RQSensorLinux: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 RQSensorLinux
+.PHONY : RQSensorLinux
 
 # fast build rule for target.
-sdk_example/fast:
-	$(MAKE) -f example/CMakeFiles/sdk_example.dir/build.make example/CMakeFiles/sdk_example.dir/build
-.PHONY : sdk_example/fast
-
-#=============================================================================
-# Target rules for targets named torque_control
-
-# Build rule for target.
-torque_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 torque_control
-.PHONY : torque_control
-
-# fast build rule for target.
-torque_control/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/torque_control.dir/build.make example/cpp/rt/CMakeFiles/torque_control.dir/build
-.PHONY : torque_control/fast
-
-#=============================================================================
-# Target rules for targets named roake_param_identify
-
-# Build rule for target.
-roake_param_identify: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roake_param_identify
-.PHONY : roake_param_identify
-
-# fast build rule for target.
-roake_param_identify/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/roake_param_identify.dir/build.make example/cpp/rt/CMakeFiles/roake_param_identify.dir/build
-.PHONY : roake_param_identify/fast
-
-#=============================================================================
-# Target rules for targets named cartesian_s_line
-
-# Build rule for target.
-cartesian_s_line: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cartesian_s_line
-.PHONY : cartesian_s_line
-
-# fast build rule for target.
-cartesian_s_line/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/cartesian_s_line.dir/build.make example/cpp/rt/CMakeFiles/cartesian_s_line.dir/build
-.PHONY : cartesian_s_line/fast
-
-#=============================================================================
-# Target rules for targets named cartesian_impedance_control
-
-# Build rule for target.
-cartesian_impedance_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cartesian_impedance_control
-.PHONY : cartesian_impedance_control
-
-# fast build rule for target.
-cartesian_impedance_control/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/cartesian_impedance_control.dir/build.make example/cpp/rt/CMakeFiles/cartesian_impedance_control.dir/build
-.PHONY : cartesian_impedance_control/fast
-
-#=============================================================================
-# Target rules for targets named joint_impedance_control
-
-# Build rule for target.
-joint_impedance_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 joint_impedance_control
-.PHONY : joint_impedance_control
-
-# fast build rule for target.
-joint_impedance_control/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_impedance_control.dir/build.make example/cpp/rt/CMakeFiles/joint_impedance_control.dir/build
-.PHONY : joint_impedance_control/fast
-
-#=============================================================================
-# Target rules for targets named joint_position_control
-
-# Build rule for target.
-joint_position_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 joint_position_control
-.PHONY : joint_position_control
-
-# fast build rule for target.
-joint_position_control/fast:
-	$(MAKE) -f example/cpp/rt/CMakeFiles/joint_position_control.dir/build.make example/cpp/rt/CMakeFiles/joint_position_control.dir/build
-.PHONY : joint_position_control/fast
-
-#=============================================================================
-# Target rules for targets named cart_control
-
-# Build rule for target.
-cart_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cart_control
-.PHONY : cart_control
-
-# fast build rule for target.
-cart_control/fast:
-	$(MAKE) -f example/cpp/xdz/CMakeFiles/cart_control.dir/build.make example/cpp/xdz/CMakeFiles/cart_control.dir/build
-.PHONY : cart_control/fast
-
-#=============================================================================
-# Target rules for targets named drag
-
-# Build rule for target.
-drag: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 drag
-.PHONY : drag
-
-# fast build rule for target.
-drag/fast:
-	$(MAKE) -f example/cpp/xdz/CMakeFiles/drag.dir/build.make example/cpp/xdz/CMakeFiles/drag.dir/build
-.PHONY : drag/fast
-
-#=============================================================================
-# Target rules for targets named force_collect
-
-# Build rule for target.
-force_collect: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 force_collect
-.PHONY : force_collect
-
-# fast build rule for target.
-force_collect/fast:
-	$(MAKE) -f example/cpp/xdz/CMakeFiles/force_collect.dir/build.make example/cpp/xdz/CMakeFiles/force_collect.dir/build
-.PHONY : force_collect/fast
-
-#=============================================================================
-# Target rules for targets named return_drag
-
-# Build rule for target.
-return_drag: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 return_drag
-.PHONY : return_drag
-
-# fast build rule for target.
-return_drag/fast:
-	$(MAKE) -f example/cpp/xdz/CMakeFiles/return_drag.dir/build.make example/cpp/xdz/CMakeFiles/return_drag.dir/build
-.PHONY : return_drag/fast
-
-#=============================================================================
-# Target rules for targets named read_data
-
-# Build rule for target.
-read_data: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 read_data
-.PHONY : read_data
-
-# fast build rule for target.
-read_data/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/read_data.dir/build.make example/cpp/ly/CMakeFiles/read_data.dir/build
-.PHONY : read_data/fast
-
-#=============================================================================
-# Target rules for targets named ly
-
-# Build rule for target.
-ly: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ly
-.PHONY : ly
-
-# fast build rule for target.
-ly/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/ly.dir/build.make example/cpp/ly/CMakeFiles/ly.dir/build
-.PHONY : ly/fast
-
-#=============================================================================
-# Target rules for targets named PD1
-
-# Build rule for target.
-PD1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 PD1
-.PHONY : PD1
-
-# fast build rule for target.
-PD1/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/PD1.dir/build.make example/cpp/ly/CMakeFiles/PD1.dir/build
-.PHONY : PD1/fast
-
-#=============================================================================
-# Target rules for targets named record
-
-# Build rule for target.
-record: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 record
-.PHONY : record
-
-# fast build rule for target.
-record/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/record.dir/build.make example/cpp/ly/CMakeFiles/record.dir/build
-.PHONY : record/fast
-
-#=============================================================================
-# Target rules for targets named test_collect
-
-# Build rule for target.
-test_collect: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_collect
-.PHONY : test_collect
-
-# fast build rule for target.
-test_collect/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/test_collect.dir/build.make example/cpp/ly/CMakeFiles/test_collect.dir/build
-.PHONY : test_collect/fast
-
-#=============================================================================
-# Target rules for targets named SGPR_robot
-
-# Build rule for target.
-SGPR_robot: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 SGPR_robot
-.PHONY : SGPR_robot
-
-# fast build rule for target.
-SGPR_robot/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot.dir/build
-.PHONY : SGPR_robot/fast
-
-#=============================================================================
-# Target rules for targets named ly_CIC_ESO
-
-# Build rule for target.
-ly_CIC_ESO: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ly_CIC_ESO
-.PHONY : ly_CIC_ESO
-
-# fast build rule for target.
-ly_CIC_ESO/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_ESO.dir/build
-.PHONY : ly_CIC_ESO/fast
-
-#=============================================================================
-# Target rules for targets named PD
-
-# Build rule for target.
-PD: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 PD
-.PHONY : PD
-
-# fast build rule for target.
-PD/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/PD.dir/build.make example/cpp/ly/CMakeFiles/PD.dir/build
-.PHONY : PD/fast
-
-#=============================================================================
-# Target rules for targets named de-noise
-
-# Build rule for target.
-de-noise: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 de-noise
-.PHONY : de-noise
-
-# fast build rule for target.
-de-noise/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/de-noise.dir/build.make example/cpp/ly/CMakeFiles/de-noise.dir/build
-.PHONY : de-noise/fast
-
-#=============================================================================
-# Target rules for targets named SGPR_robot1
-
-# Build rule for target.
-SGPR_robot1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 SGPR_robot1
-.PHONY : SGPR_robot1
-
-# fast build rule for target.
-SGPR_robot1/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/SGPR_robot1.dir/build.make example/cpp/ly/CMakeFiles/SGPR_robot1.dir/build
-.PHONY : SGPR_robot1/fast
-
-#=============================================================================
-# Target rules for targets named ly_CIC_PD
-
-# Build rule for target.
-ly_CIC_PD: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ly_CIC_PD
-.PHONY : ly_CIC_PD
-
-# fast build rule for target.
-ly_CIC_PD/fast:
-	$(MAKE) -f example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/build.make example/cpp/ly/CMakeFiles/ly_CIC_PD.dir/build
-.PHONY : ly_CIC_PD/fast
+RQSensorLinux/fast:
+	$(MAKE) -f example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/build.make example/cpp/xdz/CMakeFiles/RQSensorLinux.dir/build
+.PHONY : RQSensorLinux/fast
 
 #=============================================================================
 # Target rules for targets named doc
@@ -532,33 +220,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... read_robot_state"
-	@echo "... rl_project"
-	@echo "... path_record"
 	@echo "... xmatemodel_er3_er7p"
-	@echo "... move_example"
-	@echo "... sdk_example"
-	@echo "... torque_control"
-	@echo "... roake_param_identify"
-	@echo "... cartesian_s_line"
-	@echo "... cartesian_impedance_control"
-	@echo "... joint_impedance_control"
-	@echo "... joint_position_control"
-	@echo "... cart_control"
-	@echo "... drag"
-	@echo "... force_collect"
-	@echo "... return_drag"
-	@echo "... read_data"
-	@echo "... ly"
-	@echo "... PD1"
-	@echo "... record"
-	@echo "... test_collect"
-	@echo "... SGPR_robot"
-	@echo "... ly_CIC_ESO"
-	@echo "... PD"
-	@echo "... de-noise"
-	@echo "... SGPR_robot1"
-	@echo "... ly_CIC_PD"
+	@echo "... driverSensor"
+	@echo "... RQSensorLinux"
 	@echo "... doc"
 .PHONY : help
 

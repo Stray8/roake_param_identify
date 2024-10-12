@@ -64,10 +64,20 @@ void torqueControl(xMateErProRobot &robot) {
     Eigen::Affine3d initial_transform(Eigen::Matrix4d::Map(init_position.data()).transpose());
     Eigen::Vector3d position_d(initial_transform.translation());
     Eigen::Quaterniond orientation_d(initial_transform.linear());
-    constexpr double kRadius = 0.2;
-    double angle = M_PI / 4 * (1 - std::cos(M_PI / 2 * time));
-    double delta_z = kRadius * (std::cos(angle) - 1);
-    position_d[0] += delta_z;
+    constexpr double kRadius = 0.1;
+    double delta_x = kRadius * std::cos(M_PI / 6 * time);
+    double delta_y = kRadius * std::sin(M_PI / 6 * time);
+
+    // CartesianPosition output{};
+    // output.pos = init_position;
+    // output.pos[3] += delta_x - 0.1;
+    // output.pos[7] += delta_y;
+    // constexpr double kRadius = 0.2;
+    // double angle = M_PI / 4 * (1 - std::cos(M_PI / 2 * time));
+    // double delta_z = kRadius * (std::cos(angle) - 1);
+    position_d[0] += delta_x - 0.1;
+    position_d[1] += delta_y;
+
     std::array<double, 7> q{}, dq_m{}, ddq_c{};
     std::array<double, 16> pos_m {};
 
@@ -76,7 +86,7 @@ void torqueControl(xMateErProRobot &robot) {
     robot.getStateData(jointVel_m, dq_m);
     robot.getStateData(jointAcc_c, ddq_c);
 
-    std::cout << ddq_c << std::endl;
+    // std::cout << ddq_c << std::endl;
 
     std::array<double, 42> jacobian_array = model.jacobian(q);
     std::array<double, 7> gravity_array = model.getTorque(q, dq_m, ddq_c, TorqueType::gravity);
@@ -118,6 +128,7 @@ void torqueControl(xMateErProRobot &robot) {
 
     Torque cmd(7);
     Eigen::VectorXd::Map(cmd.tau.data(), 7) = tau_d;
+    std::cout << "pos:" << position_d << std::endl;
     // std::cout << "tau:" << position_d << std::endl;
     if(time > 30){
       cmd.setFinished();

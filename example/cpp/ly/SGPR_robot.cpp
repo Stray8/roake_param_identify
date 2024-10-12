@@ -59,13 +59,13 @@ void torqueControl(xMateErProRobot &robot)
                  0, 0, 0, 0, -500, 0, 0,
                  0, 0, 0, 0, 0, -500, 0,
                  0, 0, 0, 0, 0, 0, -500;
-    damping << 0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0;
+    damping << -30, 0, 0, 0, 0, 0, 0,
+               0, -30, 0, 0, 0, 0, 0,
+               0, 0, -30, 0, 0, 0, 0,
+               0, 0, 0, -30, 0, 0, 0,
+               0, 0, 0, 0, -10, 0, 0,
+               0, 0, 0, 0, 0, -10, 0,
+               0, 0, 0, 0, 0, 0, -10;
  
     std::array<double, 16> init_position {};
     Utils::postureToTransArray(robot.posture(rokae::CoordinateType::flangeInBase, ec), init_position);
@@ -78,13 +78,13 @@ void torqueControl(xMateErProRobot &robot)
     ofstream coriolis_file;
     ofstream gravity_file;
     ofstream torque_file;
-    position_file.open("./test/simulation_data_6/position_ly.txt");
-    position_error_file.open("./test/simulation_data_6/position_error_ly.txt");
-    velocity_file.open("./test/simulation_data_6/velocity_file.txt");
-    inertia_file.open("./test/simulation_data_6/inertia_file.txt");
-    coriolis_file.open("./test/simulation_data_6/coriolis_file.txt");
-    gravity_file.open("./test/simulation_data_6/gravity_file.txt");
-    torque_file.open("./test/simulation_data_6/torque_file.txt");
+    // position_file.open("./test/simulation_data_6/position_ly.txt");
+    // position_error_file.open("./test/simulation_data_6/position_error_ly.txt");
+    // velocity_file.open("./test/simulation_data_6/velocity_file.txt");
+    // inertia_file.open("./test/simulation_data_6/inertia_file.txt");
+    // coriolis_file.open("./test/simulation_data_6/coriolis_file.txt");
+    // gravity_file.open("./test/simulation_data_6/gravity_file.txt");
+    // torque_file.open("./test/simulation_data_6/torque_file.txt");
 
     // position_file.open("./simulation_data_2/position_ly.txt");
     // position_error_file.open("./simulation_data_2/position_error_ly.txt");
@@ -110,6 +110,20 @@ void torqueControl(xMateErProRobot &robot)
     // gravity_file.open("./simulation_data_4/gravity_file.txt");
     // torque_file.open("./simulation_data_4/torque_file.txt");
 
+    position_file.open("./ly_data/SGPR_joint/s4/position_ly.txt");
+    position_error_file.open("./ly_data/SGPR_joint/s4/position_error_ly.txt");
+    velocity_file.open("./ly_data/SGPR_joint/s4/velocity_file.txt");
+    inertia_file.open("./ly_data/SGPR_joint/s4/inertia_file.txt");
+    coriolis_file.open("./ly_data/SGPR_joint/s4/coriolis_file.txt");
+    gravity_file.open("./ly_data/SGPR_joint/s4/gravity_file.txt");
+    torque_file.open("./ly_data/SGPR_joint/s4/torque_file.txt");
+
+    std::array<double, 7> ddq_a, dq_before;
+    for(int i=0;i<7;i++)
+    {
+      ddq_a[i] = 0;
+      dq_before[i] = 0;
+    }
     std::function<Torque(void)> callback = [&]
     {
       static double time=0;
@@ -117,6 +131,11 @@ void torqueControl(xMateErProRobot &robot)
       // 接收设置为true, 回调函数中可以直接读取
       q = robot.jointPos(ec);
       dq_m = robot.jointVel(ec);
+      for(int i=0;i<7;i++)
+      {
+        ddq_a[i] = (dq_m[i] - dq_before[i]) / 0.001;
+      }
+      dq_before = dq_m;
       tau = robot.jointTorque(ec);
       robot.updateRobotState(chrono::milliseconds(1));
       robot.getStateData(RtSupportedFields::jointAcc_c, ddq_m);
@@ -222,9 +241,9 @@ void torqueControl(xMateErProRobot &robot)
       error_jv[5] = dq_m[5] - dot_delta_angle5;
       error_jv[6] = dq_m[6] - dot_delta_angle6;
       // 获取各项力
-      std::array<double, 7> ine = model.getTorque(q, dq_c, ddq_c, TorqueType::inertia);
-      std::array<double, 7> cor = model.getTorque(q, dq_c, ddq_c, TorqueType::coriolis);
-      std::array<double, 7> gra = model.getTorque(q, dq_c, ddq_c, TorqueType::gravity);
+      std::array<double, 7> ine = model.getTorque(q, dq_m, ddq_a, TorqueType::inertia);
+      std::array<double, 7> cor = model.getTorque(q, dq_m, ddq_a, TorqueType::coriolis);
+      std::array<double, 7> gra = model.getTorque(q, dq_m, ddq_a, TorqueType::gravity);
       // convert to Eigen
       Eigen::Map<const Eigen::Matrix<double, 7, 1>> error_jp_mat(error_jp.data());
       Eigen::Map<const Eigen::Matrix<double, 7, 1>> error_jv_mat(error_jv.data());

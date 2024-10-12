@@ -4,11 +4,18 @@
 # Here puts required example source files
 
 set(XDZ_EXAMPLES
-    return_drag
-    force_collect
-    
-    drag
+    # cart_position_control
     )
+
+
+set(inc "/home/robot/robot/roake_param_identify/include/robotiq")
+add_library(RQSensorLinux STATIC ${inc}/rq_sensor_com.c ${inc}/rq_sensor_state.c)
+set_target_properties(RQSensorLinux PROPERTIES OUTPUT_NAME "libRQSensorLinux")
+add_executable(driverSensor /home/robot/robot/roake_param_identify/example/cpp/xdz/robotiq.cpp ${xCoreSDK-examples_SOURCE_DIR}/cpp/print_helper.hpp) 
+target_include_directories(driverSensor PUBLIC ${SHARED_INCLUDEDIR})
+target_link_libraries(driverSensor RQSensorLinux Rokae::Rokae eigen Threads::Threads)
+
+
 
 foreach(example ${XDZ_EXAMPLES})
     add_executable(${example} ${example}.cpp ${xCoreSDK-examples_SOURCE_DIR}/cpp/print_helper.hpp)
@@ -23,7 +30,7 @@ endforeach()
 # check for xMateModel library option
 if(XCORE_USE_XMATE_MODEL)
     set(EXAMPLES_USE_XMATEMODEL
-        cart_control
+        # cart_control
         )
     foreach(example ${EXAMPLES_USE_XMATEMODEL})
         add_executable(${example} ${example}.cpp ${xCoreSDK-examples_SOURCE_DIR}/cpp/print_helper.hpp)
@@ -33,6 +40,7 @@ if(XCORE_USE_XMATE_MODEL)
         target_compile_definitions(${example} PUBLIC XMATEMODEL_LIB_SUPPORTED)
     endforeach()
 endif()
+
 
 #-------------------------------------------------------------------------------
 # Installation

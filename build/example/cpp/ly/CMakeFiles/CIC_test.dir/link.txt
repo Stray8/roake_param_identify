@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/CIC_test.dir/CIC_test.cpp.o  -o ../../../bin/CIC_test  ../../../../lib/Linux/cpp/x86_64/libxCoreSDK.a /usr/lib/x86_64-linux-gnu/libpython3.8.so ../../../../lib/Linux/cpp/x86_64/libxMateModel.a -pthread 

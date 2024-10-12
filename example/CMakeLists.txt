@@ -5,11 +5,7 @@ project(xCoreSDK-examples CXX)
 
 # Here puts required example source files
 set(EXAMPLES
-    sdk_example
-    move_example
-    path_record
-    rl_project
-    read_robot_state
+
     )
 
 # threading
@@ -20,9 +16,6 @@ include_directories(
     /usr/include/python3.8
 )
 
-# include_directories(
-#     /home/robot/robot/roake_param_identify/include/rokae
-# )
 
 foreach(example ${EXAMPLES})
     add_executable(${example} cpp/${example}.cpp cpp/print_helper.hpp)
@@ -54,9 +47,10 @@ if(XCORE_LINK_SHARED_LIBS)
 endif()
 
 # ------------------------------------------------------------------------------
-add_subdirectory(cpp/rt)
-add_subdirectory(cpp/xdz)
-add_subdirectory(cpp/ly)
+# add_subdirectory(cpp/rt)
+ add_subdirectory(cpp/xdz)
+#  add_subdirectory(cpp/ly)
+# add_subdirectory(cpp/ys)
 
 
 #-------------------------------------------------------------------------------

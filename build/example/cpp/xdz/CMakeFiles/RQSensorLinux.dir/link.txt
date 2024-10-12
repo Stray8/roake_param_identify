@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/liblibRQSensorLinux.a  CMakeFiles/RQSensorLinux.dir/__/__/__/include/robotiq/rq_sensor_com.c.o CMakeFiles/RQSensorLinux.dir/__/__/__/include/robotiq/rq_sensor_state.c.o
+/usr/bin/ranlib ../../../lib/liblibRQSensorLinux.a
